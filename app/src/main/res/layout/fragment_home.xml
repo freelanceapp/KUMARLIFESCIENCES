@@ -1,0 +1,195 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.infobite.life.ui.fragment.HomeFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="180sp"
+                android:layout_margin="4sp">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="180sp"
+                    android:layout_alignParentTop="true" />
+
+                <com.viewpagerindicator.CirclePageIndicator
+                    android:id="@+id/indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="bottom"
+                    android:padding="10dip"
+                    app:centered="true"
+                    app:fillColor="#000"
+                    app:pageColor="#fff"
+                    app:snap="false" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Welcome To Kumar Lifesciences"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/dark_blue"
+                android:padding="6sp"
+                android:gravity="center"
+                android:layout_margin="4sp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:layout_margin="4sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/intro"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:padding="6sp"
+                android:layout_margin="4sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:background="@drawable/round_button"
+                android:text="Read More"
+                android:padding="6sp"
+                android:layout_gravity="end"
+                android:layout_margin="4sp"/>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4sp"
+                app:cardCornerRadius="4sp"
+                app:cardElevation="4sp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="10sp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Our Values"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:padding="4sp"
+                        android:layout_margin="10sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Together"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:padding="4sp"
+                        android:layout_marginLeft="10sp"/>
+                    
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1sp"
+                        android:background="@color/dark_blue"
+                        android:layout_marginLeft="10sp"
+                        android:layout_marginTop="4sp"
+                        android:layout_marginBottom="4sp"
+                        android:layout_marginRight="10sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Respect"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:padding="4sp"
+                        android:layout_marginLeft="10sp"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1sp"
+                        android:background="@color/dark_blue"
+                        android:layout_marginLeft="10sp"
+                        android:layout_marginTop="4sp"
+                        android:layout_marginBottom="4sp"
+                        android:layout_marginRight="10sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Unity"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:padding="4sp"
+                        android:layout_marginLeft="10sp"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1sp"
+                        android:background="@color/dark_blue"
+                        android:layout_marginLeft="10sp"
+                        android:layout_marginTop="4sp"
+                        android:layout_marginBottom="4sp"
+                        android:layout_marginRight="10sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Society"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:padding="4sp"
+                        android:layout_marginLeft="10sp"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1sp"
+                        android:background="@color/dark_blue"
+                        android:layout_marginLeft="10sp"
+                        android:layout_marginTop="4sp"
+                        android:layout_marginBottom="4sp"
+                        android:layout_marginRight="10sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Totality"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:padding="4sp"
+                        android:layout_marginLeft="10sp"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1sp"
+                        android:background="@color/dark_blue"
+                        android:layout_marginLeft="10sp"
+                        android:layout_marginTop="4sp"
+                        android:layout_marginBottom="4sp"
+                        android:layout_marginRight="10sp"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,9 +1,12 @@
 package com.infobite.life.ui.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -15,12 +18,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ExpandableListView;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.infobite.life.adapter.ExpandableListAdapter;
+import com.infobite.life.constant.Constant;
 import com.infobite.life.modal.MenuModel;
+import com.infobite.life.ui.fragment.HomeFragment;
+import com.infobite.life.ui.fragment.LoginFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,11 +42,23 @@ public class HomeNavigationActivity extends AppCompatActivity implements View.On
     HashMap<MenuModel, List<MenuModel>> childList = new HashMap<>();
     boolean a = true;
     TextView tvHome,tvProduct,tvGallery,tvAountUs,tvContactUs;
+    FrameLayout home_content_frame;
+    public static FragmentManager fragmentManager;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_navigation);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
+        home_content_frame = findViewById(R.id.home_content_frame);
+
+        if (savedInstanceState == null){
+            fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.home_content_frame,new HomeFragment()
+                            , Constant.HomeFragment).commit();
+        }
+        replaceFragment();
 
         tvHome = findViewById(R.id.tvHome);
         tvProduct = findViewById(R.id.tvProduct);
@@ -71,6 +90,14 @@ public class HomeNavigationActivity extends AppCompatActivity implements View.On
         });
 
     }
+
+    private void replaceFragment(){
+        fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.home_content_frame,new HomeFragment()
+                        , Constant.HomeFragment).commit();
+    }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -79,6 +106,12 @@ public class HomeNavigationActivity extends AppCompatActivity implements View.On
         } else {
             super.onBackPressed();
         }
+
+        Fragment HomeFragment = fragmentManager.findFragmentByTag(Constant.HomeFragment);
+         if (HomeFragment != null)
+            replaceFragment();
+         else
+             super.onBackPressed();
     }
 
 

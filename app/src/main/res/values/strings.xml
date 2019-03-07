@@ -12,4 +12,8 @@
         <item>Fixtures</item>
         <item>Table</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="intro">We, Kumar Lifesciences, established in 2016 are one of the well-established third party manufacturers, wholesaler and traders of Pharmaceutical Drugs. Our company is manufacturing in collaboration with the leading company of market, which has been certified by world health organization for good manufacturing practices and international organization for standardization. Offered medicines are highly appreciated among the patrons, owing to their quick results, longer shelf life and effectiveness.</string>
 </resources>
