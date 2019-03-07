@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.infobite.technology"
+        applicationId "infobite.kumar.infobite.kumar.life"
         minSdkVersion 15
         targetSdkVersion 28
         versionCode 1
@@ -33,7 +33,6 @@ dependencies {
     //picasso library
 
     implementation 'com.squareup.picasso:picasso:2.5.2'
-
 
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
