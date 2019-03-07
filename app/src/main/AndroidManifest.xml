@@ -13,8 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Base">
-        <activity android:name="com.infobite.life.ui.activity.LoginMainActivity"></activity>
-        <activity android:name="com.infobite.life.ui.activity.SplashScreen">
+        <activity android:name="com.infobite.life.ui.activity.LoginMainActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name="com.infobite.life.ui.activity.SplashScreen"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,11 +24,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name="com.infobite.life.ui.activity.HomeNavigationActivity"
             android:label="@string/title_activity_home_navigation"
             android:theme="@style/AppTheme.Base.NoActionBar" />
-        <activity android:name="com.infobite.life.utils.BaseActivity" />
-        <activity android:name="com.infobite.life.ui.activity.MainActivity">
+        <activity android:name="com.infobite.life.utils.BaseActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.infobite.life.ui.activity.MainActivity"
+            android:screenOrientation="portrait">
 
             <!--
             <intent-filter>

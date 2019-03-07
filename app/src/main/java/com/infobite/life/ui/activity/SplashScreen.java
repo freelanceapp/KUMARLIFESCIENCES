@@ -35,7 +35,7 @@ public class SplashScreen extends BaseActivity {
                 startActivity(new Intent(mContext,LoginMainActivity
                         .class));
             }
-        },2000);
+        },3000);
 
     }
 

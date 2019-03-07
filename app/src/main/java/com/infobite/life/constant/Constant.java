@@ -1,10 +1,10 @@
 package com.infobite.life.constant;
 
 public class Constant {
-    public static final String LOGIN_API = "login.php";
     public static final String NEWPOST_API = "name.php";
     public static final String BASE_URL = " http://kumarlifesciences.com/";
     public static final String SIGNUP_API = "kls-api/registration.php";
+    public static final String LOGIN_API = "kls-api/login.php";
     public static final String PRODUCTS_API = "kls-api/products.php";
 
 

@@ -9,37 +9,53 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.gson.JsonObject;
 import com.infobite.life.constant.Constant;
 import com.infobite.life.modal.Text;
 import com.infobite.life.retrofit_provider.RetrofitService;
+import com.infobite.life.retrofit_provider.WebResponse;
+import com.infobite.life.utils.Alerts;
 import com.infobite.life.utils.BaseFragment;
+import com.infobite.life.utils.ConnectionDirector;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 
 import infobite.kumar.life.R;
+import okhttp3.ResponseBody;
+import retrofit2.Response;
 
 import static com.infobite.life.ui.activity.LoginMainActivity.fragmentManager;
 
 public class SignUpFragment extends BaseFragment implements View.OnClickListener {
     private View rootview;
     private Button btn_signUp;
-    private TextView fullname,emailAddress,password,cPassword;
+    private EditText fullname,emailAddress,password,cPassword;
     private String strName,strEmailAddress,strPassword;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootview = inflater.inflate(R.layout.fragment_signup_layout,container,false);
+        activity = getActivity();
+        mContext = getActivity();
+        cd = new ConnectionDirector(mContext);
+        retrofitApiClient = RetrofitService.getRetrofit();
         init();
         return rootview;
     }
 
     private void init() {
         btn_signUp = rootview.findViewById(R.id.btn_signUp);
-        fullname = rootview.findViewById(R.id.tv_fullname);
-        emailAddress = rootview.findViewById(R.id.tv_email_address);
-        password = rootview.findViewById(R.id.tv_password);
-        cPassword = rootview.findViewById(R.id.tv_cpassword);
+        fullname = rootview.findViewById(R.id.et_fullname);
+        emailAddress = rootview.findViewById(R.id.et_email_address);
+        password = rootview.findViewById(R.id.et_password);
+        cPassword = rootview.findViewById(R.id.et_cpassword);
 
 
         btn_signUp.setOnClickListener(this);
@@ -58,6 +74,7 @@ public class SignUpFragment extends BaseFragment implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_signUp:
+                signUpApi();
                 startFragment(Constant.LoginFragment,new LoginFragment());
                 break;
             case R.id.tv_Login:
@@ -70,7 +87,26 @@ public class SignUpFragment extends BaseFragment implements View.OnClickListener
             strName = fullname.getText().toString();
             strEmailAddress = emailAddress.getText().toString();
             strPassword = password.getText().toString();
-          //  RetrofitService.getSignUpData(new Dialog(mContext),retrofitApiClient.signUp());
+            RetrofitService.getSignUpData(new Dialog(mContext), retrofitApiClient.signUp(strName, strPassword, strEmailAddress), new WebResponse() {
+                @Override
+                public void onResponseSuccess(Response<?> result) {
+                    ResponseBody responseBody = (ResponseBody) result.body();
+                        try {
+                            JSONObject jsonObject = new JSONObject(responseBody.string());
+                            Alerts.show(mContext,jsonObject +  "Login SuccessFully");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                @Override
+                public void onResponseFailed(String error) {
+                Alerts.show(mContext,error);
+                }
+            });
         }
     }
 }

@@ -21,6 +21,6 @@ public interface RetrofitApiClient {
 
     @FormUrlEncoded
     @POST(Constant.LOGIN_API)
-    Call<ResponseBody> signIn(@Field("email") String email, @Field("password") String password);
+    Call<ResponseBody> loginData(@Field("email") String email, @Field("password") String password);
 
 }

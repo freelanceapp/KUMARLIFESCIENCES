@@ -55,6 +55,7 @@
         android:layout_height="wrap_content" />
 
     <EditText
+        android:id="@+id/et_login_email"
         android:textStyle="normal"
         android:layout_marginTop="16dp"
         android:layout_marginLeft="10dp"
@@ -69,6 +70,7 @@
         android:layout_height="wrap_content" />
 
     <EditText
+        android:id="@+id/et_login_password"
         android:textStyle="normal"
         android:layout_marginTop="16dp"
         android:layout_marginLeft="10dp"
