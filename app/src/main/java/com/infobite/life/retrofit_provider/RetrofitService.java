@@ -6,6 +6,7 @@ import com.infobite.life.constant.Constant;
 import com.infobite.life.modal.main_categry_products.CategeryMainModal;
 import com.infobite.life.utils.AppProgressDialog;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -55,6 +56,26 @@ public class RetrofitService {
 
             @Override
             public void onFailure(Call<CategeryMainModal> call, Throwable throwable) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                webResponse.onResponseFailed(throwable.getMessage());
+            }
+        });
+    }
+    public static void getSignUpData(final Dialog dialog, final Call<ResponseBody> method, final WebResponse webResponse) {
+        if (dialog != null)
+            AppProgressDialog.showDialog(dialog);
+
+        method.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                WebServiceResponse.handleResponse(response, webResponse);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable throwable) {
                 if (dialog != null)
                     AppProgressDialog.hide(dialog);
                 webResponse.onResponseFailed(throwable.getMessage());

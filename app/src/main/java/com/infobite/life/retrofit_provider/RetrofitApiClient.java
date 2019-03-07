@@ -16,6 +16,10 @@ public interface RetrofitApiClient {
     Call<CategeryMainModal> productData();
 
     @FormUrlEncoded
+    @POST(Constant.SIGNUP_API)
+    Call<ResponseBody> signUp(@Field("fullname") String fullname, @Field("password") String password, @Field("email") String email);
+
+    @FormUrlEncoded
     @POST(Constant.LOGIN_API)
     Call<ResponseBody> signIn(@Field("email") String email, @Field("password") String password);
 

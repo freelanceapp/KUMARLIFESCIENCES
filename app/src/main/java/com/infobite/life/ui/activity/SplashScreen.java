@@ -32,7 +32,8 @@ public class SplashScreen extends BaseActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(mContext,HomeNavigationActivity.class));
+                startActivity(new Intent(mContext,LoginMainActivity
+                        .class));
             }
         },2000);
 
