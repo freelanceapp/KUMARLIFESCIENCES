@@ -14,24 +14,81 @@
         android:layout_height="match_parent" />
 
     <android.support.design.widget.NavigationView
-        android:textAlignment="center"
-        android:paddingLeft="10dp"
-        android:background="@color/dark_blue"
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="@color/dark_blue"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_home_navigation"
-       >
-        <ExpandableListView
-            android:id="@+id/expandableListView"
+        android:paddingLeft="10dp"
+        android:textAlignment="center"
+        app:headerLayout="@layout/nav_header_home_navigation">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/nav_header_height"
-            android:background="@color/dark_blue"
-            android:dividerHeight="0dp"
-            android:groupIndicator="@null" />
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15sp"
+                android:padding="4sp"
+                android:text="Home"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_margin="4sp"
+                android:id="@+id/tvHome"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15sp"
+                android:padding="4sp"
+                android:text="Product"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_margin="4sp"
+                android:id="@+id/tvProduct"/>
+            <ExpandableListView
+                android:id="@+id/expandableListView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/dark_blue"
+                android:dividerHeight="0dp"
+                android:groupIndicator="@null" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15sp"
+                android:padding="4sp"
+                android:text="Gallery"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_margin="4sp"
+                android:id="@+id/tvGallery"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15sp"
+                android:padding="4sp"
+                android:text="About Us"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_margin="4sp"
+                android:id="@+id/tvAboutus"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15sp"
+                android:padding="4sp"
+                android:text="Contact Us"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_margin="4sp"
+                android:id="@+id/tvContactus"/>
+        </LinearLayout>
     </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>

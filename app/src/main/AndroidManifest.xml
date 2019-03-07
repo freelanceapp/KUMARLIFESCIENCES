@@ -16,7 +16,6 @@
         <activity android:name="com.infobite.life.ui.activity.SplashScreen"></activity>
         <activity
             android:name="com.infobite.life.ui.activity.HomeNavigationActivity"
-            android:label="@string/title_activity_home_navigation"
             android:theme="@style/AppTheme.Base.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
