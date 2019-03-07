@@ -15,4 +15,10 @@ public class Constant {
     public static final String LoginFragment = "LoginFragment";
     public static final String SignUpFragment = "SignUpFragment";
     public static final String ForgotPasswordFragment = "ForgotPasswordFragment";
+
+    /*Preference*/
+    public static final String Is_Login = "Is_Login";
+    public static final String User_Id = "User_Id";
+    public static final String Name = "Name";
+    public static final String Email = "Email";
 }

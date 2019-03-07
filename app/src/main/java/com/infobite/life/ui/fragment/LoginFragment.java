@@ -12,12 +12,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.infobite.life.constant.Constant;
 import com.infobite.life.retrofit_provider.RetrofitService;
 import com.infobite.life.retrofit_provider.WebResponse;
 import com.infobite.life.ui.activity.HomeNavigationActivity;
 import com.infobite.life.utils.Alerts;
+import com.infobite.life.utils.AppPreference;
 import com.infobite.life.utils.BaseFragment;
 import com.infobite.life.utils.ConnectionDirector;
 
@@ -35,6 +37,7 @@ import static com.infobite.life.ui.activity.LoginMainActivity.fragmentManager;
 public class LoginFragment extends BaseFragment implements View.OnClickListener {
     private View rootview;
     private String strEmail, strPassword;
+    private String strEmailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
     @Nullable
     @Override
@@ -83,7 +86,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
             strPassword = ((EditText) rootview.findViewById(R.id.et_login_password)).getText().toString();
             if (strEmail.isEmpty()) {
                 ((EditText) rootview.findViewById(R.id.et_login_email)).setError("Please enter email address");
-            } else if (!strEmail.contains("@")) {
+            } else if (!strEmail.matches(strEmailPattern)) {
                 ((EditText) rootview.findViewById(R.id.et_login_email)).setError("Please enter valid email address");
             } else if (strPassword.isEmpty()) {
                 ((EditText) rootview.findViewById(R.id.et_login_password)).setError("Please enter password");
@@ -97,7 +100,12 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                         try {
                             JSONObject jsonObject = new JSONObject(responseBody.string());
                             if (jsonObject.getString("message").equalsIgnoreCase("Login Success")) {
-                                Alerts.show(mContext, jsonObject.getString("message"));
+                                Toast.makeText(mContext, "login successfully", Toast.LENGTH_SHORT).show();
+
+                                AppPreference.setBooleanPreference(mContext, Constant.Is_Login, true);
+                                AppPreference.setStringPreference(mContext, Constant.Name, jsonObject.getString("full_name"));
+                                AppPreference.setStringPreference(mContext, Constant.Email, jsonObject.getString("user_email"));
+
                                 Intent intent = new Intent(mContext, HomeNavigationActivity.class);
                                 intent.putExtra("email", strEmail);
                                 startActivity(intent);
