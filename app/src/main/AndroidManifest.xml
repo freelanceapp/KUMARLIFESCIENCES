@@ -13,18 +13,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Base">
-        <activity android:name="com.infobite.life.ui.activity.SplashScreen"></activity>
+        <activity android:name="com.infobite.life.ui.activity.SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.infobite.life.ui.activity.HomeNavigationActivity"
             android:label="@string/title_activity_home_navigation"
             android:theme="@style/AppTheme.Base.NoActionBar" />
         <activity android:name="com.infobite.life.utils.BaseActivity" />
         <activity android:name="com.infobite.life.ui.activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
