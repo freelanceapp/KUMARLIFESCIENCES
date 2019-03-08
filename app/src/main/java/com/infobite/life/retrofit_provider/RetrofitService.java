@@ -3,7 +3,10 @@ package com.infobite.life.retrofit_provider;
 import android.app.Dialog;
 
 import com.infobite.life.constant.Constant;
+import com.infobite.life.modal.banner_modal.BannerMainModal;
+import com.infobite.life.modal.gallery_modal.GalleryMainModal;
 import com.infobite.life.modal.main_categry_products.CategeryMainModal;
+import com.infobite.life.modal.products_modal.ProductsMainModal;
 import com.infobite.life.utils.AppProgressDialog;
 
 import okhttp3.ResponseBody;
@@ -42,20 +45,20 @@ public class RetrofitService {
         return client;
     }
 
-    public static void getProductsData(final Dialog dialog, final Call<CategeryMainModal> method, final WebResponse webResponse) {
+    public static void getProductsData(final Dialog dialog, final Call<ProductsMainModal> method, final WebResponse webResponse) {
         if (dialog != null)
             AppProgressDialog.showDialog(dialog);
 
-        method.enqueue(new Callback<CategeryMainModal>() {
+        method.enqueue(new Callback<ProductsMainModal>() {
             @Override
-            public void onResponse(Call<CategeryMainModal> call, Response<CategeryMainModal> response) {
+            public void onResponse(Call<ProductsMainModal> call, Response<ProductsMainModal> response) {
                 if (dialog != null)
                     AppProgressDialog.hide(dialog);
                 WebServiceResponse.handleResponse(response, webResponse);
             }
 
             @Override
-            public void onFailure(Call<CategeryMainModal> call, Throwable throwable) {
+            public void onFailure(Call<ProductsMainModal> call, Throwable throwable) {
                 if (dialog != null)
                     AppProgressDialog.hide(dialog);
                 webResponse.onResponseFailed(throwable.getMessage());
@@ -96,6 +99,65 @@ public class RetrofitService {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable throwable) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                webResponse.onResponseFailed(throwable.getMessage());
+            }
+        });
+    }
+    public static void getGalleryData(final Dialog dialog, final Call<GalleryMainModal> method, final WebResponse webResponse) {
+        if (dialog != null)
+            AppProgressDialog.showDialog(dialog);
+
+        method.enqueue(new Callback<GalleryMainModal>() {
+            @Override
+            public void onResponse(Call<GalleryMainModal> call, Response<GalleryMainModal> response) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                WebServiceResponse.handleResponse(response, webResponse);
+            }
+
+            @Override
+            public void onFailure(Call<GalleryMainModal> call, Throwable throwable) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                webResponse.onResponseFailed(throwable.getMessage());
+            }
+        });
+    }
+    public static void getContactUsData(final Dialog dialog, final Call<ResponseBody> method, final WebResponse webResponse) {
+        if (dialog != null)
+            AppProgressDialog.showDialog(dialog);
+
+        method.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                WebServiceResponse.handleResponse(response, webResponse);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable throwable) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                webResponse.onResponseFailed(throwable.getMessage());
+            }
+        });
+    }   public static void getBannerData(final Dialog dialog, final Call<BannerMainModal> method, final WebResponse webResponse) {
+        if (dialog != null)
+            AppProgressDialog.showDialog(dialog);
+
+        method.enqueue(new Callback<BannerMainModal>() {
+            @Override
+            public void onResponse(Call<BannerMainModal> call, Response<BannerMainModal> response) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                WebServiceResponse.handleResponse(response, webResponse);
+            }
+
+            @Override
+            public void onFailure(Call<BannerMainModal> call, Throwable throwable) {
                 if (dialog != null)
                     AppProgressDialog.hide(dialog);
                 webResponse.onResponseFailed(throwable.getMessage());

@@ -19,6 +19,7 @@ import com.infobite.life.constant.Constant;
 import com.infobite.life.modal.Text;
 import com.infobite.life.retrofit_provider.RetrofitService;
 import com.infobite.life.retrofit_provider.WebResponse;
+import com.infobite.life.ui.activity.HomeNavigationActivity;
 import com.infobite.life.utils.Alerts;
 import com.infobite.life.utils.BaseFragment;
 import com.infobite.life.utils.ConnectionDirector;
@@ -109,7 +110,8 @@ public class SignUpFragment extends BaseFragment implements View.OnClickListener
                         try {
                             JSONObject jsonObject = new JSONObject(responseBody.string());
                             if (jsonObject.getString("message").equalsIgnoreCase("Successfully Sign Up")){
-                                startFragment(Constant.LoginFragment,new LoginFragment());
+                                Intent intent = new Intent(mContext, HomeNavigationActivity.class);
+                                startActivity(intent);
                                 Toast.makeText(mContext,"signup successfully",Toast.LENGTH_SHORT).show();
                             }else{
                                 Alerts.show(mContext,jsonObject.getString("message"));

@@ -36,7 +36,7 @@
                 android:layout_marginLeft="15sp"
                 android:padding="4sp"
                 android:text="Home"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:layout_margin="4sp"
                 android:id="@+id/tvHome"/>
@@ -47,7 +47,7 @@
                 android:layout_marginLeft="15sp"
                 android:padding="4sp"
                 android:text="Product"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:layout_margin="4sp"
                 android:id="@+id/tvProduct"/>
@@ -64,7 +64,7 @@
                 android:layout_marginLeft="15sp"
                 android:padding="4sp"
                 android:text="Gallery"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:layout_margin="4sp"
                 android:id="@+id/tvGallery"/>
@@ -74,7 +74,7 @@
                 android:layout_marginLeft="15sp"
                 android:padding="4sp"
                 android:text="About Us"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:layout_margin="4sp"
                 android:id="@+id/tvAboutus"/>
@@ -84,7 +84,7 @@
                 android:layout_marginLeft="15sp"
                 android:padding="4sp"
                 android:text="Contact Us"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:layout_margin="4sp"
                 android:id="@+id/tvContactus"/>

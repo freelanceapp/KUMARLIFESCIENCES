@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 
+import com.bumptech.glide.Glide;
 import com.infobite.life.constant.Constant;
+import com.infobite.life.modal.banner_modal.Datum;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -18,11 +20,11 @@ import infobite.kumar.life.R;
 
 public class SlidingImage_Adapter extends PagerAdapter {
 
-    private ArrayList<String> IMAGES;
+    private ArrayList<Datum> IMAGES;
     private LayoutInflater inflater;
     private Context context;
 
-    public SlidingImage_Adapter(Context context, ArrayList<String> IMAGES) {
+    public SlidingImage_Adapter(Context context, ArrayList<Datum> IMAGES) {
         this.context = context;
         this.IMAGES = IMAGES;
         inflater = LayoutInflater.from(context);
@@ -40,13 +42,11 @@ public class SlidingImage_Adapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup view, int position) {
-        View imageLayout = inflater.inflate(R.layout.slide_show_pager_item, view, false);
+        View imageLayout = inflater.inflate(R.layout.row_banner, view, false);
 
         assert imageLayout != null;
-        final ImageView imageView = (ImageView) imageLayout.findViewById(R.id.imageView);
-        Picasso.with(context).load(IMAGES.get(position))
-                .placeholder(R.drawable.profile)
-                .error(R.drawable.profile)
+        final ImageView imageView = (ImageView) imageLayout.findViewById(R.id.imageView_banner);
+        Glide.with(context).load(IMAGES.get(position).getOfferImage())
                 .into(imageView);
         view.addView(imageLayout, 0);
         return imageLayout;

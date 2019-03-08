@@ -10,7 +10,11 @@ public class WebServiceResponse {
     public static void handleResponse(Response<?> response, WebResponse webResponse) {
         if (response.isSuccessful()) {
             if (response.body() != null) {
-                webResponse.onResponseSuccess(response);
+                try {
+                    webResponse.onResponseSuccess(response);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             } else {
                 webResponse.onResponseFailed(response.message());
             }

@@ -1,11 +1,13 @@
 package com.infobite.life.retrofit_provider;
 
+import org.json.JSONException;
+
 import retrofit2.Response;
 
 
 public interface WebResponse {
 
-    void onResponseSuccess(Response<?> result);
+    void onResponseSuccess(Response<?> result) throws JSONException;
 
     void onResponseFailed(String error);
 }

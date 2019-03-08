@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:padding="10dp"
+    android:background="@color/white"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="Intrested in discussing?"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_name"
+                android:textStyle="normal"
+                android:textColor="@color/black"
+                android:text="Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/et_name"
+                android:textStyle="normal"
+                android:layout_marginTop="8dp"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:padding="10dp"
+                android:textSize="14sp"
+                android:background="@drawable/bg_layout"
+                android:hint="Enter Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/tv_email"
+                android:textStyle="normal"
+                android:textColor="@color/black"
+                android:text="Email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/et_email"
+                android:textStyle="normal"
+                android:layout_marginTop="8dp"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/black"
+                android:padding="10dp"
+                android:textSize="14sp"
+                android:background="@drawable/bg_layout"
+                android:hint="Enter Email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/tv_subject"
+                android:textStyle="normal"
+                android:textColor="@color/black"
+                android:text="Subject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/et_subject"
+                android:textStyle="normal"
+                android:layout_marginTop="8dp"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:padding="10dp"
+                android:textSize="14sp"
+                android:background="@drawable/bg_layout"
+                android:hint="Enter Subject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/tv_phone"
+                android:textStyle="normal"
+                android:textColor="@color/black"
+                android:text="Phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/et_phone"
+                android:textStyle="normal"
+                android:layout_marginTop="8dp"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:padding="10dp"
+                android:textSize="14sp"
+                android:background="@drawable/bg_layout"
+                android:hint="Enter Phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/tv_message"
+                android:textStyle="normal"
+                android:textColor="@color/black"
+                android:text="Message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:textAlignment="viewStart"
+                android:id="@+id/et_message"
+                android:textStyle="normal"
+                android:layout_marginTop="8dp"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:padding="10dp"
+                android:textSize="14sp"
+                android:background="@drawable/bg_layout"
+                android:hint="Enter Message"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:gravity="start" />
+            <LinearLayout
+                android:layout_marginTop="30dp"
+                android:weightSum="2"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btn_send_message"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:text="Send Your Message"
+                    android:background="@color/blue_a"
+                    android:paddingRight="16dp"
+                    android:paddingLeft="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:id="@+id/btn_reset_message"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:textAllCaps="false"
+                    android:textColor="@color/blue_a"
+                    android:text="Reset"
+                    android:background="@drawable/bg_corner_blue"
+                    android:paddingRight="16dp"
+                    android:paddingLeft="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

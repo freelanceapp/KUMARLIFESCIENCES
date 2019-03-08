@@ -1,5 +1,6 @@
 package com.infobite.life.ui.fragment;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,6 +14,13 @@ import android.widget.TextView;
 
 import com.infobite.life.adapter.SlidingImage_Adapter;
 import com.infobite.life.constant.Constant;
+import com.infobite.life.modal.banner_modal.BannerMainModal;
+import com.infobite.life.modal.banner_modal.Datum;
+import com.infobite.life.retrofit_provider.RetrofitService;
+import com.infobite.life.retrofit_provider.WebResponse;
+import com.infobite.life.utils.Alerts;
+import com.infobite.life.utils.BaseFragment;
+import com.infobite.life.utils.ConnectionDirector;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
@@ -20,16 +28,18 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import infobite.kumar.life.R;
+import retrofit2.Response;
 
 import static com.infobite.life.ui.activity.HomeNavigationActivity.fragmentHomeManager;
 
 
-public class HomeFragment extends Fragment  {
+public class HomeFragment extends BaseFragment {
+    SlidingImage_Adapter bannerListAdapter;
     CirclePageIndicator indicator;
     private static ViewPager mPager;
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
-    private ArrayList<String> ImagesArray = new ArrayList<String>();
+    private ArrayList<Datum> bannerImage = new ArrayList<>();
     View view;
     TextView btnRead;
     public HomeFragment() {
@@ -41,9 +51,12 @@ public class HomeFragment extends Fragment  {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view =  inflater.inflate(R.layout.fragment_home, container, false);
-
+        activity = getActivity();
+        mContext = getActivity();
+        cd = new ConnectionDirector(mContext);
+        retrofitApiClient = RetrofitService.getRetrofit();
+        bannerApi();
         init();
-
         return view;
     }
 
@@ -59,19 +72,15 @@ public class HomeFragment extends Fragment  {
 
             }
         });
-        ImagesArray.add("https://images.pexels.com/photos/415825/pexels-photo-415825.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
-        ImagesArray.add("https://images.indianexpress.com/2017/12/meds-main.jpg");
-        ImagesArray.add("http://theislander.net/wp-content/uploads/MSOS-Medicine-Medical-Supplies-Disposal--660x330.png");
-        ImagesArray.add("https://d9np3dj86nsu2.cloudfront.net/image/b10e77c167e60da398488d7a1412a7f1");
 
         init(4);
     }
 
     private void init(int bannerLength) {
-        SlidingImage_Adapter image_adapter1 = new SlidingImage_Adapter(getActivity(), ImagesArray);
-        mPager.setAdapter(image_adapter1);
+        bannerListAdapter = new SlidingImage_Adapter(mContext, bannerImage);
+        mPager.setAdapter(bannerListAdapter);
         indicator.setViewPager(mPager);
-        image_adapter1.notifyDataSetChanged();
+        bannerListAdapter.notifyDataSetChanged();
         final float density = getResources().getDisplayMetrics().density;
         indicator.setRadius(3 * density);
         NUM_PAGES = bannerLength;
@@ -109,7 +118,6 @@ public class HomeFragment extends Fragment  {
             }
         });
     }
-
     private void startFragment(String tag, Fragment fragment) {
         fragmentHomeManager
                 .beginTransaction()
@@ -126,4 +134,26 @@ public class HomeFragment extends Fragment  {
                 break;
         }
     }*/
+    private void bannerApi() {
+        if (cd.isNetWorkAvailable()) {
+            RetrofitService.getBannerData(new Dialog(mContext), retrofitApiClient.bannerData(), new WebResponse() {
+                @Override
+                public void onResponseSuccess(Response<?> result) {
+                    BannerMainModal mainModal = (BannerMainModal) result.body();
+                    bannerImage.clear();
+                    if (mainModal != null) {
+                        if (mainModal.getData() != null) {
+                            bannerImage.addAll(mainModal.getData());
+                        }
+                    }
+                    bannerListAdapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onResponseFailed(String error) {
+                    Alerts.show(mContext, error);
+                }
+            });
+        }
+    }
 }

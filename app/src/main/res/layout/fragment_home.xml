@@ -18,8 +18,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="180sp"
-                android:layout_margin="4sp">
+                android:layout_height="180sp">
 
                 <android.support.v4.view.ViewPager
                     android:id="@+id/pager"
@@ -108,7 +107,7 @@
                         android:textSize="14sp"
                         android:padding="4sp"
                         android:layout_marginLeft="10sp"/>
-                    
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1sp"

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.infobite.life.modal.main_categry_products.Datum;
 import com.squareup.picasso.Picasso;
 
@@ -39,7 +40,7 @@ public class MainCatageryAdapter extends RecyclerView.Adapter<MainCatageryAdapte
         Datum mainCategeryModal = mainCategeryModalList.get(i);
         viewHolder.mainCatageryName.setText(mainCategeryModal.getCategoryName());
         if (mainCategeryModal.getCategoryImage() != null){
-            Picasso.with(mContext).load(mainCategeryModal.getCategoryImage()).into(viewHolder.imgProduct);
+            Glide.with(mContext).load(mainCategeryModal.getCategoryImage()).into(viewHolder.imgProduct);
         }else {
             viewHolder.imgProduct.setVisibility(View.GONE);
         }
