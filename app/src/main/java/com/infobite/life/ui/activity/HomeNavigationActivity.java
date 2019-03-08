@@ -43,7 +43,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements View.On
     boolean a = true;
     TextView tvHome,tvProduct,tvGallery,tvAountUs,tvContactUs;
     FrameLayout home_content_frame;
-    public static FragmentManager fragmentManager;
+    public static FragmentManager fragmentHomeManager;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_navigation);
@@ -53,8 +53,8 @@ public class HomeNavigationActivity extends AppCompatActivity implements View.On
         home_content_frame = findViewById(R.id.home_content_frame);
 
         if (savedInstanceState == null){
-            fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction()
+            fragmentHomeManager = getSupportFragmentManager();
+            fragmentHomeManager.beginTransaction()
                     .replace(R.id.home_content_frame,new HomeFragment()
                             , Constant.HomeFragment).commit();
         }
@@ -92,8 +92,8 @@ public class HomeNavigationActivity extends AppCompatActivity implements View.On
     }
 
     private void replaceFragment(){
-        fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
+        fragmentHomeManager = getSupportFragmentManager();
+        fragmentHomeManager.beginTransaction()
                 .replace(R.id.home_content_frame,new HomeFragment()
                         , Constant.HomeFragment).commit();
     }
@@ -107,8 +107,11 @@ public class HomeNavigationActivity extends AppCompatActivity implements View.On
             super.onBackPressed();
         }
 
-        Fragment HomeFragment = fragmentManager.findFragmentByTag(Constant.HomeFragment);
-         if (HomeFragment != null)
+        Fragment HomeFragment = fragmentHomeManager.findFragmentByTag(Constant.HomeFragment);
+        Fragment InfoFragment = fragmentHomeManager.findFragmentByTag(Constant.InfoFragment);
+        if (HomeFragment != null)
+            replaceFragment();
+        else if (InfoFragment != null)
             replaceFragment();
          else
              super.onBackPressed();

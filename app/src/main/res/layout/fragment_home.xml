@@ -75,7 +75,8 @@
                 android:text="Read More"
                 android:padding="6sp"
                 android:layout_gravity="end"
-                android:layout_margin="4sp"/>
+                android:layout_margin="4sp"
+                android:id="@+id/btnRead"/>
 
 
             <android.support.v7.widget.CardView
