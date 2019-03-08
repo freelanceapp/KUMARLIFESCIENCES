@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
+import com.infobite.life.constant.Constant;
+import com.infobite.life.utils.AppPreference;
 import com.infobite.life.utils.BaseActivity;
 import com.squareup.picasso.Picasso;
 
@@ -32,11 +34,15 @@ public class SplashScreen extends BaseActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(mContext,LoginMainActivity
-                        .class));
+                if (AppPreference.getBooleanPreference(mContext, Constant.Is_Login)) {
+                   startActivity(new Intent(mContext,HomeNavigationActivity.class));
+                   finish();
+                } else {
+                    startActivity(new Intent(mContext, LoginMainActivity.class));
+                    finish();
+                }
             }
-        },3000);
-
+        }, 3000);
     }
 
 }
