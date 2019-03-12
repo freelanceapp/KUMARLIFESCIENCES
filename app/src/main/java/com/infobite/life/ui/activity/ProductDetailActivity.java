@@ -42,11 +42,7 @@ public class ProductDetailActivity extends BaseActivity implements View.OnClickL
         tvExDate = findViewById(R.id.tv_detail_expiry_date);
 
         imgProduct = findViewById(R.id.img_product_detail);
-        ivRemove = findViewById(R.id.iv_remove);
-        ivRemove.setOnClickListener(this);
-        ivAdd = findViewById(R.id.iv_add);
-        ivAdd.setOnClickListener(this);
-        tv_total_quantity = findViewById(R.id.tv_total_quantity);
+
         getIntentData();
     }
 
@@ -74,6 +70,11 @@ public class ProductDetailActivity extends BaseActivity implements View.OnClickL
 
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
+
    /* private void addQuantity(){
         if (checked){
             checked = true;
@@ -96,16 +97,4 @@ public class ProductDetailActivity extends BaseActivity implements View.OnClickL
             tv_total_quantity.setText(String.valueOf(i));
         }
     }*/
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.iv_add:
-             //   addQuantity();
-                break;
-            case R.id.iv_remove:
-             //   removeQuantity();
-                break;
-        }
-    }
 }

@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout android:padding="4dp"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rl_mainCategory"
-    android:orientation="horizontal"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <android.support.v7.widget.CardView
-        android:id="@+id/cv_image_category"
-        app:cardCornerRadius="6dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    android:orientation="horizontal">
+
         <ImageView
-            android:scaleType="fitXY"
-            android:adjustViewBounds="true"
+            android:src="@drawable/profile"
             android:id="@+id/img_products"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </android.support.v7.widget.CardView>
+            android:layout_height="160dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY" />
+
     <TextView
-        android:padding="4dp"
-        android:background="@color/transparend_blue"
-        android:elevation="8dp"
-        android:textColor="@color/black"
-        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:background="@color/transparent_black"
+        android:textStyle="bold"
         android:id="@+id/tv_main_categery"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
         android:text="main categry"
-        android:textSize="18dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:textColor="@color/white"
+        android:textSize="18dp" />
+    <View
+        android:layout_alignBottom="@+id/tv_main_categery"
+        android:background="@color/gray_g"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"/>
+   <!-- <View
+        android:elevation="4dp"
+        android:background="@color/transparent_black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>-->
 </RelativeLayout>
