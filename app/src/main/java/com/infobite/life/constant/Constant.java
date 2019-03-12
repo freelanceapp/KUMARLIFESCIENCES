@@ -46,5 +46,6 @@ public class Constant {
     public static final String State = "state";
     public static final String PinCode = "pin_code";
     public static final String MobileNumber = "mobile_number";
+    public static final String CART_ITEM_COUNT = "cart_item_count";
     ;
 }

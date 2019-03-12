@@ -3,17 +3,23 @@ package com.infobite.life.ui.fragment;
 import android.app.Dialog;
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.infobite.life.adapter.OurValuesAdapter;
 import com.infobite.life.adapter.SlidingImage_Adapter;
 import com.infobite.life.constant.Constant;
+import com.infobite.life.modal.OurValuesModal;
 import com.infobite.life.modal.banner_modal.BannerMainModal;
 import com.infobite.life.modal.banner_modal.Datum;
 import com.infobite.life.retrofit_provider.RetrofitService;
@@ -40,6 +46,9 @@ public class HomeFragment extends BaseFragment {
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
     private ArrayList<Datum> bannerImage = new ArrayList<>();
+    private RecyclerView rvOurValues;
+    private OurValuesAdapter ourValuesAdapter;
+    private ArrayList<OurValuesModal> ourValuesList = new ArrayList<>();
     View view;
     TextView btnRead;
     public HomeFragment() {
@@ -66,12 +75,26 @@ public class HomeFragment extends BaseFragment {
         indicator = (CirclePageIndicator) view.findViewById(R.id.indicator);
         btnRead = view.findViewById(R.id.btnRead);
         btnRead.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View view) {
-                startFragment(Constant.InfoFragment, new IAppDetailFragment());
+                btnRead.setBackground(getResources().getDrawable(R.drawable.round_button));
+                startFragment(Constant.AboutFragment, new AboutUs());
 
             }
         });
+        rvOurValues = view.findViewById(R.id.rv_outvalues);
+
+        ourValuesList.add(new OurValuesModal("Together"));
+        ourValuesList.add(new OurValuesModal("Respect"));
+        ourValuesList.add(new OurValuesModal("Unity"));
+        ourValuesList.add(new OurValuesModal("Society"));
+        ourValuesList.add(new OurValuesModal("Totality"));
+
+        ourValuesAdapter = new OurValuesAdapter(mContext, ourValuesList);
+        rvOurValues.setHasFixedSize(true);
+        rvOurValues.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+        rvOurValues.setAdapter(ourValuesAdapter);
 
         init(4);
     }

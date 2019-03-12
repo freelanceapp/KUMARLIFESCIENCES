@@ -36,6 +36,7 @@ import com.infobite.life.ui.fragment.HomeFragment;
 import com.infobite.life.ui.fragment.LoginFragment;
 import com.infobite.life.ui.fragment.OrderHistoryFragment;
 import com.infobite.life.ui.fragment.ProductsFragment;
+import com.infobite.life.utils.AppPreference;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,13 +54,17 @@ public class HomeNavigationActivity extends AppCompatActivity implements View.On
     TextView tvHome, tvProduct, tvGallery,tvOrderHisotry, tvAountUs, tvContactUs , tvAddtoCart;
     FrameLayout home_content_frame;
     public static FragmentManager fragmentHomeManager;
-
+    public static TextView cart_number;
+    public static int cart_count = 0;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_navigation);
          toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
+
+        cart_number = findViewById(R.id.cart_number);
+        cart_number.setText("" + cart_count);
         home_content_frame = findViewById(R.id.home_content_frame);
 
         if (savedInstanceState == null) {
@@ -85,6 +90,13 @@ public class HomeNavigationActivity extends AppCompatActivity implements View.On
         tvAountUs.setOnClickListener(this);
         tvContactUs.setOnClickListener(this);
         tvAddtoCart.setOnClickListener(this);
+        cart_number.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeNavigationActivity.this , AddtoCartActivity.class);
+                startActivity(intent);
+            }
+        });
 
         expandableListView = findViewById(R.id.expandableListView);
         ((ImageView)findViewById(R.id.iv_search)).setOnClickListener(this);
@@ -308,5 +320,12 @@ public class HomeNavigationActivity extends AppCompatActivity implements View.On
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        cart_count = AppPreference.getIntegerPreference(this, Constant.CART_ITEM_COUNT); //0 is the default value.
+        cart_number.setText("" + cart_count);
     }
 }

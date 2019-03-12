@@ -7,19 +7,25 @@ import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.infobite.life.constant.Constant;
 import com.infobite.life.database.DatabaseHandler;
 import com.infobite.life.modal.ProductDetail;
 import com.infobite.life.modal.subcategory_modal.Product;
 import com.infobite.life.utils.Alerts;
+import com.infobite.life.utils.AppPreference;
 import com.infobite.life.utils.BaseActivity;
 
 import java.util.ArrayList;
 
 import infobite.kumar.life.R;
+
+import static com.infobite.life.ui.activity.HomeNavigationActivity.cart_count;
+import static com.infobite.life.ui.activity.HomeNavigationActivity.cart_number;
 
 public class ProductDetailActivity extends BaseActivity implements View.OnClickListener{
     private TextView tvname;
@@ -28,12 +34,16 @@ public class ProductDetailActivity extends BaseActivity implements View.OnClickL
     private TextView tvAmount;
     private TextView tvManuDate;
     private TextView tvExDate;
+    private TextView tv_add_to_cart;
     private TextView tv_total_quantity;
     private ImageView ivRemove, ivAdd,imgProduct;
     private Product productDetail;
     private ProductDetail productDetail1;
     private boolean checked = false;
     private int i = 1;
+    private ImageView ivToolbar;
+    private Button btnViewMore;
+    private boolean check = false;
 
     private String DATABASE_CART = "cart.db";
     private String DATABASE_WISHLIST = "wishlist.db";
@@ -54,16 +64,13 @@ public class ProductDetailActivity extends BaseActivity implements View.OnClickL
         tvAmount = findViewById(R.id.tv_detail_amount);
         tvManuDate = findViewById(R.id.tv_detail_manufacturingDate);
         tvExDate = findViewById(R.id.tv_detail_expiry_date);
-        btnAddToCart = findViewById(R.id.btnAddToCart);
+        tv_add_to_cart = findViewById(R.id.tv_add_to_cart);
+       // btnAddToCart = findViewById(R.id.btnAddToCart);
 
         imgProduct = findViewById(R.id.img_product_detail);
-        ivRemove = findViewById(R.id.iv_remove);
-        ivRemove.setOnClickListener(this);
-        ivAdd = findViewById(R.id.iv_add);
-        ivAdd.setOnClickListener(this);
-        btnAddToCart.setOnClickListener(this);
-        tv_total_quantity = findViewById(R.id.tv_total_quantity);
 
+       // btnAddToCart.setOnClickListener(this);
+        tv_add_to_cart.setOnClickListener(this);
         ctx = this;
 
         databaseCart = new DatabaseHandler(ctx, DATABASE_CART);
@@ -72,8 +79,21 @@ public class ProductDetailActivity extends BaseActivity implements View.OnClickL
         if (databaseCart.getContactsCount()) {
             cartProductList = databaseCart.getAllUrlList();
         }
+        ivToolbar = findViewById(R.id.iv_tolbar_back);
+        ivToolbar.setOnClickListener(this);
+        btnViewMore = findViewById(R.id.btn_viewmore);
+        btnViewMore.setOnClickListener(this);
 
         getIntentData();
+    }
+    private void moreDetail(){
+        if (checked){
+            checked = false;
+            ((LinearLayout)findViewById(R.id.ll_moreDetail)).setVisibility(View.GONE);
+        }else {
+            checked = true;
+            ((LinearLayout)findViewById(R.id.ll_moreDetail)).setVisibility(View.VISIBLE);
+        }
     }
 
     private void getIntentData() {
@@ -89,12 +109,10 @@ public class ProductDetailActivity extends BaseActivity implements View.OnClickL
                   }
             tvname.setText(productDetail.getProductType());
             tvdescription.setText(productDetail.getProductDescription());
-            tvCategory.setText(productDetail.getProductCategory());
+            tvCategory.setText(productDetail.getProductSubCategory());
             tvAmount.setText(productDetail.getProductPrice());
             tvManuDate.setText(productDetail.getManufacturingDate());
             tvExDate.setText(productDetail.getExpiryDate());
-
-
 
             productDetail1 = new ProductDetail();
             productDetail1.setManufacturing_date(productDetail.getModifiedDate());
@@ -110,6 +128,22 @@ public class ProductDetailActivity extends BaseActivity implements View.OnClickL
         } else {
             Alerts.show(mContext, "error in data fatchd");
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.iv_tolbar_back:
+                finish();
+                break;
+            case R.id.btn_viewmore:
+                moreDetail();
+                break;
+            case R.id.tv_add_to_cart :
+                addtoCart();
+                break;
+        }
+
     }
 
    /* private void addQuantity(){
@@ -135,20 +169,6 @@ public class ProductDetailActivity extends BaseActivity implements View.OnClickL
         }
     }*/
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.iv_add:
-             //   addQuantity();
-                break;
-            case R.id.iv_remove:
-             //   removeQuantity();
-                break;
-            case R.id.btnAddToCart :
-                addtoCart();
-                break;
-        }
-    }
 
 
     private void addtoCart() {
@@ -164,26 +184,27 @@ public class ProductDetailActivity extends BaseActivity implements View.OnClickL
                 if (databaseCart.verification(productDetail1.getId())) {
                     Alerts.show(ctx, "Already added to Cart");
                 } else {
-                   /* productDetail.setSelected_size(selected_size);
-                    productDetail.setSelected_color(selected_color);
+                   // productDetail.setSelected_size(selected_size);
+                   // productDetail.setSelected_color(selected_color);
                     cart_count = cart_count + 1;
                     cart_number.setText("" + cart_count);
-                    AppPreference.setIntegerPreference(ctx, Constant.CART_ITEM_COUNT, cart_count);*/
-                    Toast.makeText(ctx, "Added to Cart" , Toast.LENGTH_SHORT).show();
+                    AppPreference.setIntegerPreference(ctx, Constant.CART_ITEM_COUNT, cart_count);
+                    Toast.makeText(ctx, "Added to Cart", Toast.LENGTH_SHORT).show();
                     //Alerts.show(ctx, "Added to Cart");
                     databaseCart.addItemCart(productDetail1);
                     //Intent intent
                 }
             } else {
-               /* productDetail.setSelected_size(selected_size);
-                productDetail.setSelected_color(selected_color);
+               // productDetail.setSelected_size(selected_size);
+               // productDetail.setSelected_color(selected_color);
                 cart_count = cart_count + 1;
                 cart_number.setText("" + cart_count);
-                AppPreference.setIntegerPreference(ctx, Constant.CART_ITEM_COUNT, cart_count);*/
-                Toast.makeText(ctx, "Added to Cart" , Toast.LENGTH_SHORT).show();
+                AppPreference.setIntegerPreference(ctx, Constant.CART_ITEM_COUNT, cart_count);
+                Toast.makeText(ctx, "Added to Cart", Toast.LENGTH_SHORT).show();
                 //Alerts.show(ctx, "Added to Cart");
                 databaseCart.addItemCart(productDetail1);
             }
         }
+
     }
 }

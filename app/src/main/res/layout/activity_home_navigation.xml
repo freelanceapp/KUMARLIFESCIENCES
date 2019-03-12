@@ -20,7 +20,6 @@
         android:layout_gravity="start"
         android:background="@color/dark_blue"
         android:fitsSystemWindows="true"
-        android:paddingLeft="10dp"
         android:textAlignment="center"
         app:headerLayout="@layout/nav_header_home_navigation">
 
@@ -31,17 +30,24 @@
             android:orientation="vertical">
 
             <TextView
+                android:textAlignment="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15sp"
-                android:padding="4sp"
+                android:paddingTop="4sp"
+                android:paddingBottom="4sp"
                 android:text="Home"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:layout_margin="4sp"
                 android:id="@+id/tvHome"/>
+            <View
+                android:background="@color/gray_i"
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dp"/>
+
 
             <TextView
+                android:textAlignment="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15sp"
@@ -51,6 +57,11 @@
                 android:textSize="20sp"
                 android:layout_margin="4sp"
                 android:id="@+id/tvProduct"/>
+            <View
+                android:background="@color/gray_i"
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dp"/>
+
             <ExpandableListView
                 android:visibility="gone"
                 android:id="@+id/expandableListView"
@@ -60,26 +71,39 @@
                 android:dividerHeight="0dp"
                 android:groupIndicator="@null" />
             <TextView
+                android:textAlignment="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15sp"
-                android:padding="4sp"
+                android:paddingTop="4sp"
+                android:paddingBottom="4sp"
                 android:text="Gallery"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:layout_margin="4sp"
                 android:id="@+id/tvGallery"/>
+            <View
+                android:background="@color/gray_i"
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dp"/>
+
             <TextView
+                android:textAlignment="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15sp"
-                android:padding="4sp"
+                android:paddingTop="4sp"
+                android:paddingBottom="4sp"
                 android:text="Order History"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:layout_margin="4sp"
                 android:id="@+id/tvOrderHisotry"/>
+            <View
+                android:background="@color/gray_i"
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dp"/>
+
             <TextView
+                android:textAlignment="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15sp"
@@ -89,26 +113,44 @@
                 android:textSize="20sp"
                 android:layout_margin="4sp"
                 android:id="@+id/tvAddtoCart"/>
+            <View
+                android:background="@color/gray_i"
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dp"/>
             <TextView
+                android:textAlignment="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15sp"
                 android:padding="4sp"
+                android:paddingTop="4sp"
+                android:paddingBottom="4sp"
                 android:text="About Us"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:layout_margin="4sp"
                 android:id="@+id/tvAboutus"/>
+            <View
+                android:background="@color/gray_i"
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dp"/>
+
             <TextView
+                android:textAlignment="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15sp"
-                android:padding="4sp"
+                android:paddingTop="4sp"
+                android:paddingBottom="4sp"
                 android:text="Contact Us"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:layout_margin="4sp"
                 android:id="@+id/tvContactus"/>
+            <View
+                android:background="@color/gray_i"
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dp"/>
+
         </LinearLayout>
     </android.support.design.widget.NavigationView>
 

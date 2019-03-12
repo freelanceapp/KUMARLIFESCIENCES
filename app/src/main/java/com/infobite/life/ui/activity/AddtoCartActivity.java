@@ -25,6 +25,8 @@ import java.util.ArrayList;
 
 import infobite.kumar.life.R;
 
+import static com.infobite.life.ui.activity.HomeNavigationActivity.cart_number;
+
 public class AddtoCartActivity extends BaseActivity implements View.OnClickListener{
     Context ctx;
     RecyclerView recyclerView;
@@ -80,8 +82,8 @@ public class AddtoCartActivity extends BaseActivity implements View.OnClickListe
     public void setTotal() {
         float total = 0;
         ArrayList<ProductDetail> total_list = databaseCart.getAllUrlList();
-        //cart_number.setText("" + total_list.size());
-       // AppPreference.setIntegerPreference(ctx, Constant.CART_ITEM_COUNT, total_list.size());
+        cart_number.setText("" + total_list.size());
+        AppPreference.setIntegerPreference(ctx, Constant.CART_ITEM_COUNT, total_list.size());
         for (int i = 0; i < total_list.size(); i++) {
             float pr = Float.parseFloat(total_list.get(i).getPrice());
             int qty = total_list.get(i).getQuantity();
@@ -97,8 +99,8 @@ public class AddtoCartActivity extends BaseActivity implements View.OnClickListe
         float total = 0;
         float round_total = 0;
         ArrayList<ProductDetail> total_list = databaseCart.getAllUrlList();
-       // cart_number.setText(total_list.size());
-      //  AppPreference.setIntegerPreference(ctx, Constant.CART_ITEM_COUNT, total_list.size());
+        cart_number.setText(total_list.size());
+        AppPreference.setIntegerPreference(ctx, Constant.CART_ITEM_COUNT, total_list.size());
         for (int i = 0; i < total_list.size(); i++) {
             float pr = Float.parseFloat(total_list.get(i).getPrice());
             int qty = total_list.get(i).getQuantity();
@@ -149,7 +151,7 @@ public class AddtoCartActivity extends BaseActivity implements View.OnClickListe
         } else {
             minus_iv.setImageResource(R.drawable.ic_delete);
         }
-        //AppPreference.setIntegerPreference(ctx, Constant.CART_ITEM_COUNT, cartProductList.size());
+        AppPreference.setIntegerPreference(ctx, Constant.CART_ITEM_COUNT, cartProductList.size());
     }
 
     private void minusItem(View view) {
@@ -176,7 +178,7 @@ public class AddtoCartActivity extends BaseActivity implements View.OnClickListe
             minus_iv.setImageResource(R.drawable.ic_delete);
         }
         setTotal();
-        //AppPreference.setIntegerPreference(ctx, Constant.CART_ITEM_COUNT, list.size());
+        AppPreference.setIntegerPreference(ctx, Constant.CART_ITEM_COUNT, list.size());
     }
 
     private void placeThisOrder() {
