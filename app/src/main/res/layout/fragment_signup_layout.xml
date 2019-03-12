@@ -1,123 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:background="@color/white"
-    android:padding="10dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical"
+   >
 
-        <TextView
-            android:layout_marginTop="16dp"
-            android:layout_gravity="right"
-            android:gravity="right"
-            android:textAlignment="viewEnd"
-            android:id="@+id/tv_Login"
-            android:padding="4dp"
-            android:textColor="@color/blue_a"
-            android:textStyle="normal"
-            android:text="Login "
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:ignore="RtlCompat" />
 
-    <LinearLayout
-        android:gravity="center_vertical"
-        android:layout_gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="34dp"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <TextView
-        android:textColor="@color/black"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        android:textStyle="bold"
-        android:padding="20dp"
-        android:textAlignment="center"
-        android:textSize="22sp"
-        android:text="Signup"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="34dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:padding="20dp"
+                android:text="Signup"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_fullname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_layout"
+                android:hint="Enter Full Name"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <EditText
+                android:id="@+id/et_email_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_layout"
+                android:hint="Enter Your Email"
+                android:inputType="textEmailAddress"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_layout"
+                android:hint="Enter Your Password"
+                android:inputType="textPassword"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <EditText
+                android:id="@+id/et_cpassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_layout"
+                android:hint="Confirm Password"
+                android:inputType="textPassword"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginRight="60dp"
+                app:cardBackgroundColor="@color/green"
+                app:cardCornerRadius="6dp">
+
+                <Button
+                    android:id="@+id/btn_signUp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:text="Submit"
+                    android:textStyle="normal" />
+            </android.support.v7.widget.CardView>
+            <TextView
+                android:textSize="16sp"
+                android:id="@+id/tv_Login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Login "
+                android:textAlignment="center"
+                android:textColor="@color/blue_a"
+                android:textStyle="normal"
+                tools:ignore="RtlCompat" />
+
+        </LinearLayout>
+    <ImageView
+        android:tint="@color/green"
+        android:scaleType="fitXY"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <EditText
-        android:id="@+id/et_fullname"
-        android:textStyle="normal"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:inputType="text"
-        android:textColor="@color/black"
-        android:padding="10dp"
-        android:textSize="14sp"
-        android:background="@drawable/bg_layout"
-        android:hint="Enter Full Name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <EditText
-        android:id="@+id/et_email_address"
-        android:textStyle="normal"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/black"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:padding="10dp"
-        android:textSize="14sp"
-        android:background="@drawable/bg_layout"
-        android:hint="Enter Your Email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <EditText
-        android:id="@+id/et_password"
-        android:textStyle="normal"
-        android:inputType="textPassword"
-        android:textColor="@color/black"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:padding="10dp"
-        android:textSize="14sp"
-        android:background="@drawable/bg_layout"
-        android:hint="Enter Your Password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <EditText
-        android:id="@+id/et_cpassword"
-        android:textStyle="normal"
-        android:inputType="textPassword"
-        android:textColor="@color/black"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:padding="10dp"
-        android:textSize="14sp"
-        android:background="@drawable/bg_layout"
-        android:hint="Confirm Password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <android.support.v7.widget.CardView
-        app:cardCornerRadius="6dp"
-        app:cardBackgroundColor="@color/green"
-        android:layout_marginTop="32dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <Button
-        android:id="@+id/btn_signUp"
-        android:textStyle="normal"
-        android:background="@android:color/transparent"
-        android:text="Submit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    </android.support.v7.widget.CardView>
-    </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

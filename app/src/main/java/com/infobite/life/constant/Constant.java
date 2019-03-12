@@ -29,6 +29,7 @@ public class Constant {
 
     /*Preference*/
     public static final String Is_Login = "Is_Login";
+    public static final String Is_SignUp = "Is_SignUp";
     public static final String User_Id = "User_Id";
     public static final String Name = "Name";
     public static final String Email = "Email";

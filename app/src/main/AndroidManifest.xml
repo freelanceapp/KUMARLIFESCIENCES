@@ -15,9 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Base"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.infobite.life.ui.activity.ShowOrderHistory"></activity>
-        <activity android:name="com.infobite.life.ui.activity.ProductDetailActivity" />
-        <activity android:name="com.infobite.life.ui.activity.SearchActivity" />
+        <activity android:name="com.infobite.life.ui.activity.ShowOrderHistory"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name="com.infobite.life.ui.activity.ProductDetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.infobite.life.ui.activity.SearchActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.infobite.life.ui.activity.LoginMainActivity"
             android:screenOrientation="portrait" />

@@ -24,7 +24,6 @@ public class SplashScreen extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-
         imgSplash = findViewById(R.id.img_splash);
 
         Glide.with(mContext)
@@ -34,9 +33,13 @@ public class SplashScreen extends BaseActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (AppPreference.getBooleanPreference(mContext, Constant.Is_Login)) {
+                if (AppPreference.getBooleanPreference(mContext, Constant.Is_Login))
+                {
                    startActivity(new Intent(mContext,HomeNavigationActivity.class));
                    finish();
+                } else if (AppPreference.getBooleanPreference(mContext,Constant.Is_SignUp)){
+                    startActivity(new Intent(mContext, HomeNavigationActivity.class));
+                    finish();
                 } else {
                     startActivity(new Intent(mContext, LoginMainActivity.class));
                     finish();

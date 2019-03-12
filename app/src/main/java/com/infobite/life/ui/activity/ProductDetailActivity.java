@@ -58,9 +58,11 @@ public class ProductDetailActivity extends BaseActivity implements View.OnClickL
         if (checked){
             checked = false;
             ((LinearLayout)findViewById(R.id.ll_moreDetail)).setVisibility(View.GONE);
+            ((TextView)findViewById(R.id.tv_add_to_cart)).setVisibility(View.GONE);
         }else {
             checked = true;
             ((LinearLayout)findViewById(R.id.ll_moreDetail)).setVisibility(View.VISIBLE);
+            ((TextView)findViewById(R.id.tv_add_to_cart)).setVisibility(View.VISIBLE);
         }
     }
 

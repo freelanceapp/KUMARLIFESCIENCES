@@ -222,6 +222,7 @@
     </ScrollView>
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/tv_add_to_cart"
             android:textSize="20sp"
             android:gravity="center"

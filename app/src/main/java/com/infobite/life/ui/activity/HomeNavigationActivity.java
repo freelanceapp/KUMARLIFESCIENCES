@@ -36,6 +36,8 @@ import com.infobite.life.ui.fragment.HomeFragment;
 import com.infobite.life.ui.fragment.LoginFragment;
 import com.infobite.life.ui.fragment.OrderHistoryFragment;
 import com.infobite.life.ui.fragment.ProductsFragment;
+import com.infobite.life.utils.AppPreference;
+import com.infobite.life.utils.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,7 +45,7 @@ import java.util.List;
 
 import infobite.kumar.life.R;
 
-public class HomeNavigationActivity extends AppCompatActivity implements View.OnClickListener {
+public class HomeNavigationActivity extends BaseActivity implements View.OnClickListener {
     public  static Toolbar toolbar;
     ExpandableListAdapter expandableListAdapter;
     ExpandableListView expandableListView;
@@ -86,6 +88,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements View.On
 
         expandableListView = findViewById(R.id.expandableListView);
         ((ImageView)findViewById(R.id.iv_search)).setOnClickListener(this);
+        ((TextView)findViewById(R.id.tvLogout)).setOnClickListener(this);
 
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -243,6 +246,16 @@ public class HomeNavigationActivity extends AppCompatActivity implements View.On
         switch (view.getId()){
             case R.id.iv_search:
                 startActivity(new Intent(this,SearchActivity.class));
+                break;
+            case R.id.tvLogout:
+                AppPreference.clearAllPreferences(mContext);
+                Intent intent = new Intent(mContext,LoginMainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                finish();
                 break;
         }
         int id = view.getId();

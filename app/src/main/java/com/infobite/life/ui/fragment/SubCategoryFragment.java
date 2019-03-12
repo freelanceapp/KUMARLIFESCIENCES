@@ -30,6 +30,7 @@ import com.infobite.life.utils.BaseFragment;
 import com.infobite.life.utils.ConnectionDirector;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import infobite.kumar.life.R;
 import retrofit2.Response;
@@ -45,6 +46,7 @@ public class SubCategoryFragment extends BaseFragment implements View.OnClickLis
     private ProductListAdapter productAdapter;
     private ArrayList<Datum> subcategoryArrayList = new ArrayList<>();
     private ArrayList<Product> productArrayList = new ArrayList<>();
+    private Product productlist;
 
     @Nullable
     @Override
@@ -88,15 +90,15 @@ public class SubCategoryFragment extends BaseFragment implements View.OnClickLis
                     productArrayList.clear();
                     if (subcategeryModal != null) {
                         subcategoryArrayList.addAll(subcategeryModal.getData());
-                        for (int i = 0; i < subcategeryModal.getData().size(); i++) {
-                            productArrayList.addAll(subcategeryModal.getData().get(i).getProducts());
-                        }
                         Alerts.show(mContext, result.message());
+                        if (subcategoryArrayList.size() > 0) {
+                            firstCategory(subcategoryArrayList.get(0).getProducts());
+                        }
                     } else {
                         Alerts.show(mContext, result.message());
                     }
                     subCategoryProductListAdapter.notifyDataSetChanged();
-                    productAdapter.notifyDataSetChanged();
+
                 }
 
                 @Override
@@ -105,6 +107,13 @@ public class SubCategoryFragment extends BaseFragment implements View.OnClickLis
                 }
             });
         }
+    }
+
+    private void firstCategory(List<Product> arrayList) {
+        productArrayList.clear();
+        productArrayList.addAll(arrayList);
+
+        productAdapter.notifyDataSetChanged();
     }
 
     private void startFragment(Fragment fragment) {
@@ -117,11 +126,17 @@ public class SubCategoryFragment extends BaseFragment implements View.OnClickLis
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.ll_product:
+            case R.id.ll_subcategory:
                 int position = Integer.parseInt(v.getTag().toString());
-                Intent intent = new Intent(mContext, ProductDetailActivity.class);
-                intent.putExtra("productArrayList", (Parcelable) productArrayList.get(position));
-                startActivity(intent);
+                productArrayList.clear();
+                productArrayList.addAll(subcategoryArrayList.get(position).getProducts());
+                productAdapter.notifyDataSetChanged();
+                break;
+            case R.id.ll_product:
+                int position1 = Integer.parseInt(v.getTag().toString());
+                Intent intent1 = new Intent(mContext, ProductDetailActivity.class);
+                intent1.putExtra("productArrayList", (Parcelable) productArrayList.get(position1));
+                startActivity(intent1);
                 break;
         }
     }

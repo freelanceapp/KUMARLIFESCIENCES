@@ -43,7 +43,7 @@
                     app:snap="false" />
             </RelativeLayout>
 
-            <TextView
+      <!--      <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
@@ -52,12 +52,12 @@
                 android:text="Welcome To Kumar Lifesciences"
                 android:textColor="@color/dark_blue"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold" />-->
 
-            <View
+        <!--    <View
                 android:layout_width="match_parent"
                 android:layout_height="1sp"
-                android:layout_margin="4sp" />
+                android:layout_margin="4sp" />-->
 
             <RelativeLayout
                 android:layout_width="match_parent"
