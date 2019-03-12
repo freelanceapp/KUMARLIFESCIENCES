@@ -167,6 +167,14 @@ public class ShoppingFragment extends android.support.v4.app.Fragment implements
 
             Utility.toastView(ctx, "Enter all details");
         } else {
+
+            AppPreference.setStringPreference(ctx, Constant.Name, name);
+            AppPreference.setStringPreference(ctx, Constant.Address, address);
+            AppPreference.setStringPreference(ctx, Constant.MobileNumber, mobile);
+            AppPreference.setStringPreference(ctx, Constant.City, city);
+            AppPreference.setStringPreference(ctx, Constant.PinCode, zipcode);
+            AppPreference.setStringPreference(ctx, Constant.State, state);
+
             sessionManager.setData(SessionManager.KEY_ORDER_NAME, name);
             sessionManager.setData(SessionManager.KEY_ORDER_MOBILE, mobile);
             sessionManager.setData(SessionManager.KEY_ORDER_ADDRESS, address);

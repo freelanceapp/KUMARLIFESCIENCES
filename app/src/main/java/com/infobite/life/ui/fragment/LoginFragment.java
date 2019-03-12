@@ -106,6 +106,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                                 AppPreference.setBooleanPreference(mContext, Constant.Is_Login, true);
                                 AppPreference.setStringPreference(mContext, Constant.Name, jsonObject.getString("full_name"));
                                 AppPreference.setStringPreference(mContext, Constant.Email, jsonObject.getString("user_email"));
+                                AppPreference.setStringPreference(mContext, Constant.User_Id, jsonObject.getString("user_id"));
 
                                 Intent intent = new Intent(mContext, HomeNavigationActivity.class);
                                 intent.putExtra("email", strEmail);

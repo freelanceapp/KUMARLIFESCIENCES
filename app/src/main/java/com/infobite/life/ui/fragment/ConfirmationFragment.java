@@ -153,12 +153,12 @@ public class ConfirmationFragment extends BaseFragment implements View.OnClickLi
             String user_id = AppPreference.getStringPreference(ctx, Constant.User_Id);
             String email = AppPreference.getStringPreference(ctx, Constant.Email);
 
-            String mobile = sessionManager.getData(SessionManager.KEY_ORDER_MOBILE);
-            String address = sessionManager.getData(SessionManager.KEY_ORDER_ADDRESS);
-            String city = sessionManager.getData(SessionManager.KEY_ORDER_CITY);
-            String state = sessionManager.getData(SessionManager.KEY_ORDER_STATE);
+            String mobile = AppPreference.getStringPreference(ctx, Constant.MobileNumber);
+            String address = AppPreference.getStringPreference(ctx, Constant.Address);
+            String city = AppPreference.getStringPreference(ctx, Constant.City);
+            String state = AppPreference.getStringPreference(ctx, Constant.State);
             String country = sessionManager.getData(SessionManager.KEY_ORDER_COUNTRY);
-            String code = sessionManager.getData(SessionManager.KEY_ORDER_ZIPCODE);
+            String code = AppPreference.getStringPreference(ctx, Constant.PinCode);
             String paytype = sessionManager.getData(SessionManager.KEY_PAYMENT_TYPE);
             String product_id = "";
             String product_name = "";
