@@ -115,6 +115,7 @@ public class ProductDetailActivity extends BaseActivity implements View.OnClickL
             tvExDate.setText(productDetail.getExpiryDate());
 
             productDetail1 = new ProductDetail();
+            productDetail1.setId(productDetail.getProductId());
             productDetail1.setManufacturing_date(productDetail.getModifiedDate());
             productDetail1.setDescription(productDetail.getProductDescription());
             productDetail1.setCategory(productDetail.getProductCategory());
@@ -122,7 +123,7 @@ public class ProductDetailActivity extends BaseActivity implements View.OnClickL
             productDetail1.setPrice(productDetail.getProductPrice());
             productDetail1.setImage(productDetail.getProductImage().get(0).getProductImage());
             productDetail1.setName(productDetail.getProductType());
-           // productDetail1.setQuantity(1);
+            productDetail1.setQuantity(1);
            // productDetail1.setQuantity(Integer.parseInt(productDetail.getQuantityType()));
 
         } else {
@@ -146,7 +147,7 @@ public class ProductDetailActivity extends BaseActivity implements View.OnClickL
 
     }
 
-   /* private void addQuantity(){
+    /*private void addQuantity(){
         if (checked){
             checked = true;
              i =i++;
@@ -178,11 +179,13 @@ public class ProductDetailActivity extends BaseActivity implements View.OnClickL
         }
 
         if (cartProductList.size() > 2) {
-            Alerts.show(this, "Cart full");
+            //Alerts.show(this, "Cart full");
+            Toast.makeText(ctx, "Cart full", Toast.LENGTH_SHORT).show();
         } else {
             if (cartProductList.size() > 0) {
                 if (databaseCart.verification(productDetail1.getId())) {
-                    Alerts.show(ctx, "Already added to Cart");
+                    //Alerts.show(ctx, "Already added to Cart");
+                    Toast.makeText(ctx, "Already added to Cart", Toast.LENGTH_SHORT).show();
                 } else {
                    // productDetail.setSelected_size(selected_size);
                    // productDetail.setSelected_color(selected_color);
@@ -192,7 +195,8 @@ public class ProductDetailActivity extends BaseActivity implements View.OnClickL
                     Toast.makeText(ctx, "Added to Cart", Toast.LENGTH_SHORT).show();
                     //Alerts.show(ctx, "Added to Cart");
                     databaseCart.addItemCart(productDetail1);
-                    //Intent intent
+                    Intent intent = new Intent(ProductDetailActivity.this , AddtoCartActivity.class);
+                    startActivity(intent);
                 }
             } else {
                // productDetail.setSelected_size(selected_size);
@@ -203,6 +207,8 @@ public class ProductDetailActivity extends BaseActivity implements View.OnClickL
                 Toast.makeText(ctx, "Added to Cart", Toast.LENGTH_SHORT).show();
                 //Alerts.show(ctx, "Added to Cart");
                 databaseCart.addItemCart(productDetail1);
+                Intent intent = new Intent(ProductDetailActivity.this , AddtoCartActivity.class);
+                startActivity(intent);
             }
         }
 
