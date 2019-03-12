@@ -22,13 +22,39 @@
             app:popupTheme="@style/AppTheme.Base.PopupOverlay" />
             <ImageView
                 android:id="@+id/iv_search"
-                android:paddingLeft="10dp"
-                android:paddingRight="16dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/ic_search"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:layout_marginRight="50sp"/>
+            <RelativeLayout
+                android:id="@+id/rlCart"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingRight="4dp">
+
+                <TextView
+                    android:id="@+id/cart_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/cart_btn"
+                    android:layout_toRightOf="@+id/cart_btn"
+                    android:text="0"
+                    android:layout_marginTop="-4dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/cart_btn"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_cart"
+                    android:tint="@color/white"/>
+            </RelativeLayout>
         </RelativeLayout>
 
     </android.support.design.widget.AppBarLayout>

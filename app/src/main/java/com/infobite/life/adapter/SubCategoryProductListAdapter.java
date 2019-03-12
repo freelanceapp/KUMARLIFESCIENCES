@@ -23,6 +23,7 @@ public class SubCategoryProductListAdapter extends RecyclerView.Adapter<SubCateg
     private Context mContext;
     private ArrayList<Datum> subcategoryArrayList;
     private View.OnClickListener onClickListener;
+    private String strSubCategoryName;
     public SubCategoryProductListAdapter(Context mContext, ArrayList<Datum> subcategoryArrayList,View.OnClickListener onClickListener) {
         this.mContext = mContext;
         this.subcategoryArrayList = subcategoryArrayList;

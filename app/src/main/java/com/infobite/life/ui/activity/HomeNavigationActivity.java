@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.widget.ExpandableListView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,12 +34,10 @@ import com.infobite.life.ui.fragment.AboutUs;
 import com.infobite.life.ui.fragment.ContactUsFragment;
 import com.infobite.life.ui.fragment.GalleryFragment;
 import com.infobite.life.ui.fragment.HomeFragment;
-import com.infobite.life.ui.fragment.LoginFragment;
 import com.infobite.life.ui.fragment.OrderHistoryFragment;
 import com.infobite.life.ui.fragment.ProductsFragment;
 import com.infobite.life.utils.AppPreference;
 import com.infobite.life.utils.BaseActivity;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -52,17 +51,23 @@ public class HomeNavigationActivity extends BaseActivity implements View.OnClick
     List<MenuModel> headerList = new ArrayList<>();
     HashMap<MenuModel, List<MenuModel>> childList = new HashMap<>();
     boolean a = true;
-    TextView tvHome, tvProduct, tvGallery,tvOrderHisotry, tvAountUs, tvContactUs;
+    TextView tvHome, tvProduct, tvGallery,tvOrderHisotry, tvAountUs, tvContactUs , tvAddtoCart;
     FrameLayout home_content_frame;
     public static FragmentManager fragmentHomeManager;
-
+    public static TextView cart_number;
+    private RelativeLayout rlCart;
+    public static int cart_count = 0;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_navigation);
          toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
+
+        cart_number = findViewById(R.id.cart_number);
+        cart_number.setText("" + cart_count);
         home_content_frame = findViewById(R.id.home_content_frame);
+        rlCart = findViewById(R.id.rlCart);
 
         if (savedInstanceState == null) {
             fragmentHomeManager = getSupportFragmentManager();
@@ -78,6 +83,7 @@ public class HomeNavigationActivity extends BaseActivity implements View.OnClick
         tvOrderHisotry = findViewById(R.id.tvOrderHisotry);
         tvAountUs = findViewById(R.id.tvAboutus);
         tvContactUs = findViewById(R.id.tvContactus);
+        tvAddtoCart = findViewById(R.id.tvAddtoCart);
 
         tvHome.setOnClickListener(this);
         tvProduct.setOnClickListener(this);
@@ -85,6 +91,14 @@ public class HomeNavigationActivity extends BaseActivity implements View.OnClick
         tvOrderHisotry.setOnClickListener(this);
         tvAountUs.setOnClickListener(this);
         tvContactUs.setOnClickListener(this);
+        tvAddtoCart.setOnClickListener(this);
+        rlCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeNavigationActivity.this , AddtoCartActivity.class);
+                startActivity(intent);
+            }
+        });
 
         expandableListView = findViewById(R.id.expandableListView);
         ((ImageView)findViewById(R.id.iv_search)).setOnClickListener(this);
@@ -298,7 +312,13 @@ public class HomeNavigationActivity extends BaseActivity implements View.OnClick
                             , Constant.OrderHistoryFragment).commit();
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
-        } else if (id == R.id.tvAboutus) {
+        } else if (id == R.id.tvAddtoCart) {
+            Intent intent = new Intent(HomeNavigationActivity.this , AddtoCartActivity.class);
+            startActivity(intent);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+        }
+        else if (id == R.id.tvAboutus) {
             toolbar.setTitle(Constant.AboutFragment);
             fragmentHomeManager.beginTransaction()
                     .replace(R.id.home_content_frame, new AboutUs()
@@ -313,5 +333,12 @@ public class HomeNavigationActivity extends BaseActivity implements View.OnClick
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        cart_count = AppPreference.getIntegerPreference(this, Constant.CART_ITEM_COUNT); //0 is the default value.
+        cart_number.setText("" + cart_count);
     }
 }

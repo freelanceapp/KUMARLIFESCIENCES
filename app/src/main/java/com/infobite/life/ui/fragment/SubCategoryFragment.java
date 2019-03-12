@@ -48,6 +48,7 @@ public class SubCategoryFragment extends BaseFragment implements View.OnClickLis
     private ArrayList<Product> productArrayList = new ArrayList<>();
     private Product productlist;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -135,6 +136,7 @@ public class SubCategoryFragment extends BaseFragment implements View.OnClickLis
             case R.id.ll_product:
                 int position1 = Integer.parseInt(v.getTag().toString());
                 Intent intent1 = new Intent(mContext, ProductDetailActivity.class);
+                intent1.putExtra("subcategoryName",subcategoryArrayList.get(position1).getSubCategoryName());
                 intent1.putExtra("productArrayList", (Parcelable) productArrayList.get(position1));
                 startActivity(intent1);
                 break;
