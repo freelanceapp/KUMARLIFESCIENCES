@@ -12,6 +12,8 @@
     <color name="blue_e">#0086a4</color>
     <color name="black">#000000</color>
     <color name="dark_blue">#F52C6EB1</color>
+    <color name="transparend_blue">#8600AFD7</color>
+    <color name="maroon">#FF5722</color>
 
     <color name="gray_a">#585757</color>
     <color name="gray_b">#696868</color>

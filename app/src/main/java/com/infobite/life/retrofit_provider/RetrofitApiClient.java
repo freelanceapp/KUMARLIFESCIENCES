@@ -4,7 +4,9 @@ import com.infobite.life.constant.Constant;
 import com.infobite.life.modal.banner_modal.BannerMainModal;
 import com.infobite.life.modal.gallery_modal.GalleryMainModal;
 import com.infobite.life.modal.main_categry_products.CategeryMainModal;
+import com.infobite.life.modal.order_history_modal.OrderHistoryMainModal;
 import com.infobite.life.modal.products_modal.ProductsMainModal;
+import com.infobite.life.modal.subcategory_modal.SubcategoryMainModal;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -12,11 +14,18 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface RetrofitApiClient {
 
     @GET(Constant.PRODUCTS_API)
     Call<ProductsMainModal> productData();
+
+    @GET(Constant.SUBCATEGORY_API)
+    Call<SubcategoryMainModal> subCategoryData(@Query("category_id") String categoryId);
+
+    @GET(Constant.ORDER_HOSTORY_API)
+    Call<OrderHistoryMainModal> orderHistoryData(@Query("user_id") String userId);
 
     @GET(Constant.GALLERY_API)
     Call<GalleryMainModal> galleryData();

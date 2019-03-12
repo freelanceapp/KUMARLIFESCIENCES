@@ -6,7 +6,9 @@ import com.infobite.life.constant.Constant;
 import com.infobite.life.modal.banner_modal.BannerMainModal;
 import com.infobite.life.modal.gallery_modal.GalleryMainModal;
 import com.infobite.life.modal.main_categry_products.CategeryMainModal;
+import com.infobite.life.modal.order_history_modal.OrderHistoryMainModal;
 import com.infobite.life.modal.products_modal.ProductsMainModal;
+import com.infobite.life.modal.subcategory_modal.SubcategoryMainModal;
 import com.infobite.life.utils.AppProgressDialog;
 
 import okhttp3.ResponseBody;
@@ -59,6 +61,46 @@ public class RetrofitService {
 
             @Override
             public void onFailure(Call<ProductsMainModal> call, Throwable throwable) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                webResponse.onResponseFailed(throwable.getMessage());
+            }
+        });
+    }
+    public static void getSubcateogryData(final Dialog dialog, final Call<SubcategoryMainModal> method, final WebResponse webResponse) {
+        if (dialog != null)
+            AppProgressDialog.showDialog(dialog);
+
+        method.enqueue(new Callback<SubcategoryMainModal>() {
+            @Override
+            public void onResponse(Call<SubcategoryMainModal> call, Response<SubcategoryMainModal> response) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                WebServiceResponse.handleResponse(response, webResponse);
+            }
+
+            @Override
+            public void onFailure(Call<SubcategoryMainModal> call, Throwable throwable) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                webResponse.onResponseFailed(throwable.getMessage());
+            }
+        });
+    }
+    public static void orderHistoryData(final Dialog dialog, final Call<OrderHistoryMainModal> method, final WebResponse webResponse) {
+        if (dialog != null)
+            AppProgressDialog.showDialog(dialog);
+
+        method.enqueue(new Callback<OrderHistoryMainModal>() {
+            @Override
+            public void onResponse(Call<OrderHistoryMainModal> call, Response<OrderHistoryMainModal> response) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                WebServiceResponse.handleResponse(response, webResponse);
+            }
+
+            @Override
+            public void onFailure(Call<OrderHistoryMainModal> call, Throwable throwable) {
                 if (dialog != null)
                     AppProgressDialog.hide(dialog);
                 webResponse.onResponseFailed(throwable.getMessage());

@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:padding="10dp"
-    android:weightSum="3"
-    android:orientation="horizontal"
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <ImageView
-        android:scaleType="fitXY"
-        android:adjustViewBounds="true"
-        android:id="@+id/img_products"
-        android:layout_width="match_parent"
-        android:layout_height="230dp" />
-    <TextView
-        android:layout_marginBottom="5dp"
-        android:gravity="center_horizontal"
-        android:textColor="@color/black"
-        android:padding="4dp"
-        android:layout_below="@+id/img_products"
-        android:id="@+id/tv_main_categery"
-        android:layout_gravity="center_vertical"
-        android:text="main categry"
-        android:textSize="22dp"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <View
-        android:layout_below="@+id/tv_main_categery"
-        android:background="@color/gray_f"
-        android:layout_width="fill_parent"
-        android:layout_height="0.5dp"/>
 
+<RelativeLayout android:padding="4dp"
+    android:id="@+id/rl_mainCategory"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv_image_category"
+        app:cardCornerRadius="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+            android:id="@+id/img_products"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </android.support.v7.widget.CardView>
+    <TextView
+        android:padding="4dp"
+        android:background="@color/transparend_blue"
+        android:elevation="8dp"
+        android:textColor="@color/black"
+        android:layout_centerInParent="true"
+        android:id="@+id/tv_main_categery"
+        android:text="main categry"
+        android:textSize="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>

@@ -37,7 +37,7 @@
                 android:padding="4sp"
                 android:text="Home"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:layout_margin="4sp"
                 android:id="@+id/tvHome"/>
 
@@ -48,10 +48,11 @@
                 android:padding="4sp"
                 android:text="Product"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:layout_margin="4sp"
                 android:id="@+id/tvProduct"/>
             <ExpandableListView
+                android:visibility="gone"
                 android:id="@+id/expandableListView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -65,7 +66,7 @@
                 android:padding="4sp"
                 android:text="Gallery"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:layout_margin="4sp"
                 android:id="@+id/tvGallery"/>
             <TextView
@@ -73,9 +74,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15sp"
                 android:padding="4sp"
+                android:text="Order History"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_margin="4sp"
+                android:id="@+id/tvOrderHisotry"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15sp"
+                android:padding="4sp"
                 android:text="About Us"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:layout_margin="4sp"
                 android:id="@+id/tvAboutus"/>
             <TextView
@@ -85,7 +96,7 @@
                 android:padding="4sp"
                 android:text="Contact Us"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:layout_margin="4sp"
                 android:id="@+id/tvContactus"/>
         </LinearLayout>

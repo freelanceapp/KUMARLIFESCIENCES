@@ -1,6 +1,8 @@
 package com.infobite.life.ui.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -19,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ExpandableListView;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,10 +29,13 @@ import android.widget.Toast;
 import com.infobite.life.adapter.ExpandableListAdapter;
 import com.infobite.life.constant.Constant;
 import com.infobite.life.modal.MenuModel;
+import com.infobite.life.ui.fragment.AboutUs;
 import com.infobite.life.ui.fragment.ContactUsFragment;
 import com.infobite.life.ui.fragment.GalleryFragment;
 import com.infobite.life.ui.fragment.HomeFragment;
 import com.infobite.life.ui.fragment.LoginFragment;
+import com.infobite.life.ui.fragment.OrderHistoryFragment;
+import com.infobite.life.ui.fragment.ProductsFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,13 +44,13 @@ import java.util.List;
 import infobite.kumar.life.R;
 
 public class HomeNavigationActivity extends AppCompatActivity implements View.OnClickListener {
-    Toolbar toolbar;
+    public  static Toolbar toolbar;
     ExpandableListAdapter expandableListAdapter;
     ExpandableListView expandableListView;
     List<MenuModel> headerList = new ArrayList<>();
     HashMap<MenuModel, List<MenuModel>> childList = new HashMap<>();
     boolean a = true;
-    TextView tvHome, tvProduct, tvGallery, tvAountUs, tvContactUs;
+    TextView tvHome, tvProduct, tvGallery,tvOrderHisotry, tvAountUs, tvContactUs;
     FrameLayout home_content_frame;
     public static FragmentManager fragmentHomeManager;
 
@@ -67,16 +73,19 @@ public class HomeNavigationActivity extends AppCompatActivity implements View.On
         tvHome = findViewById(R.id.tvHome);
         tvProduct = findViewById(R.id.tvProduct);
         tvGallery = findViewById(R.id.tvGallery);
+        tvOrderHisotry = findViewById(R.id.tvOrderHisotry);
         tvAountUs = findViewById(R.id.tvAboutus);
         tvContactUs = findViewById(R.id.tvContactus);
 
         tvHome.setOnClickListener(this);
         tvProduct.setOnClickListener(this);
         tvGallery.setOnClickListener(this);
+        tvOrderHisotry.setOnClickListener(this);
         tvAountUs.setOnClickListener(this);
         tvContactUs.setOnClickListener(this);
 
         expandableListView = findViewById(R.id.expandableListView);
+        ((ImageView)findViewById(R.id.iv_search)).setOnClickListener(this);
 
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -104,18 +113,35 @@ public class HomeNavigationActivity extends AppCompatActivity implements View.On
 
     @Override
     public void onBackPressed() {
+        Fragment HomeFragment = fragmentHomeManager.findFragmentByTag(Constant.HomeFragment);
+        Fragment InfoFragment = fragmentHomeManager.findFragmentByTag(Constant.InfoFragment);
+        Fragment GalleryFragment = fragmentHomeManager.findFragmentByTag(Constant.GalleryFragment);
+        Fragment OrderHistoryFragment = fragmentHomeManager.findFragmentByTag(Constant.OrderHistoryFragment);
+        Fragment ContactUsFragment = fragmentHomeManager.findFragmentByTag(Constant.ContactUsFragment);
+        Fragment AboutFragment = fragmentHomeManager.findFragmentByTag(Constant.AboutFragment);
+        Fragment ProductsFragment = fragmentHomeManager.findFragmentByTag(Constant.ProductsFragment);
+        Fragment SubCategoryFragment = fragmentHomeManager.findFragmentByTag(Constant.SubCategoryFragment);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
         }
 
-        Fragment HomeFragment = fragmentHomeManager.findFragmentByTag(Constant.HomeFragment);
-        Fragment InfoFragment = fragmentHomeManager.findFragmentByTag(Constant.InfoFragment);
-        if (HomeFragment != null)
+
+        else if (HomeFragment != null)
             replaceFragment();
         else if (InfoFragment != null)
+            replaceFragment();
+        else if (GalleryFragment != null)
+            replaceFragment();
+        else if (OrderHistoryFragment != null)
+            replaceFragment();
+        else if (ContactUsFragment != null)
+            replaceFragment();
+        else if (AboutFragment != null)
+            replaceFragment();
+        else if (ProductsFragment != null)
+            replaceFragment();
+        else if (SubCategoryFragment != null)
             replaceFragment();
         else
             super.onBackPressed();
@@ -214,6 +240,11 @@ public class HomeNavigationActivity extends AppCompatActivity implements View.On
 
     @Override
     public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.iv_search:
+                startActivity(new Intent(this,SearchActivity.class));
+                break;
+        }
         int id = view.getId();
         if (id == R.id.tvHome) {
             toolbar.setTitle(Constant.HomeFragment);
@@ -223,8 +254,13 @@ public class HomeNavigationActivity extends AppCompatActivity implements View.On
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.tvProduct) {
-
-            if (a == true) {
+            toolbar.setTitle(Constant.ProductsFragment);
+            fragmentHomeManager.beginTransaction()
+                    .replace(R.id.home_content_frame, new ProductsFragment()
+                            , Constant.ProductsFragment).commit();
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+          /*  if (a == true) {
                 a = false;
                 expandableListView.setVisibility(View.VISIBLE);
                 headerList.clear();
@@ -234,7 +270,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements View.On
             } else {
                 a = true;
                 expandableListView.setVisibility(View.GONE);
-            }
+            }*/
         } else if (id == R.id.tvGallery) {
             toolbar.setTitle(Constant.GalleryFragment);
             fragmentHomeManager.beginTransaction()
@@ -242,8 +278,18 @@ public class HomeNavigationActivity extends AppCompatActivity implements View.On
                             , Constant.GalleryFragment).commit();
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
+        }else if (id == R.id.tvOrderHisotry) {
+            toolbar.setTitle(Constant.OrderHistoryFragment);
+            fragmentHomeManager.beginTransaction()
+                    .replace(R.id.home_content_frame, new OrderHistoryFragment()
+                            , Constant.OrderHistoryFragment).commit();
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.tvAboutus) {
             toolbar.setTitle(Constant.AboutFragment);
+            fragmentHomeManager.beginTransaction()
+                    .replace(R.id.home_content_frame, new AboutUs()
+                            , Constant.AboutFragment).commit();
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.tvContactus) {

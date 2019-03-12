@@ -16,4 +16,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="intro">We, Kumar Lifesciences, established in 2016 are one of the well-established third party manufacturers, wholesaler and traders of Pharmaceutical Drugs. Our company is manufacturing in collaboration with the leading company of market, which has been certified by world health organization for good manufacturing practices and international organization for standardization. Offered medicines are highly appreciated among the patrons, owing to their quick results, longer shelf life and effectiveness.</string>
+    <string name="par1">We, Kumar Lifesciences, established in 2016 are one of the well-established third party manufacturers, wholesaler and traders of Pharmaceutical Drugs. Our company is manufacturing in collaboration with the leading company of market, which has been certified by world health organization for good manufacturing practices and international organization for standardization. Offered medicines are highly appreciated among the patrons, owing to their quick results, longer shelf life and effectiveness.</string>
+    <string name="par2">Our company is constantly producing new, innovative and vigorous products for all age groups of the society to ensure the healthy living. The activities of production are taken under clean and safe environment for the pharmacists and other employees. The advantage of using our products is they are harmless on all age groups and ensure quick and instant recovery.</string>
+    <string name="par3">The proprietor, Mr. Rakesh Chandra, has formed the company to achieve heights beyond comparison and developed certain creditability to the name in the industry. His professionalism and accurate understanding of the domain has provided us with success and great status in the market. His support and constant dedication is the reason for the immense development and growth irrespective of the competition in the industry.</string>
+    <string name="company_profile">Company Profile</string>
+    <string name="basic_information">Basic Information</string>
+    <string name="data_404">404 A Meerapur, Prayagraj (U. P) - 211003</string>
+    <string name="statutory_profile">Statutory Profile</string>
 </resources>

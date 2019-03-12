@@ -11,7 +11,7 @@ public class MenuModel {
         this.url = url;
         this.isGroup = isGroup;
         this.hasChildren = hasChildren;
-    }g
+    }
 
     public String getMenuName() {
         return menuName;

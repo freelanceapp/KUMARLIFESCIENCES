@@ -32,7 +32,7 @@ public class MainActivity extends BaseActivity {
        rclvAllProducts.setHasFixedSize(true);
        rclvAllProducts.setLayoutManager(new LinearLayoutManager(this));
 
-       mainCatageryAdapter = new MainCatageryAdapter(this,mainCategeryModalArrayList);
+     //  mainCatageryAdapter = new MainCatageryAdapter(this,mainCategeryModalArrayList);
       rclvAllProducts.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
       rclvAllProducts.setItemAnimator(new DefaultItemAnimator());
       rclvAllProducts.setAdapter(mainCatageryAdapter);
