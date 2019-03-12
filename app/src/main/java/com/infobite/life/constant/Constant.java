@@ -12,6 +12,8 @@ public class Constant {
     public static final String CONTACT_US = "kls-api/contact.php";
     public static final String BANNER_API = "kls-api/banner.php";
     public static final String ORDER_HOSTORY_API = "kls-api/order-view.php";
+    public static final String SEARCH_API = "kls-api/search-product.php";
+    public static final String ORDER_API = "kls-api/order.php";
 
 
     //main categery image url
@@ -38,5 +40,11 @@ public class Constant {
     public static final String SubCategoryFragment = "SubCategoryFragment" ;
     public static final String ProductDetailFragment = "Product Detail";
     public static final String OrderHistoryFragment = "Order History";
+    public static final String Home = "home";
+    public static final String Address = "address";
+    public static final String City = "city";
+    public static final String State = "state";
+    public static final String PinCode = "pin_code";
+    public static final String MobileNumber = "mobile_number";
     ;
 }

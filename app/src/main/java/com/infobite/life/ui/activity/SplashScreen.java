@@ -19,6 +19,7 @@ import infobite.kumar.life.R;
 public class SplashScreen extends BaseActivity {
     private ImageView imgSplash;
     private VideoView videoView;
+    public static String mypreference = "Kumar";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

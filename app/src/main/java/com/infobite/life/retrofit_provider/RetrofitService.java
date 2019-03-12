@@ -8,6 +8,7 @@ import com.infobite.life.modal.gallery_modal.GalleryMainModal;
 import com.infobite.life.modal.main_categry_products.CategeryMainModal;
 import com.infobite.life.modal.order_history_modal.OrderHistoryMainModal;
 import com.infobite.life.modal.products_modal.ProductsMainModal;
+import com.infobite.life.modal.search_model.SearchModel;
 import com.infobite.life.modal.subcategory_modal.SubcategoryMainModal;
 import com.infobite.life.utils.AppProgressDialog;
 
@@ -67,6 +68,28 @@ public class RetrofitService {
             }
         });
     }
+
+    public static void getSearchData(final Dialog dialog, final Call<SearchModel> method, final WebResponse webResponse) {
+        if (dialog != null)
+            AppProgressDialog.showDialog(dialog);
+
+        method.enqueue(new Callback<SearchModel>() {
+            @Override
+            public void onResponse(Call<SearchModel> call, Response<SearchModel> response) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                WebServiceResponse.handleResponse(response, webResponse);
+            }
+
+            @Override
+            public void onFailure(Call<SearchModel> call, Throwable throwable) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                webResponse.onResponseFailed(throwable.getMessage());
+            }
+        });
+    }
+
     public static void getSubcateogryData(final Dialog dialog, final Call<SubcategoryMainModal> method, final WebResponse webResponse) {
         if (dialog != null)
             AppProgressDialog.showDialog(dialog);
@@ -167,6 +190,7 @@ public class RetrofitService {
             }
         });
     }
+
     public static void getContactUsData(final Dialog dialog, final Call<ResponseBody> method, final WebResponse webResponse) {
         if (dialog != null)
             AppProgressDialog.showDialog(dialog);
@@ -186,7 +210,30 @@ public class RetrofitService {
                 webResponse.onResponseFailed(throwable.getMessage());
             }
         });
-    }   public static void getBannerData(final Dialog dialog, final Call<BannerMainModal> method, final WebResponse webResponse) {
+    }
+
+    public static void getOrderData(final Dialog dialog, final Call<ResponseBody> method, final WebResponse webResponse) {
+        if (dialog != null)
+            AppProgressDialog.showDialog(dialog);
+
+        method.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                WebServiceResponse.handleResponse(response, webResponse);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable throwable) {
+                if (dialog != null)
+                    AppProgressDialog.hide(dialog);
+                webResponse.onResponseFailed(throwable.getMessage());
+            }
+        });
+    }
+
+    public static void getBannerData(final Dialog dialog, final Call<BannerMainModal> method, final WebResponse webResponse) {
         if (dialog != null)
             AppProgressDialog.showDialog(dialog);
 

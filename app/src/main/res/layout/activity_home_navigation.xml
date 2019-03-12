@@ -84,6 +84,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15sp"
                 android:padding="4sp"
+                android:text="Add to Cart"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_margin="4sp"
+                android:id="@+id/tvAddtoCart"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15sp"
+                android:padding="4sp"
                 android:text="About Us"
                 android:textColor="@color/white"
                 android:textSize="20sp"

@@ -6,6 +6,7 @@ import com.infobite.life.modal.gallery_modal.GalleryMainModal;
 import com.infobite.life.modal.main_categry_products.CategeryMainModal;
 import com.infobite.life.modal.order_history_modal.OrderHistoryMainModal;
 import com.infobite.life.modal.products_modal.ProductsMainModal;
+import com.infobite.life.modal.search_model.SearchModel;
 import com.infobite.life.modal.subcategory_modal.SubcategoryMainModal;
 
 import okhttp3.ResponseBody;
@@ -20,6 +21,9 @@ public interface RetrofitApiClient {
 
     @GET(Constant.PRODUCTS_API)
     Call<ProductsMainModal> productData();
+
+    @GET(Constant.SEARCH_API)
+    Call<SearchModel> searchData();
 
     @GET(Constant.SUBCATEGORY_API)
     Call<SubcategoryMainModal> subCategoryData(@Query("category_id") String categoryId);
@@ -49,6 +53,26 @@ public interface RetrofitApiClient {
                                  ,@Field("message") String message);
 
 
+
+    @FormUrlEncoded
+    @POST(Constant.CONTACT_US)
+    Call<ResponseBody> order(@Field("first_name") String first_name,
+                             @Field("user_id") String user_id,
+                             @Field("company_name") String company_name,
+                             @Field("user_email") String user_email,
+                             @Field("address") String address,
+                             @Field("phone_number") String phone_number,
+                             @Field("state") String state,
+                             @Field("city") String city,
+                             @Field("zip_code") String zip_code,
+                             @Field("product_id") String product_id,
+                             @Field("product_name") String product_name,
+                             @Field("product_category") String product_category,
+                             @Field("product_sub_category") String product_sub_category,
+                             @Field("product_image") String product_image,
+                             @Field("product_price") String product_price,
+                             @Field("product_qty") String product_qty,
+                             @Field("total_price") String total_price);
 
 
 }

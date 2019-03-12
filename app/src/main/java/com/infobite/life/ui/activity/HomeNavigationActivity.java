@@ -50,7 +50,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements View.On
     List<MenuModel> headerList = new ArrayList<>();
     HashMap<MenuModel, List<MenuModel>> childList = new HashMap<>();
     boolean a = true;
-    TextView tvHome, tvProduct, tvGallery,tvOrderHisotry, tvAountUs, tvContactUs;
+    TextView tvHome, tvProduct, tvGallery,tvOrderHisotry, tvAountUs, tvContactUs , tvAddtoCart;
     FrameLayout home_content_frame;
     public static FragmentManager fragmentHomeManager;
 
@@ -76,6 +76,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements View.On
         tvOrderHisotry = findViewById(R.id.tvOrderHisotry);
         tvAountUs = findViewById(R.id.tvAboutus);
         tvContactUs = findViewById(R.id.tvContactus);
+        tvAddtoCart = findViewById(R.id.tvAddtoCart);
 
         tvHome.setOnClickListener(this);
         tvProduct.setOnClickListener(this);
@@ -83,6 +84,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements View.On
         tvOrderHisotry.setOnClickListener(this);
         tvAountUs.setOnClickListener(this);
         tvContactUs.setOnClickListener(this);
+        tvAddtoCart.setOnClickListener(this);
 
         expandableListView = findViewById(R.id.expandableListView);
         ((ImageView)findViewById(R.id.iv_search)).setOnClickListener(this);
@@ -285,7 +287,13 @@ public class HomeNavigationActivity extends AppCompatActivity implements View.On
                             , Constant.OrderHistoryFragment).commit();
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
-        } else if (id == R.id.tvAboutus) {
+        } else if (id == R.id.tvAddtoCart) {
+            Intent intent = new Intent(HomeNavigationActivity.this , AddtoCartActivity.class);
+            startActivity(intent);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+        }
+        else if (id == R.id.tvAboutus) {
             toolbar.setTitle(Constant.AboutFragment);
             fragmentHomeManager.beginTransaction()
                     .replace(R.id.home_content_frame, new AboutUs()

@@ -21,7 +21,8 @@
         android:layout_margin="3dp"
         app:cardCornerRadius="4dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/llItem">
     <ImageView
         android:layout_gravity="center_horizontal"
         android:id="@+id/imgMainProduct"

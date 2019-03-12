@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="infobite.kumar.life">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -15,7 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Base"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.infobite.life.ui.activity.ShowOrderHistory"></activity>
+        <activity android:name="com.infobite.life.ui.activity.CheckOutActivity"/>
+        <activity android:name="com.infobite.life.ui.activity.AddtoCartActivity"/>
+        <activity android:name="com.infobite.life.ui.activity.ShowOrderHistory" />
         <activity android:name="com.infobite.life.ui.activity.ProductDetailActivity" />
         <activity android:name="com.infobite.life.ui.activity.SearchActivity" />
         <activity
