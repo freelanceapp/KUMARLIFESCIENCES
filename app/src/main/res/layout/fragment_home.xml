@@ -7,8 +7,11 @@
     tools:context="com.infobite.life.ui.fragment.HomeFragment">
 
     <ScrollView
+        android:importantForAutofill="no"
+        android:fitsSystemWindows="true"
+        android:fillViewport="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,7 +26,7 @@
                 <android.support.v4.view.ViewPager
                     android:id="@+id/pager"
                     android:layout_width="match_parent"
-                    android:layout_height="180sp"
+                    android:layout_height="230sp"
                     android:layout_alignParentTop="true" />
 
                 <com.viewpagerindicator.CirclePageIndicator
@@ -43,153 +46,81 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Welcome To Kumar Lifesciences"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:textColor="@color/dark_blue"
-                android:padding="6sp"
+                android:layout_margin="6dp"
                 android:gravity="center"
-                android:layout_margin="4sp"/>
+                android:padding="8sp"
+                android:text="Welcome To Kumar Lifesciences"
+                android:textColor="@color/dark_blue"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1sp"
-                android:layout_margin="4sp"/>
+                android:layout_margin="4sp" />
 
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/intro"
-                android:textSize="12sp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:padding="8sp"
+                    android:textSize="20sp"
+                    android:id="@+id/tx_aboutus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/dark_blue"
+                    android:text="About Us"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tx_aboutus"
+                    android:background="@color/dark_blue"
+                    android:paddingLeft="8sp"
+                    android:paddingRight="8sp"
+                    android:paddingBottom="40sp"
+                    android:text="@string/intro"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <Button
                 android:textStyle="bold"
-                android:textColor="@color/black"
-                android:padding="6sp"
-                android:layout_margin="4sp"/>
+                android:textSize="16sp"
+                android:layout_marginTop="-22sp"
+                android:id="@+id/btnRead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/round_button"
+                android:paddingLeft="28sp"
+                android:paddingRight="28sp"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:text="Read More"
+                android:textColor="@color/white" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:background="@drawable/round_button"
-                android:text="Read More"
-                android:padding="6sp"
-                android:layout_gravity="end"
-                android:layout_margin="4sp"
-                android:id="@+id/btnRead"/>
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="14sp"
+                android:padding="4sp"
+                android:text="Our Values"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-
-            <android.support.v7.widget.CardView
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_outvalues"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="4sp"
-                app:cardCornerRadius="4sp"
-                app:cardElevation="4sp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="10sp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Our Values"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:padding="4sp"
-                        android:layout_margin="10sp"/>
+                android:layout_height="wrap_content" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Together"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:padding="4sp"
-                        android:layout_marginLeft="10sp"/>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1sp"
-                        android:background="@color/dark_blue"
-                        android:layout_marginLeft="10sp"
-                        android:layout_marginTop="4sp"
-                        android:layout_marginBottom="4sp"
-                        android:layout_marginRight="10sp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Respect"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:padding="4sp"
-                        android:layout_marginLeft="10sp"/>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1sp"
-                        android:background="@color/dark_blue"
-                        android:layout_marginLeft="10sp"
-                        android:layout_marginTop="4sp"
-                        android:layout_marginBottom="4sp"
-                        android:layout_marginRight="10sp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Unity"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:padding="4sp"
-                        android:layout_marginLeft="10sp"/>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1sp"
-                        android:background="@color/dark_blue"
-                        android:layout_marginLeft="10sp"
-                        android:layout_marginTop="4sp"
-                        android:layout_marginBottom="4sp"
-                        android:layout_marginRight="10sp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Society"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:padding="4sp"
-                        android:layout_marginLeft="10sp"/>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1sp"
-                        android:background="@color/dark_blue"
-                        android:layout_marginLeft="10sp"
-                        android:layout_marginTop="4sp"
-                        android:layout_marginBottom="4sp"
-                        android:layout_marginRight="10sp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Totality"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:padding="4sp"
-                        android:layout_marginLeft="10sp"/>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1sp"
-                        android:background="@color/dark_blue"
-                        android:layout_marginLeft="10sp"
-                        android:layout_marginTop="4sp"
-                        android:layout_marginBottom="4sp"
-                        android:layout_marginRight="10sp"/>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

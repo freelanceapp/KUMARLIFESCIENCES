@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -28,6 +30,9 @@ public class ProductDetailActivity extends BaseActivity implements View.OnClickL
     private Product productDetail;
     private boolean checked = false;
     private int i = 1;
+    private ImageView ivToolbar;
+    private Button btnViewMore;
+    private boolean check = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +47,21 @@ public class ProductDetailActivity extends BaseActivity implements View.OnClickL
         tvExDate = findViewById(R.id.tv_detail_expiry_date);
 
         imgProduct = findViewById(R.id.img_product_detail);
+        ivToolbar = findViewById(R.id.iv_tolbar_back);
+        ivToolbar.setOnClickListener(this);
+        btnViewMore = findViewById(R.id.btn_viewmore);
+        btnViewMore.setOnClickListener(this);
 
         getIntentData();
+    }
+    private void moreDetail(){
+        if (checked){
+            checked = false;
+            ((LinearLayout)findViewById(R.id.ll_moreDetail)).setVisibility(View.GONE);
+        }else {
+            checked = true;
+            ((LinearLayout)findViewById(R.id.ll_moreDetail)).setVisibility(View.VISIBLE);
+        }
     }
 
     private void getIntentData() {
@@ -59,7 +77,7 @@ public class ProductDetailActivity extends BaseActivity implements View.OnClickL
                   }
             tvname.setText(productDetail.getProductType());
             tvdescription.setText(productDetail.getProductDescription());
-            tvCategory.setText(productDetail.getProductCategory());
+            tvCategory.setText(productDetail.getProductSubCategory());
             tvAmount.setText(productDetail.getProductPrice());
             tvManuDate.setText(productDetail.getManufacturingDate());
             tvExDate.setText(productDetail.getExpiryDate());
@@ -72,6 +90,14 @@ public class ProductDetailActivity extends BaseActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.iv_tolbar_back:
+                finish();
+                break;
+            case R.id.btn_viewmore:
+                moreDetail();
+                break;
+        }
 
     }
 
