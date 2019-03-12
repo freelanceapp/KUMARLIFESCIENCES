@@ -160,12 +160,28 @@ public class ConfirmationFragment extends BaseFragment implements View.OnClickLi
             String country = sessionManager.getData(SessionManager.KEY_ORDER_COUNTRY);
             String code = sessionManager.getData(SessionManager.KEY_ORDER_ZIPCODE);
             String paytype = sessionManager.getData(SessionManager.KEY_PAYMENT_TYPE);
-            // ArrayList<ProductDetail> list = databaseCart.getAllUrlList();
+            String product_id = "";
+            String product_name = "";
+            String company_name = "";
+            String product_category = "";
+            String product_sub_category = "";
+            String product_qty = "";
+            String product_price = null;
+            float tot = 0;
+             ArrayList<ProductDetail> list = databaseCart.getAllUrlList();
+            for (int i = 0; i < list.size(); i++) {
+                tot = list.get(i).getQuantity() * Float.parseFloat(list.get(i).getPrice());
+                product_id = list.get(0).getId();
+                product_qty = String.valueOf(list.get(0).getQuantity());
+                company_name = list.get(0).getCategory();
+                product_price = list.get(0).getPrice();
+                product_name = list.get(0).getName();
 
+            }
 
             RetrofitService.getOrderData(new Dialog(mContext), retrofitApiClient.order(name,user_id,"comapany_name",email,
-                    address,mobile,state,city,code,"1","abc","a1","a2","image",
-                    "100","1","100"), new WebResponse() {
+                    address,mobile,state,city,code,product_id,product_name,product_category,"a2","image",
+                    product_price,product_qty, String.valueOf(tot)), new WebResponse() {
                 @Override
                 public void onResponseSuccess(Response<?> result) {
                     ResponseBody responseBody = (ResponseBody) result.body();
