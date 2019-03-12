@@ -20,6 +20,7 @@ import com.infobite.life.retrofit_provider.RetrofitService;
 import com.infobite.life.retrofit_provider.WebResponse;
 import com.infobite.life.ui.activity.ShowOrderHistory;
 import com.infobite.life.utils.Alerts;
+import com.infobite.life.utils.AppPreference;
 import com.infobite.life.utils.BaseFragment;
 import com.infobite.life.utils.ConnectionDirector;
 
@@ -57,7 +58,8 @@ public class OrderHistoryFragment extends BaseFragment implements View.OnClickLi
     }
         private void productApi(){
             if (cd.isNetWorkAvailable()) {
-                RetrofitService.orderHistoryData(new Dialog(mContext), retrofitApiClient.orderHistoryData("36"), new WebResponse() {
+                String strUserId = AppPreference.getStringPreference(mContext,"user_id");
+                RetrofitService.orderHistoryData(new Dialog(mContext), retrofitApiClient.orderHistoryData(strUserId), new WebResponse() {
                     @Override
                     public void onResponseSuccess(Response<?> result) {
                         OrderHistoryMainModal historyMainModal = (OrderHistoryMainModal) result.body();
