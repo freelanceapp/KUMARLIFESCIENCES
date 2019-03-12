@@ -111,7 +111,9 @@ public class ProductsFragment extends BaseFragment implements View.OnClickListen
             case R.id.rl_mainCategory:
                 int position = Integer.parseInt(v.getTag().toString());
                 String strCatId = mainCategoryList.get(position).getCategoryId();
+                String strCategoryName = mainCategoryList.get(position).getCategoryName();
                 AppPreference.setStringPreference(mContext,Constant.CategeryId,strCatId);
+                AppPreference.setStringPreference(mContext,Constant.CategoryName,strCategoryName);
 
                 startFragment(new SubCategoryFragment());
                 break;

@@ -98,17 +98,19 @@ public class ShoppingFragment extends android.support.v4.app.Fragment implements
         String name = AppPreference.getStringPreference(ctx, Constant.Name);
         name_et.setText(name);
 
-        getLatLong();
+      //  getLatLong();
     }
 
+/*
     private void getLatLong() {
         GpsTracker gpsTracker = new GpsTracker(ctx);
         latitude = gpsTracker.getLatitude();
         longitude = gpsTracker.getLongitude();
         getAddressList();
     }
+*/
 
-    private void getAddressList() {
+   /* private void getAddressList() {
         AppProgressDialog.show(dialog);
         Geocoder geocoder = new Geocoder(ctx, Locale.getDefault());
         try {
@@ -122,7 +124,7 @@ public class ShoppingFragment extends android.support.v4.app.Fragment implements
                 zipcode_et.setText(addresses.get(0).getPostalCode());
             } else {
                 AppProgressDialog.show(dialog);
-                new Handler().postDelayed(new Runnable() {
+            //    new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         getLatLong();
@@ -132,7 +134,7 @@ public class ShoppingFragment extends android.support.v4.app.Fragment implements
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     @Override
     public void onClick(View v) {

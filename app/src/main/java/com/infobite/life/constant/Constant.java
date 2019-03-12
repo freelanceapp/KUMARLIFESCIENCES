@@ -29,16 +29,18 @@ public class Constant {
     public static final String GalleryFragment = "Gallery";
     public static final String ContactUsFragment = "ContactUs";
 
+
     /*Preference*/
     public static final String Is_Login = "Is_Login";
     public static final String Is_SignUp = "Is_SignUp";
     public static final String User_Id = "User_Id";
+    public static final String CategoryName = "CategoryName";
     public static final String Name = "Name";
     public static final String Email = "Email";
     public static final String CategeryId = "CategeryId";
     public static final String AboutFragment = "About";
     public static final String ProductsFragment = "Product Category" ;
-    public static final String SubCategoryFragment = "SubCategoryFragment" ;
+    public static final String SubCategoryFragment = "SubCategory" ;
     public static final String ProductDetailFragment = "Product Detail";
     public static final String OrderHistoryFragment = "Order History";
     public static final String Home = "home";

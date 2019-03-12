@@ -35,6 +35,7 @@ public class ProductDetailActivity extends BaseActivity implements View.OnClickL
     private TextView tvManuDate;
     private TextView tvExDate;
     private TextView tv_add_to_cart;
+    private TextView tvSubCategory;
     private TextView tv_total_quantity;
     private ImageView ivRemove, ivAdd,imgProduct;
     private Product productDetail;
@@ -44,7 +45,7 @@ public class ProductDetailActivity extends BaseActivity implements View.OnClickL
     private ImageView ivToolbar;
     private Button btnViewMore;
     private boolean check = false;
-    private String subCategoryName;
+    private String categoryName,subCategoryName;
 
     private String DATABASE_CART = "cart.db";
     private String DATABASE_WISHLIST = "wishlist.db";
@@ -66,6 +67,7 @@ public class ProductDetailActivity extends BaseActivity implements View.OnClickL
         tvManuDate = findViewById(R.id.tv_detail_manufacturingDate);
         tvExDate = findViewById(R.id.tv_detail_expiry_date);
         tv_add_to_cart = findViewById(R.id.tv_add_to_cart);
+        tvSubCategory = findViewById(R.id.tv_detail_subcategory);
        // btnAddToCart = findViewById(R.id.btnAddToCart);
 
         imgProduct = findViewById(R.id.img_product_detail);
@@ -111,9 +113,12 @@ public class ProductDetailActivity extends BaseActivity implements View.OnClickL
                           imgProduct.setVisibility(View.GONE);
                       }
                   }
+
+             String strCategoryName = AppPreference.getStringPreference(mContext,"CategoryName")  ;
             tvname.setText(productDetail.getProductType());
             tvdescription.setText(productDetail.getProductDescription());
-            tvCategory.setText(subCategoryName);
+            tvCategory.setText(strCategoryName);
+            tvSubCategory.setText(subCategoryName);
             tvAmount.setText(productDetail.getProductPrice());
             tvManuDate.setText(productDetail.getManufacturingDate());
             tvExDate.setText(productDetail.getExpiryDate());
@@ -122,7 +127,7 @@ public class ProductDetailActivity extends BaseActivity implements View.OnClickL
             productDetail1.setId(productDetail.getProductId());
             productDetail1.setManufacturing_date(productDetail.getModifiedDate());
             productDetail1.setDescription(productDetail.getProductDescription());
-            productDetail1.setCategory(productDetail.getProductCategory());
+          //  productDetail1.setCategory(productDetail.getProductCategory());
             productDetail1.setEnd_date(productDetail.getExpiryDate());
             productDetail1.setPrice(productDetail.getProductPrice());
             productDetail1.setImage(productDetail.getProductImage().get(0).getProductImage());

@@ -47,7 +47,7 @@
                 android:layout_marginBottom="6dp"
                 android:background="@color/gray_i"
                 android:layout_width="fill_parent"
-                android:layout_height="0.5dp"/>
+                android:layout_height="1dp"/>
 
 
             <TextView
@@ -66,7 +66,7 @@
                 android:layout_marginBottom="6dp"
                 android:background="@color/gray_i"
                 android:layout_width="fill_parent"
-                android:layout_height="0.5dp"/>
+                android:layout_height="1dp"/>
 
             <ExpandableListView
                 android:visibility="gone"
@@ -92,7 +92,7 @@
                 android:layout_marginTop="6dp"
                 android:layout_marginBottom="6dp"
                 android:layout_width="fill_parent"
-                android:layout_height="0.5dp"/>
+                android:layout_height="1dp"/>
 
             <TextView
                 android:textAlignment="center"
@@ -110,7 +110,7 @@
                 android:layout_marginTop="6dp"
                 android:layout_marginBottom="6dp"
                 android:layout_width="fill_parent"
-                android:layout_height="0.5dp"/>
+                android:layout_height="1dp"/>
 
             <TextView
                 android:textAlignment="center"
@@ -126,9 +126,11 @@
                 android:layout_margin="4sp"
                 android:id="@+id/tvAddtoCart"/>
             <View
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
                 android:background="@color/gray_i"
                 android:layout_width="fill_parent"
-                android:layout_height="0.5dp"/>
+                android:layout_height="1dp"/>
             <TextView
                 android:textAlignment="center"
                 android:layout_width="match_parent"
@@ -147,7 +149,7 @@
                 android:layout_marginBottom="6dp"
                 android:background="@color/gray_i"
                 android:layout_width="fill_parent"
-                android:layout_height="0.5dp"/>
+                android:layout_height="1dp"/>
 
             <TextView
                 android:textAlignment="center"
@@ -165,7 +167,7 @@
                 android:layout_marginTop="6dp"
                 android:layout_marginBottom="6dp"
                 android:layout_width="fill_parent"
-                android:layout_height="0.5dp"/>
+                android:layout_height="1dp"/>
         </LinearLayout>
             <TextView
                 android:layout_alignParentBottom="true"

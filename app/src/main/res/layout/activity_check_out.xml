@@ -12,19 +12,21 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@color/black"
+            android:background="@color/dark_blue"
             android:orientation="horizontal">
 
             <ImageView
+                android:paddingLeft="16dp"
                 android:id="@+id/iv_chekout_back"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_arrow_back" />
 
             <TextView
+                android:paddingLeft="16dp"
+                android:layout_toRightOf="@id/iv_chekout_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:text="Checkout"
                 android:textColor="@color/white"
@@ -46,10 +48,11 @@
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@color/black"
+        android:background="@color/maroon"
         android:orientation="horizontal">
 
         <TextView
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -61,6 +64,7 @@
             android:textSize="14sp" />
 
         <TextView
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -72,6 +76,7 @@
             android:textSize="14sp" />
 
         <TextView
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

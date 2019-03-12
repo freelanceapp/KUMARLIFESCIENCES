@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/dark_white"
     android:orientation="vertical">
 
     <TextView
+        android:background="@color/blue_a"
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,7 +17,6 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/gray_h"
-        android:paddingTop="4dp"
         android:paddingBottom="4dp" />
 
     <android.support.v7.widget.RecyclerView
@@ -32,23 +32,21 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/gray_h"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp" />
+        />
 
     <TextView
-        android:paddingLeft="10dp"
+        android:background="@color/maroon"
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Products"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="16dp" />
     <View
-        android:layout_marginTop="10dp"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/gray_h"
-        android:paddingTop="10dp"
         android:paddingBottom="10dp" />
 
     <android.support.v7.widget.RecyclerView
