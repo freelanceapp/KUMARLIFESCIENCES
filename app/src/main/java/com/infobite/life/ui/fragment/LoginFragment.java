@@ -22,6 +22,7 @@ import com.infobite.life.utils.Alerts;
 import com.infobite.life.utils.AppPreference;
 import com.infobite.life.utils.BaseFragment;
 import com.infobite.life.utils.ConnectionDirector;
+import com.infobite.life.utils.EmailChecker;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -83,17 +84,19 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     private void loginApi() {
         if (cd.isNetWorkAvailable()) {
 
+            String strpassword = AppPreference.getStringPreference(mContext,Constant.Password);
+
             strEmail = ((EditText) rootview.findViewById(R.id.et_login_email)).getText().toString();
             strPassword = ((EditText) rootview.findViewById(R.id.et_login_password)).getText().toString();
             if (strEmail.isEmpty()) {
                 ((EditText) rootview.findViewById(R.id.et_login_email)).setError("Please enter email address");
-            } else if (!strEmail.matches(strEmailPattern)) {
+            } else if (!EmailChecker.isValid(strEmail)){
                 ((EditText) rootview.findViewById(R.id.et_login_email)).setError("Please enter valid email address");
             } else if (strPassword.isEmpty()) {
                 ((EditText) rootview.findViewById(R.id.et_login_password)).setError("Please enter password");
-            } else if (strPassword.length() < 6) {
-                ((EditText) rootview.findViewById(R.id.et_login_password)).setError("Please enter minimum 6 character password !!");
-            } else {
+            } /*else if (!strPassword.equals(strpassword)) {
+                ((EditText) rootview.findViewById(R.id.et_login_password)).setError("Wrong Password !!");
+            }*/ else {
                 RetrofitService.getLoginData(new Dialog(mContext), retrofitApiClient.loginData(strEmail, strPassword), new WebResponse() {
                     @Override
                     public void onResponseSuccess(Response<?> result) {
@@ -101,16 +104,17 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                         try {
                             JSONObject jsonObject = new JSONObject(responseBody.string());
                             if (jsonObject.getString("message").equalsIgnoreCase("Login Success")) {
-                                Toast.makeText(mContext, "login successfully", Toast.LENGTH_SHORT).show();
 
                                 AppPreference.setBooleanPreference(mContext, Constant.Is_Login, true);
+                                AppPreference.setStringPreference(mContext, Constant.User_Id, jsonObject.getString("user_id"));
                                 AppPreference.setStringPreference(mContext, Constant.Name, jsonObject.getString("full_name"));
                                 AppPreference.setStringPreference(mContext, Constant.Email, jsonObject.getString("user_email"));
-                                AppPreference.setStringPreference(mContext, Constant.User_Id, jsonObject.getString("user_id"));
 
                                 Intent intent = new Intent(mContext, HomeNavigationActivity.class);
                                 intent.putExtra("email", strEmail);
+                                Toast.makeText(mContext, "login successfully", Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
+
                                 activity.finish();
                             } else {
                                 Alerts.show(mContext, jsonObject.getString("message"));

@@ -68,7 +68,7 @@
                 android:drawablePadding="7dp"
                 android:layoutDirection="rtl"
                 android:padding="10dp"
-                android:text="Case on Delivery"
+                android:text="Cash on Delivery"
                 android:textAlignment="textStart"
                 android:textSize="16sp" />
 

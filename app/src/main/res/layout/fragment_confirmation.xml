@@ -199,6 +199,7 @@
         android:background="@color/blue_a">
 
         <TextView
+            android:id="@+id/tv_orderNow"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

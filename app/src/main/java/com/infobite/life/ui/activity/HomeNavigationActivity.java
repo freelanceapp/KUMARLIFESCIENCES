@@ -2,30 +2,24 @@ package com.infobite.life.ui.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
-import android.view.View;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import com.infobite.life.adapter.ExpandableListAdapter;
 import com.infobite.life.constant.Constant;
@@ -38,6 +32,7 @@ import com.infobite.life.ui.fragment.OrderHistoryFragment;
 import com.infobite.life.ui.fragment.ProductsFragment;
 import com.infobite.life.utils.AppPreference;
 import com.infobite.life.utils.BaseActivity;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -45,22 +40,26 @@ import java.util.List;
 import infobite.kumar.life.R;
 
 public class HomeNavigationActivity extends BaseActivity implements View.OnClickListener {
-    public  static Toolbar toolbar;
+    private TextView tvProfileName, tvProfileEmail;
+    String strName = "", strEmail = "";
+    public static Toolbar toolbar;
     ExpandableListAdapter expandableListAdapter;
     ExpandableListView expandableListView;
     List<MenuModel> headerList = new ArrayList<>();
     HashMap<MenuModel, List<MenuModel>> childList = new HashMap<>();
     boolean a = true;
-    TextView tvHome, tvProduct, tvGallery,tvOrderHisotry, tvAountUs, tvContactUs , tvAddtoCart;
+    TextView tvHome, tvProduct, tvGallery, tvOrderHisotry, tvAountUs, tvContactUs, tvAddtoCart;
     FrameLayout home_content_frame;
     public static FragmentManager fragmentHomeManager;
     public static TextView cart_number;
     private RelativeLayout rlCart;
     public static int cart_count = 0;
+    private NavigationView nav_view;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_navigation);
-         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
 
@@ -77,6 +76,9 @@ public class HomeNavigationActivity extends BaseActivity implements View.OnClick
         }
         replaceFragment();
 
+        strName = AppPreference.getStringPreference(mContext, Constant.Name);
+        strEmail = AppPreference.getStringPreference(mContext, Constant.Email);
+
         tvHome = findViewById(R.id.tvHome);
         tvProduct = findViewById(R.id.tvProduct);
         tvGallery = findViewById(R.id.tvGallery);
@@ -84,6 +86,13 @@ public class HomeNavigationActivity extends BaseActivity implements View.OnClick
         tvAountUs = findViewById(R.id.tvAboutus);
         tvContactUs = findViewById(R.id.tvContactus);
         tvAddtoCart = findViewById(R.id.tvAddtoCart);
+
+        nav_view = findViewById(R.id.nav_view);
+        View view = nav_view.getHeaderView(0);
+        tvProfileName = view.findViewById(R.id.tv_profile_name);
+        tvProfileEmail = view.findViewById(R.id.tv_profile_email);
+        tvProfileName.setText(strName);
+        tvProfileEmail.setText(strEmail);
 
         tvHome.setOnClickListener(this);
         tvProduct.setOnClickListener(this);
@@ -95,14 +104,14 @@ public class HomeNavigationActivity extends BaseActivity implements View.OnClick
         rlCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeNavigationActivity.this , AddtoCartActivity.class);
+                Intent intent = new Intent(HomeNavigationActivity.this, AddtoCartActivity.class);
                 startActivity(intent);
             }
         });
 
         expandableListView = findViewById(R.id.expandableListView);
-        ((ImageView)findViewById(R.id.iv_search)).setOnClickListener(this);
-        ((TextView)findViewById(R.id.tvLogout)).setOnClickListener(this);
+        ((ImageView) findViewById(R.id.iv_search)).setOnClickListener(this);
+        ((TextView) findViewById(R.id.tvLogout)).setOnClickListener(this);
 
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -141,10 +150,7 @@ public class HomeNavigationActivity extends BaseActivity implements View.OnClick
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        }
-
-
-        else if (HomeFragment != null)
+        } else if (HomeFragment != null)
             replaceFragment();
         else if (InfoFragment != null)
             replaceFragment();
@@ -257,13 +263,13 @@ public class HomeNavigationActivity extends BaseActivity implements View.OnClick
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.iv_search:
-                startActivity(new Intent(this,SearchActivity.class));
+                startActivity(new Intent(this, SearchActivity.class));
                 break;
             case R.id.tvLogout:
                 AppPreference.clearAllPreferences(mContext);
-                Intent intent = new Intent(mContext,LoginMainActivity.class);
+                Intent intent = new Intent(mContext, LoginMainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -305,7 +311,7 @@ public class HomeNavigationActivity extends BaseActivity implements View.OnClick
                             , Constant.GalleryFragment).commit();
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
-        }else if (id == R.id.tvOrderHisotry) {
+        } else if (id == R.id.tvOrderHisotry) {
             toolbar.setTitle(Constant.OrderHistoryFragment);
             fragmentHomeManager.beginTransaction()
                     .replace(R.id.home_content_frame, new OrderHistoryFragment()
@@ -313,12 +319,11 @@ public class HomeNavigationActivity extends BaseActivity implements View.OnClick
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.tvAddtoCart) {
-            Intent intent = new Intent(HomeNavigationActivity.this , AddtoCartActivity.class);
+            Intent intent = new Intent(HomeNavigationActivity.this, AddtoCartActivity.class);
             startActivity(intent);
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
-        }
-        else if (id == R.id.tvAboutus) {
+        } else if (id == R.id.tvAboutus) {
             toolbar.setTitle(Constant.AboutFragment);
             fragmentHomeManager.beginTransaction()
                     .replace(R.id.home_content_frame, new AboutUs()

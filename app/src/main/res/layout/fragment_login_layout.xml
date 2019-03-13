@@ -70,6 +70,7 @@
             app:cardCornerRadius="8dp">
 
             <Button
+                android:textColor="@color/white"
                 android:id="@+id/btn_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

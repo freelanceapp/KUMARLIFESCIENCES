@@ -2,10 +2,12 @@ package com.infobite.life.ui.fragment;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,6 +16,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.infobite.life.adapter.ProductListAdapter;
 import com.infobite.life.adapter.SubCategoryProductListAdapter;
@@ -46,7 +49,8 @@ public class SubCategoryFragment extends BaseFragment implements View.OnClickLis
     private ProductListAdapter productAdapter;
     private ArrayList<Datum> subcategoryArrayList = new ArrayList<>();
     private ArrayList<Product> productArrayList = new ArrayList<>();
-    private Product productlist;
+    private String  strSubcateogryName;
+    private Boolean checked = false;
 
 
     @Nullable
@@ -110,10 +114,10 @@ public class SubCategoryFragment extends BaseFragment implements View.OnClickLis
         }
     }
 
+
     private void firstCategory(List<Product> arrayList) {
         productArrayList.clear();
         productArrayList.addAll(arrayList);
-
         productAdapter.notifyDataSetChanged();
     }
 
@@ -124,17 +128,32 @@ public class SubCategoryFragment extends BaseFragment implements View.OnClickLis
                         , Constant.ProductDetailFragment).commit();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ll_subcategory:
                 int position = Integer.parseInt(v.getTag().toString());
+                strSubcateogryName = subcategoryArrayList.get(position).getSubCategoryName();
+                AppPreference.setStringPreference(mContext,Constant.SubcategoryName,strSubcateogryName);
                 productArrayList.clear();
                 productArrayList.addAll(subcategoryArrayList.get(position).getProducts());
                 productAdapter.notifyDataSetChanged();
                 break;
             case R.id.ll_product:
                 int position1 = Integer.parseInt(v.getTag().toString());
+                String strProductId = productArrayList.get(position1).getProductId();
+                String strProductName = productArrayList.get(position1).getProductType();
+                String strProductQuantity = productArrayList.get(position1).getProductQty();
+                String strProductPrice = productArrayList.get(position1).getProductPrice();
+                String strProductImage = productArrayList.get(position1).getProductImage().get(position1).getProductImage();
+
+                AppPreference.setStringPreference(mContext,Constant.ProductId,strProductId);
+                AppPreference.setStringPreference(mContext,Constant.ProductName,strProductName);
+                AppPreference.setStringPreference(mContext,Constant.ProductQuantity,strProductQuantity);
+                AppPreference.setStringPreference(mContext,Constant.ProductPrice,strProductPrice);
+                AppPreference.setStringPreference(mContext,Constant.ProductImage,strProductImage);
+
                 Intent intent1 = new Intent(mContext, ProductDetailActivity.class);
                 intent1.putExtra("subcategoryName",subcategoryArrayList.get(position1).getSubCategoryName());
                 intent1.putExtra("productArrayList", (Parcelable) productArrayList.get(position1));

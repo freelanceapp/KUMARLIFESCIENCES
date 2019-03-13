@@ -24,6 +24,7 @@ import com.infobite.life.utils.Alerts;
 import com.infobite.life.utils.AppPreference;
 import com.infobite.life.utils.BaseFragment;
 import com.infobite.life.utils.ConnectionDirector;
+import com.infobite.life.utils.EmailChecker;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -95,12 +96,12 @@ public class SignUpFragment extends BaseFragment implements View.OnClickListener
                 fullname.setError("Please enter fullname !!!");
             } else if (strEmailAddress.isEmpty()) {
                 emailAddress.setError("Please enter email address !!!");
-            } else if (!strEmailAddress.matches(emailPattern)) {
+            } else if (!EmailChecker.isValid(strEmailAddress)) {
                 emailAddress.setError("Please enter valid email address !!!");
             } else if (strPassword.isEmpty()) {
                 password.setError("Please enter password !!!");
-            } else if (strPassword.length() < 6) {
-                password.setError("Password lengh must be greater than 6 letter !!!");
+            } else if (strConfirmPassword.isEmpty()) {
+                password.setError("please reter password!!!");
             } else if (!strPassword.equalsIgnoreCase(strConfirmPassword)) {
                 password.setError("Password not match !!!");
             } else {
@@ -112,10 +113,13 @@ public class SignUpFragment extends BaseFragment implements View.OnClickListener
                             JSONObject jsonObject = new JSONObject(responseBody.string());
                             if (jsonObject.getString("message").equalsIgnoreCase("Successfully Sign Up")){
                                 AppPreference.setBooleanPreference(mContext, Constant.Is_SignUp, true);
-
+                                AppPreference.setStringPreference(mContext, Constant.Name, jsonObject.getString("full_name"));
+                                AppPreference.setStringPreference(mContext, Constant.Email, jsonObject.getString("user_email"));    //    AppPreference.setStringPreference(mContext,Constant.Password,jsonObject.getString("password"));
                                 Intent intent = new Intent(mContext, HomeNavigationActivity.class);
                                 startActivity(intent);
                                 Toast.makeText(mContext,"signup successfully",Toast.LENGTH_SHORT).show();
+
+
                             }else{
                                 Alerts.show(mContext,jsonObject.getString("message"));
                             }

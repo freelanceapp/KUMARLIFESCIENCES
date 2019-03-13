@@ -55,7 +55,7 @@ public interface RetrofitApiClient {
 
 
     @FormUrlEncoded
-    @POST(Constant.CONTACT_US)
+    @POST(Constant.ORDER_API)
     Call<ResponseBody> order(@Field("first_name") String first_name,
                              @Field("user_id") String user_id,
                              @Field("company_name") String company_name,

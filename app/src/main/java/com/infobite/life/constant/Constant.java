@@ -50,5 +50,12 @@ public class Constant {
     public static final String PinCode = "pin_code";
     public static final String MobileNumber = "mobile_number";
     public static final String CART_ITEM_COUNT = "cart_item_count";
+    public static final String Password = "Password";
+    public static final String SubcategoryName = "SubcategoryName";
+    public static final String ProductName = "ProductName";
+    public static final String ProductId = "ProductId";
+    public static final String ProductQuantity = "ProductQuantity";
+    public static final String ProductPrice = "ProductPrice";
+    public static final String ProductImage = "ProductImage";
     ;
 }

@@ -23,7 +23,7 @@ public class SessionManager {
     public static final String KEY_ID = "id";
     public static final String KEY_USERNAME = "username";
 
-    public static final String KEY_PAYMENT_TYPE = "paytype";
+    public static final String KEY_PAYMENT_TYPE = "Case on delivery";
     public static final String KEY_ORDER_NAME = "name";
     public static final String KEY_ORDER_MOBILE = "mobile";
     public static final String KEY_ORDER_ADDRESS = "address";

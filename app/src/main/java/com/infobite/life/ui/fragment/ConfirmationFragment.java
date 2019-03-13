@@ -33,6 +33,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import infobite.kumar.life.R;
@@ -47,7 +48,7 @@ public class ConfirmationFragment extends BaseFragment implements View.OnClickLi
 
     Context ctx;
     RecyclerView recyclerView;
-    TextView total_tv,tv_payment;
+    TextView total_tv, tv_payment;
     LinearLayout ordernow_ll;
     public static String Payment_Package = "";
     SessionManager sessionManager;
@@ -56,6 +57,8 @@ public class ConfirmationFragment extends BaseFragment implements View.OnClickLi
     //ConnectionDetector connectionDetector;
     String totalAmount1 = "0";
     String Offer_Amount = "0";
+    private TextView tvorderNow;
+
     @SuppressLint("ValidFragment")
     public ConfirmationFragment(Context ctx) {
         this.ctx = ctx;
@@ -108,9 +111,13 @@ public class ConfirmationFragment extends BaseFragment implements View.OnClickLi
         total_tv = view.findViewById(R.id.tv_confirmation_total);
         tv_payment = view.findViewById(R.id.tv_payment);
 
+
+        tvorderNow = view.findViewById(R.id.tv_orderNow);
+        tvorderNow.setOnClickListener(this);
+
         ordernow_ll.setOnClickListener(this);
-        total_tv.setText("Rs. "+totalAmount1);
-        tv_payment.setText("Rs. "+totalAmount1);
+        total_tv.setText("Rs. " + totalAmount1);
+        tv_payment.setText("Rs. " + totalAmount1);
 
         /*total_tv.setText(Utility.getCartTotal(databaseCart));
         Payment_Package = Utility.getCartTotal(databaseCart);*/
@@ -121,9 +128,11 @@ public class ConfirmationFragment extends BaseFragment implements View.OnClickLi
     public void onClick(View v) {
 
         switch (v.getId()) {
-
-            case R.id.ll_conforder_ordernow:
+         /*   case R.id.ll_conforder_ordernow:
                 Toast.makeText(mContext,"click",Toast.LENGTH_SHORT).show();
+                orderApi();
+                break;*/
+            case R.id.tv_orderNow:
                 orderApi();
                 break;
         }
@@ -147,11 +156,19 @@ public class ConfirmationFragment extends BaseFragment implements View.OnClickLi
         }
     }
 
-    private void orderApi(){
-        if (cd.isNetWorkAvailable()){
+    private void orderApi() {
+        if (cd.isNetWorkAvailable()) {
+
             String name = AppPreference.getStringPreference(ctx, Constant.Name);
             String user_id = AppPreference.getStringPreference(ctx, Constant.User_Id);
             String email = AppPreference.getStringPreference(ctx, Constant.Email);
+            String categoryName = AppPreference.getStringPreference(ctx, Constant.CategoryName);
+            String subCategoryName = AppPreference.getStringPreference(ctx, Constant.SubcategoryName);
+            String strProductId = AppPreference.getStringPreference(ctx, Constant.ProductId);
+            String strProductName = AppPreference.getStringPreference(ctx, Constant.ProductName);
+            String strProductImage = AppPreference.getStringPreference(ctx, Constant.ProductImage);
+            String strProductQuantity = AppPreference.getStringPreference(ctx, Constant.ProductQuantity);
+            String strProductPrice = AppPreference.getStringPreference(ctx, Constant.ProductPrice);
 
             String mobile = AppPreference.getStringPreference(ctx, Constant.MobileNumber);
             String address = AppPreference.getStringPreference(ctx, Constant.Address);
@@ -160,44 +177,45 @@ public class ConfirmationFragment extends BaseFragment implements View.OnClickLi
             String country = sessionManager.getData(SessionManager.KEY_ORDER_COUNTRY);
             String code = AppPreference.getStringPreference(ctx, Constant.PinCode);
             String paytype = sessionManager.getData(SessionManager.KEY_PAYMENT_TYPE);
-            String product_id = "";
+     /*       String product_id = "";
             String product_name = "";
             String company_name = "";
             String product_category = "";
             String product_sub_category = "";
             String product_qty = "";
-            String product_price = null;
+            String product_price = null*/
+            ;
             float tot = 0;
-             ArrayList<ProductDetail> list = databaseCart.getAllUrlList();
+            ArrayList<ProductDetail> list = databaseCart.getAllUrlList();
             for (int i = 0; i < list.size(); i++) {
                 tot = list.get(i).getQuantity() * Float.parseFloat(list.get(i).getPrice());
-                product_id = list.get(0).getId();
+               /* product_id = list.get(0).getId();
                 product_qty = String.valueOf(list.get(0).getQuantity());
                 company_name = list.get(0).getCategory();
                 product_price = list.get(0).getPrice();
-                product_name = list.get(0).getName();
-
+                product_name = list.get(0).getName();*/
             }
-
-            RetrofitService.getOrderData(new Dialog(mContext), retrofitApiClient.order(name,user_id,"comapany_name",email,
-                    address,mobile,state,city,code,product_id,product_name,product_category,"a2","image",
-                    product_price,product_qty, String.valueOf(tot)), new WebResponse() {
+            RetrofitService.getOrderData(new Dialog(mContext), retrofitApiClient.order(name, user_id, "comapany_name", email,
+                    address, mobile, state, city, code, strProductId, strProductName, categoryName, subCategoryName, strProductImage,
+                    strProductPrice, strProductQuantity, String.valueOf(tot)), new WebResponse() {
                 @Override
                 public void onResponseSuccess(Response<?> result) {
                     ResponseBody responseBody = (ResponseBody) result.body();
                     try {
-                        JSONObject jsonObject = new JSONObject(responseBody.toString());
-                        if (jsonObject.getString("message").equalsIgnoreCase("Successfully Contact Us")){
-                            Toast.makeText(mContext,"You have contact us Successfully",Toast.LENGTH_SHORT).show();
+                        JSONObject jsonObject = new JSONObject(responseBody.string());
+                        if (jsonObject.getString("message").equalsIgnoreCase("Successfully Order")) {
+                            Toast.makeText(mContext, "Order Successfully", Toast.LENGTH_SHORT).show();
                         }
                     } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
 
                 @Override
                 public void onResponseFailed(String error) {
-                    Alerts.show(mContext,error);
+                    Alerts.show(mContext, error);
                 }
             });
         }

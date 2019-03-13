@@ -22,164 +22,176 @@
         android:fitsSystemWindows="true"
         android:textAlignment="center"
         app:headerLayout="@layout/nav_header_home_navigation">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/nav_header_height"
-            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/nav_header_height"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:text="Home"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:background="@color/transparent_white" />
+
+
+                <TextView
+                    android:id="@+id/tvProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4sp"
+                    android:layout_marginLeft="15sp"
+                    android:padding="4sp"
+                    android:text="Product"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:background="@color/transparent_white" />
+
+                <ExpandableListView
+                    android:id="@+id/expandableListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/dark_blue"
+                    android:dividerHeight="0dp"
+                    android:groupIndicator="@null"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvGallery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:text="Gallery"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:background="@color/transparent_white" />
+
+                <TextView
+                    android:id="@+id/tvOrderHisotry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:text="Order History"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:background="@color/transparent_white" />
+
+                <TextView
+                    android:id="@+id/tvAddtoCart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4sp"
+                    android:layout_marginLeft="15sp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:padding="4sp"
+                    android:text="Add to Cart"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:background="@color/transparent_white" />
+
+                <TextView
+                    android:id="@+id/tvAboutus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4sp"
+                    android:layout_marginLeft="15sp"
+                    android:padding="4sp"
+                    android:paddingTop="4sp"
+                    android:paddingBottom="4sp"
+                    android:text="About Us"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:background="@color/transparent_white" />
+
+                <TextView
+                    android:id="@+id/tvContactus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4sp"
+                    android:layout_marginTop="6dp"
+                    android:paddingBottom="4sp"
+                    android:text="Contact Us"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:background="@color/transparent_white" />
+            </LinearLayout>
 
             <TextView
-                android:textAlignment="center"
+                android:id="@+id/tvLogout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="4sp"
-                android:paddingBottom="4sp"
-                android:text="Home"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:layout_margin="4sp"
-                android:id="@+id/tvHome"/>
-            <View
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="6dp"
-                android:background="@color/gray_i"
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"/>
-
-
-            <TextView
-                android:textAlignment="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15sp"
-                android:padding="4sp"
-                android:text="Product"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:layout_margin="4sp"
-                android:id="@+id/tvProduct"/>
-            <View
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="6dp"
-                android:background="@color/gray_i"
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"/>
-
-            <ExpandableListView
-                android:visibility="gone"
-                android:id="@+id/expandableListView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/dark_blue"
-                android:dividerHeight="0dp"
-                android:groupIndicator="@null" />
-            <TextView
-                android:textAlignment="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="4sp"
-                android:paddingBottom="4sp"
-                android:text="Gallery"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:layout_margin="4sp"
-                android:id="@+id/tvGallery"/>
-            <View
-                android:background="@color/gray_i"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="6dp"
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"/>
-
-            <TextView
-                android:textAlignment="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="4sp"
-                android:paddingBottom="4sp"
-                android:text="Order History"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:layout_margin="4sp"
-                android:id="@+id/tvOrderHisotry"/>
-            <View
-                android:background="@color/gray_i"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="6dp"
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"/>
-
-            <TextView
-                android:textAlignment="center"
-                android:layout_width="match_parent"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="6dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15sp"
-                android:padding="4sp"
-                android:text="Add to Cart"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:layout_margin="4sp"
-                android:id="@+id/tvAddtoCart"/>
-            <View
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="6dp"
-                android:background="@color/gray_i"
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"/>
-            <TextView
-                android:textAlignment="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15sp"
-                android:padding="4sp"
-                android:paddingTop="4sp"
-                android:paddingBottom="4sp"
-                android:text="About Us"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:layout_margin="4sp"
-                android:id="@+id/tvAboutus"/>
-            <View
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="6dp"
-                android:background="@color/gray_i"
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"/>
-
-            <TextView
-                android:textAlignment="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:paddingBottom="4sp"
-                android:text="Contact Us"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:layout_margin="4sp"
-                android:id="@+id/tvContactus"/>
-            <View
-                android:background="@color/gray_i"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="6dp"
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"/>
-        </LinearLayout>
-            <TextView
                 android:layout_alignParentBottom="true"
-                android:textAlignment="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:paddingTop="4sp"
                 android:paddingBottom="16sp"
                 android:text="Logout"
+                android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                android:id="@+id/tvLogout"/>
+                android:textSize="20sp" />
 
         </RelativeLayout>
     </android.support.design.widget.NavigationView>

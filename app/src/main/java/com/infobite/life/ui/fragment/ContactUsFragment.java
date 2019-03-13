@@ -17,6 +17,9 @@ import com.infobite.life.utils.BaseFragment;
 import com.infobite.life.utils.ConnectionDirector;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
+
 import infobite.kumar.life.R;
 import okhttp3.ResponseBody;
 import retrofit2.Response;
@@ -24,7 +27,7 @@ import retrofit2.Response;
 public class ContactUsFragment extends BaseFragment implements View.OnClickListener {
     private View rootview;
     private EditText etname,etEmail,etSubject,etPhone,etMessage;
-    private String strName,strEmail,strSubject,strPhone,strMessage;
+    private String strName = "",strEmail = "",strSubject = "",strPhone = "",strMessage = "";
     private String strEmaiPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
     @Nullable
@@ -45,11 +48,19 @@ public class ContactUsFragment extends BaseFragment implements View.OnClickListe
         etSubject = rootview.findViewById(R.id.et_subject);
         etPhone = rootview.findViewById(R.id.et_phone);
         etMessage = rootview.findViewById(R.id.et_message);
+
         ((Button)rootview.findViewById(R.id.btn_send_message)).setOnClickListener(this);
         ((Button)rootview.findViewById(R.id.btn_reset_message)).setOnClickListener(this);
+
     }
     private void contactUsApi(){
         if (cd.isNetWorkAvailable()){
+
+            strName = etname.getText().toString();
+            strEmail = etEmail.getText().toString();
+            strSubject = etSubject.getText().toString();
+            strPhone = etPhone.getText().toString();
+            strMessage = etMessage.getText().toString();
 
             if (strName.isEmpty()){
                 etname.setError("Please Enter Your Name !!!");
@@ -65,23 +76,20 @@ public class ContactUsFragment extends BaseFragment implements View.OnClickListe
                 etMessage.setError("Please enter a message !!!");
             }
 
-            strName = etname.getText().toString();
-            strEmail = etEmail.getText().toString();
-            strSubject = etSubject.getText().toString();
-            strPhone = etPhone.getText().toString();
-            strMessage = etMessage.getText().toString();
-
             RetrofitService.getContactUsData(new Dialog(mContext), retrofitApiClient.contactUs(strName, strEmail, strPhone,
                     strSubject, strMessage), new WebResponse() {
                 @Override
                 public void onResponseSuccess(Response<?> result) {
                     ResponseBody responseBody = (ResponseBody) result.body();
                     try {
-                        JSONObject jsonObject = new JSONObject(responseBody.toString());
+                        JSONObject jsonObject = new JSONObject(responseBody.string());
                         if (jsonObject.getString("message").equalsIgnoreCase("Successfully Contact Us")){
                             Toast.makeText(mContext,"You have contact us Successfully",Toast.LENGTH_SHORT).show();
+                            clearData();
                         }
                     } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
@@ -105,8 +113,7 @@ public class ContactUsFragment extends BaseFragment implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_send_message:
-                contactUsApi();
-                clearData();
+               contactUsApi();
                 break;
             case R.id.btn_reset_message:
                 clearData();
