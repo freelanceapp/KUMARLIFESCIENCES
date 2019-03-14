@@ -3,7 +3,6 @@ package com.infobite.life.ui.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,15 +10,12 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.infobite.life.adapter.ExpandableListAdapter;
 import com.infobite.life.constant.Constant;
@@ -40,16 +36,16 @@ import java.util.List;
 import infobite.kumar.life.R;
 
 public class HomeNavigationActivity extends BaseActivity implements View.OnClickListener {
+
     private TextView tvProfileName, tvProfileEmail;
-    String strName = "", strEmail = "";
+    private String strName = "", strEmail = "";
     public static Toolbar toolbar;
-    ExpandableListAdapter expandableListAdapter;
-    ExpandableListView expandableListView;
-    List<MenuModel> headerList = new ArrayList<>();
-    HashMap<MenuModel, List<MenuModel>> childList = new HashMap<>();
-    boolean a = true;
-    TextView tvHome, tvProduct, tvGallery, tvOrderHisotry, tvAountUs, tvContactUs, tvAddtoCart;
-    FrameLayout home_content_frame;
+    private ExpandableListAdapter expandableListAdapter;
+    private ExpandableListView expandableListView;
+    private List<MenuModel> headerList = new ArrayList<>();
+    private HashMap<MenuModel, List<MenuModel>> childList = new HashMap<>();
+    private TextView tvHome, tvProduct, tvGallery, tvOrderHisotry, tvAountUs, tvContactUs, tvAddtoCart;
+    private FrameLayout home_content_frame;
     public static FragmentManager fragmentHomeManager;
     public static TextView cart_number;
     private RelativeLayout rlCart;
@@ -88,9 +84,8 @@ public class HomeNavigationActivity extends BaseActivity implements View.OnClick
         tvAddtoCart = findViewById(R.id.tvAddtoCart);
 
         nav_view = findViewById(R.id.nav_view);
-        View view = nav_view.getHeaderView(0);
-        tvProfileName = view.findViewById(R.id.tv_profile_name);
-        tvProfileEmail = view.findViewById(R.id.tv_profile_email);
+        tvProfileName = findViewById(R.id.tv_profile_name);
+        tvProfileEmail = findViewById(R.id.tv_profile_email);
         tvProfileName.setText(strName);
         tvProfileEmail.setText(strEmail);
 
@@ -119,15 +114,6 @@ public class HomeNavigationActivity extends BaseActivity implements View.OnClick
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                return false;
-            }
-        });
-
     }
 
     private void replaceFragment() {
@@ -151,7 +137,7 @@ public class HomeNavigationActivity extends BaseActivity implements View.OnClick
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else if (HomeFragment != null)
-            replaceFragment();
+            finish();
         else if (InfoFragment != null)
             replaceFragment();
         else if (GalleryFragment != null)
@@ -168,97 +154,6 @@ public class HomeNavigationActivity extends BaseActivity implements View.OnClick
             replaceFragment();
         else
             super.onBackPressed();
-    }
-
-
-    private void prepareMenuData() {
-        MenuModel menuModel = new MenuModel("Tablets", true, false, "https://www.journaldev.com/9333/android-webview-example-tutorial"); //Menu of Android Tutorial. No sub menus
-        headerList.add(menuModel);
-        if (!menuModel.hasChildren) {
-            childList.put(menuModel, null);
-        }
-
-        menuModel = new MenuModel("Capsules & Softgels", true, true, ""); //Menu of Java Tutorials
-        headerList.add(menuModel);
-        List<MenuModel> childModelsList = new ArrayList<>();
-        MenuModel childModel = new MenuModel("Softgels", false, false, "https://www.journaldev.com/7153/core-java-tutorial");
-        childModelsList.add(childModel);
-
-        childModel = new MenuModel("Capsules", false, false, "https://www.journaldev.com/19187/java-fileinputstream");
-        childModelsList.add(childModel);
-
-        if (menuModel.hasChildren) {
-            Log.d("API123", "here");
-            childList.put(menuModel, childModelsList);
-        }
-
-        menuModel = new MenuModel("Syrups & Suspensions", true, true, ""); //Menu of Java Tutorials
-        headerList.add(menuModel);
-        List<MenuModel> childModelsList1 = new ArrayList<>();
-        MenuModel childModel1 = new MenuModel("Syrups", false, false, "https://www.journaldev.com/7153/core-java-tutorial");
-        childModelsList1.add(childModel1);
-
-        childModel1 = new MenuModel("Suspensions", false, false, "https://www.journaldev.com/19187/java-fileinputstream");
-        childModelsList1.add(childModel1);
-
-        if (menuModel.hasChildren) {
-            Log.d("API123", "here");
-            childList.put(menuModel, childModelsList1);
-        }
-
-        menuModel = new MenuModel("About Us", true, false, ""); //Menu of Python Tutorials
-        headerList.add(menuModel);
-
-        if (!menuModel.hasChildren) {
-            childList.put(menuModel, null);
-        }
-
-        menuModel = new MenuModel("Contact Us", true, false, ""); //Menu of Python Tutorials
-        headerList.add(menuModel);
-
-        if (!menuModel.hasChildren) {
-            childList.put(menuModel, null);
-        }
-
-        if (menuModel.hasChildren) {
-            childList.put(menuModel, childModelsList);
-        }
-
-        if (menuModel.hasChildren) {
-            childList.put(menuModel, childModelsList1);
-        }
-
-    }
-
-    private void populateExpandableList() {
-        expandableListAdapter = new ExpandableListAdapter(this, headerList, childList);
-        expandableListView.setAdapter(expandableListAdapter);
-        expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-            @Override
-            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                if (headerList.get(groupPosition).isGroup) {
-                    if (!headerList.get(groupPosition).hasChildren) {
-                        MenuModel model = headerList.get(groupPosition);
-                        Toast.makeText(HomeNavigationActivity.this, model.getMenuName(), Toast.LENGTH_SHORT).show();
-
-                        onBackPressed();
-                    }
-                }
-
-                return false;
-            }
-        });
-        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                if (childList.get(headerList.get(groupPosition)) != null) {
-                    MenuModel model = childList.get(headerList.get(groupPosition)).get(childPosition);
-                    Toast.makeText(HomeNavigationActivity.this, model.getMenuName(), Toast.LENGTH_SHORT).show();
-                    onBackPressed();
-                }
-                return false;
-            }
-        });
     }
 
     @Override
@@ -293,17 +188,6 @@ public class HomeNavigationActivity extends BaseActivity implements View.OnClick
                             , Constant.ProductsFragment).commit();
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
-          /*  if (a == true) {
-                a = false;
-                expandableListView.setVisibility(View.VISIBLE);
-                headerList.clear();
-                childList.clear();
-                prepareMenuData();
-                populateExpandableList();
-            } else {
-                a = true;
-                expandableListView.setVisibility(View.GONE);
-            }*/
         } else if (id == R.id.tvGallery) {
             toolbar.setTitle(Constant.GalleryFragment);
             fragmentHomeManager.beginTransaction()

@@ -14,9 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.JsonObject;
 import com.infobite.life.constant.Constant;
-import com.infobite.life.modal.Text;
 import com.infobite.life.retrofit_provider.RetrofitService;
 import com.infobite.life.retrofit_provider.WebResponse;
 import com.infobite.life.ui.activity.HomeNavigationActivity;
@@ -40,14 +38,14 @@ import static com.infobite.life.ui.activity.LoginMainActivity.fragmentManager;
 public class SignUpFragment extends BaseFragment implements View.OnClickListener {
     private View rootview;
     private Button btn_signUp;
-    private EditText fullname,emailAddress,password,cPassword;
-    private String strName,strEmailAddress,strPassword,strConfirmPassword;
+    private EditText fullname, emailAddress, password, cPassword;
+    private String strName, strEmailAddress, strPassword, strConfirmPassword;
     private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootview = inflater.inflate(R.layout.fragment_signup_layout,container,false);
+        rootview = inflater.inflate(R.layout.fragment_signup_layout, container, false);
         activity = getActivity();
         mContext = getActivity();
         cd = new ConnectionDirector(mContext);
@@ -63,11 +61,12 @@ public class SignUpFragment extends BaseFragment implements View.OnClickListener
         password = rootview.findViewById(R.id.et_password);
         cPassword = rootview.findViewById(R.id.et_cpassword);
         btn_signUp.setOnClickListener(this);
-        ((TextView)rootview.findViewById(R.id.tv_Login)).setOnClickListener(this);
+        ((TextView) rootview.findViewById(R.id.tv_Login)).setOnClickListener(this);
 
 
     }
-    private void startFragment(String tag, Fragment fragment){
+
+    private void startFragment(String tag, Fragment fragment) {
         fragmentManager
                 .beginTransaction()
                 .setCustomAnimations(R.anim.left_enter, R.anim.right_out)
@@ -76,16 +75,17 @@ public class SignUpFragment extends BaseFragment implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_signUp:
                 signUpApi();
                 break;
             case R.id.tv_Login:
-                startFragment(Constant.LoginFragment,new LoginFragment());
+                startFragment(Constant.LoginFragment, new LoginFragment());
                 break;
         }
     }
-    private void signUpApi(){
+
+    private void signUpApi() {
         if (cd.isNetWorkAvailable()) {
             strName = fullname.getText().toString();
             strEmailAddress = emailAddress.getText().toString();
@@ -111,23 +111,25 @@ public class SignUpFragment extends BaseFragment implements View.OnClickListener
                         ResponseBody responseBody = (ResponseBody) result.body();
                         try {
                             JSONObject jsonObject = new JSONObject(responseBody.string());
-                            if (jsonObject.getString("message").equalsIgnoreCase("Successfully Sign Up")){
+                            if (jsonObject.getString("message").equalsIgnoreCase("Successfully Sign Up")) {
                                 AppPreference.setBooleanPreference(mContext, Constant.Is_SignUp, true);
-                                AppPreference.setStringPreference(mContext, Constant.Name, jsonObject.getString("full_name"));
-                                AppPreference.setStringPreference(mContext, Constant.Email, jsonObject.getString("user_email"));    //    AppPreference.setStringPreference(mContext,Constant.Password,jsonObject.getString("password"));
+                                AppPreference.setStringPreference(mContext, Constant.Name, strName);
+                                AppPreference.setStringPreference(mContext, Constant.Email, strEmailAddress);    //    AppPreference.setStringPreference(mContext,Constant.Password,jsonObject.getString("password"));
                                 Intent intent = new Intent(mContext, HomeNavigationActivity.class);
                                 startActivity(intent);
-                                Toast.makeText(mContext,"signup successfully",Toast.LENGTH_SHORT).show();
-
-
-                            }else{
-                                Alerts.show(mContext,jsonObject.getString("message"));
+                                activity.finish();
+                                Toast.makeText(mContext, "Sign up successfully", Toast.LENGTH_SHORT).show();
+                            } else {
+                                String strMsg = jsonObject.getString("message");
+                                Alerts.show(mContext, strMsg);
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
                         } catch (JSONException e) {
-                            e.printStackTrace(); }
+                            e.printStackTrace();
+                        }
                     }
+
                     @Override
                     public void onResponseFailed(String error) {
                         Alerts.show(mContext, error);

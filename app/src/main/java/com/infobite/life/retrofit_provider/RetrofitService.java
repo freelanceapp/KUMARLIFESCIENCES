@@ -50,7 +50,7 @@ public class RetrofitService {
 
     public static void getProductsData(final Dialog dialog, final Call<ProductsMainModal> method, final WebResponse webResponse) {
         if (dialog != null)
-            AppProgressDialog.showDialog(dialog);
+            AppProgressDialog.show(dialog);
 
         method.enqueue(new Callback<ProductsMainModal>() {
             @Override
@@ -71,7 +71,7 @@ public class RetrofitService {
 
     public static void getSearchData(final Dialog dialog, final Call<SearchModel> method, final WebResponse webResponse) {
         if (dialog != null)
-            AppProgressDialog.showDialog(dialog);
+            AppProgressDialog.show(dialog);
 
         method.enqueue(new Callback<SearchModel>() {
             @Override
@@ -92,7 +92,7 @@ public class RetrofitService {
 
     public static void getSubcateogryData(final Dialog dialog, final Call<SubcategoryMainModal> method, final WebResponse webResponse) {
         if (dialog != null)
-            AppProgressDialog.showDialog(dialog);
+            AppProgressDialog.show(dialog);
 
         method.enqueue(new Callback<SubcategoryMainModal>() {
             @Override
@@ -112,7 +112,7 @@ public class RetrofitService {
     }
     public static void orderHistoryData(final Dialog dialog, final Call<OrderHistoryMainModal> method, final WebResponse webResponse) {
         if (dialog != null)
-            AppProgressDialog.showDialog(dialog);
+            AppProgressDialog.show(dialog);
 
         method.enqueue(new Callback<OrderHistoryMainModal>() {
             @Override
@@ -132,7 +132,7 @@ public class RetrofitService {
     }
     public static void getSignUpData(final Dialog dialog, final Call<ResponseBody> method, final WebResponse webResponse) {
         if (dialog != null)
-            AppProgressDialog.showDialog(dialog);
+            AppProgressDialog.show(dialog);
 
         method.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -152,7 +152,7 @@ public class RetrofitService {
     }
     public static void getLoginData(final Dialog dialog, final Call<ResponseBody> method, final WebResponse webResponse) {
         if (dialog != null)
-            AppProgressDialog.showDialog(dialog);
+            AppProgressDialog.show(dialog);
 
         method.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -172,7 +172,7 @@ public class RetrofitService {
     }
     public static void getGalleryData(final Dialog dialog, final Call<GalleryMainModal> method, final WebResponse webResponse) {
         if (dialog != null)
-            AppProgressDialog.showDialog(dialog);
+            AppProgressDialog.show(dialog);
 
         method.enqueue(new Callback<GalleryMainModal>() {
             @Override
@@ -193,7 +193,7 @@ public class RetrofitService {
 
     public static void getContactUsData(final Dialog dialog, final Call<ResponseBody> method, final WebResponse webResponse) {
         if (dialog != null)
-            AppProgressDialog.showDialog(dialog);
+            AppProgressDialog.show(dialog);
 
         method.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -214,7 +214,7 @@ public class RetrofitService {
 
     public static void getOrderData(final Dialog dialog, final Call<ResponseBody> method, final WebResponse webResponse) {
         if (dialog != null)
-            AppProgressDialog.showDialog(dialog);
+            AppProgressDialog.show(dialog);
 
         method.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -235,7 +235,7 @@ public class RetrofitService {
 
     public static void getBannerData(final Dialog dialog, final Call<BannerMainModal> method, final WebResponse webResponse) {
         if (dialog != null)
-            AppProgressDialog.showDialog(dialog);
+            AppProgressDialog.show(dialog);
 
         method.enqueue(new Callback<BannerMainModal>() {
             @Override

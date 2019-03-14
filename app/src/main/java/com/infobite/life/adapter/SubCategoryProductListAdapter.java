@@ -23,15 +23,17 @@ import infobite.kumar.life.R;
 
 public class SubCategoryProductListAdapter extends RecyclerView.Adapter<SubCategoryProductListAdapter.ViewHolder> implements View.OnClickListener{
     private View rootview;
+    private int position;
     private Context mContext;
     private ArrayList<Datum> subcategoryArrayList;
     private View.OnClickListener onClickListener;
     private String strSubCategoryName;
     private Boolean cheked = false;
-    public SubCategoryProductListAdapter(Context mContext, ArrayList<Datum> subcategoryArrayList,View.OnClickListener onClickListener) {
+    public SubCategoryProductListAdapter(Context mContext, ArrayList<Datum> subcategoryArrayList,View.OnClickListener onClickListener,int position) {
         this.mContext = mContext;
         this.subcategoryArrayList = subcategoryArrayList;
         this.onClickListener = onClickListener;
+        this.position = position;
     }
 
     @NonNull
@@ -42,6 +44,7 @@ public class SubCategoryProductListAdapter extends RecyclerView.Adapter<SubCateg
         return new ViewHolder(rootview);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Datum subcategorylist = subcategoryArrayList.get(i);
@@ -57,6 +60,14 @@ public class SubCategoryProductListAdapter extends RecyclerView.Adapter<SubCateg
             imgSubcategory.setVisibility(View.GONE);
         }
 
+
+        if (position == i){
+            cheked = false;
+            ((LinearLayout)rootview.findViewById(R.id.ll_bgchange)).setBackgroundColor(Color.TRANSPARENT);
+        }else {
+            cheked = true;
+            ((LinearLayout)rootview.findViewById(R.id.ll_bgchange)).setBackground((mContext.getResources().getDrawable(R.drawable.bg_yellow)));
+        }
         viewHolder.llSubcategory.setTag(i);
         viewHolder.llSubcategory.setOnClickListener(onClickListener);
     }
@@ -65,22 +76,12 @@ public class SubCategoryProductListAdapter extends RecyclerView.Adapter<SubCateg
     public int getItemCount() {
         return subcategoryArrayList.size();
     }
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    private void check(){
-        if (cheked){
-            cheked = false;
-            ((LinearLayout)rootview.findViewById(R.id.ll_bgchange)).setBackgroundColor(Color.TRANSPARENT);
-        }else {
-            cheked = true;
-            ((LinearLayout)rootview.findViewById(R.id.ll_bgchange)).setBackground((mContext.getResources().getDrawable(R.drawable.bg_yellow)));
-        }
-    }
+
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.ll_subcategory :
-                check();
             break;
 
         }

@@ -50,6 +50,7 @@ public class SubCategoryFragment extends BaseFragment implements View.OnClickLis
     private ArrayList<Datum> subcategoryArrayList = new ArrayList<>();
     private ArrayList<Product> productArrayList = new ArrayList<>();
     private String  strSubcateogryName;
+    private int position;
     private Boolean checked = false;
 
 
@@ -70,7 +71,7 @@ public class SubCategoryFragment extends BaseFragment implements View.OnClickLis
         rvSubcategory = rootview.findViewById(R.id.rv_subCategory);
         rvProducts = rootview.findViewById(R.id.rv_product);
 
-        subCategoryProductListAdapter = new SubCategoryProductListAdapter(mContext, subcategoryArrayList, this);
+        subCategoryProductListAdapter = new SubCategoryProductListAdapter(mContext, subcategoryArrayList, this,position);
         rvSubcategory.setHasFixedSize(true);
         rvSubcategory.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
         rvSubcategory.setAdapter(subCategoryProductListAdapter);
@@ -133,7 +134,7 @@ public class SubCategoryFragment extends BaseFragment implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ll_subcategory:
-                int position = Integer.parseInt(v.getTag().toString());
+                position = Integer.parseInt(v.getTag().toString());
                 strSubcateogryName = subcategoryArrayList.get(position).getSubCategoryName();
                 AppPreference.setStringPreference(mContext,Constant.SubcategoryName,strSubcateogryName);
                 productArrayList.clear();
