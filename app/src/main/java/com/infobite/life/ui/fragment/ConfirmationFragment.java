@@ -184,8 +184,7 @@ public class ConfirmationFragment extends BaseFragment implements View.OnClickLi
             String product_category = "";
             String product_sub_category = "";
             String product_qty = "";
-            String product_price = null*/
-            ;
+            String product_price = null*/;
             float tot = 0;
             ArrayList<ProductDetail> list = databaseCart.getAllUrlList();
             for (int i = 0; i < list.size(); i++) {
