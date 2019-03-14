@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,15 +20,10 @@ import com.infobite.life.utils.Alerts;
 import com.infobite.life.utils.BaseFragment;
 import com.infobite.life.utils.ConnectionDirector;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 import infobite.kumar.life.R;
 import retrofit2.Response;
-
-import static com.infobite.life.ui.activity.HomeNavigationActivity.fragmentHomeManager;
 
 public class GalleryFragment extends BaseFragment {
     private View rootview;
@@ -41,7 +35,7 @@ public class GalleryFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        rootview = inflater.inflate(R.layout.fragment_gallery,container,false);
+        rootview = inflater.inflate(R.layout.fragment_gallery, container, false);
         activity = getActivity();
         mContext = getActivity();
         cd = new ConnectionDirector(mContext);
@@ -54,22 +48,23 @@ public class GalleryFragment extends BaseFragment {
     private void init() {
         rv_gallery = rootview.findViewById(R.id.rv_gallery);
 
-         galleryAdapter = new GalleryAdapter(mContext, galleryModalList);
+        galleryAdapter = new GalleryAdapter(mContext, galleryModalList);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 2);
         rv_gallery.setLayoutManager(gridLayoutManager);
         rv_gallery.setItemAnimator(new DefaultItemAnimator());
         rv_gallery.setAdapter(galleryAdapter);
     }
-    private void galleryApi(){
+
+    private void galleryApi() {
         RetrofitService.getGalleryData(new Dialog(mContext), retrofitApiClient.galleryData(), new WebResponse() {
             @Override
             public void onResponseSuccess(Response<?> result) {
                 GalleryMainModal galleryMainModal = (GalleryMainModal) result.body();
                 galleryModalList.clear();
-                if (galleryMainModal != null){
-                    if (galleryMainModal.getData() != null){
+                if (galleryMainModal != null) {
+                    if (galleryMainModal.getData() != null) {
                         galleryModalList.addAll(galleryMainModal.getData());
-                    Alerts.show(mContext,"Gallery Successfully Fatched");
+                        Alerts.show(mContext, "Gallery Successfully Fatched");
                     }
                 }
                 galleryAdapter.notifyDataSetChanged();
@@ -77,7 +72,7 @@ public class GalleryFragment extends BaseFragment {
 
             @Override
             public void onResponseFailed(String error) {
-                Alerts.show(mContext , error);
+                Alerts.show(mContext, error);
 
             }
         });

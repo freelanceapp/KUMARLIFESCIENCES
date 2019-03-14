@@ -30,7 +30,7 @@ public class CheckOutActivity extends AppCompatActivity {
     private FrameLayout viewPager;
 
     public DatabaseHandler databaseCart;
-   // private GoogleApiClient googleApiClient;
+    // private GoogleApiClient googleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -50,7 +50,8 @@ public class SubCategoryFragment extends BaseFragment implements View.OnClickLis
     private ProductListAdapter productAdapter;
     private ArrayList<Datum> subcategoryArrayList = new ArrayList<>();
     private ArrayList<Product> productArrayList = new ArrayList<>();
-    private String strSubcateogryName;
+    private String  strSubcateogryName;
+
     private Boolean checked = false;
     private FloatingActionButton backArrow;
     private TextView tvSubcategoryname;
@@ -143,11 +144,6 @@ public class SubCategoryFragment extends BaseFragment implements View.OnClickLis
                 break;
             case R.id.ll_subcategory:
                 position = Integer.parseInt(v.getTag().toString());
-
-               /* View view = rvSubcategory.getChildAt(position);
-                LinearLayout ll_subcategory = view.findViewById(R.id.ll_subcategory);
-                ll_subcategory.setBackgroundColor(Color.RED);*/
-
                 strSubcateogryName = subcategoryArrayList.get(position).getSubCategoryName();
                 tvSubcategoryname.setText(strSubcateogryName + " : Product");
                 AppPreference.setStringPreference(mContext, Constant.SubcategoryName, strSubcateogryName);

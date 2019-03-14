@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 import infobite.kumar.life.R;
 
-public class ShowOrderHistory extends BaseActivity {
+public class ShowOrderHistory extends BaseActivity implements View.OnClickListener {
 
     private ArrayList<OrderProduct> orderProduct = new ArrayList<>();
     TextView tvOrderNo, orderDate, productName, productPrice, productQty, totalPrice, status;
@@ -30,6 +30,7 @@ public class ShowOrderHistory extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_order_history);
 
+        findViewById(R.id.imgBack).setOnClickListener(this);
         RecyclerView recyclerView = findViewById(R.id.rv_show_list);
         showOrderListAdapter = new ShowOrderListAdapter(mContext, orderProduct);
         recyclerView.setHasFixedSize(true);
@@ -37,7 +38,6 @@ public class ShowOrderHistory extends BaseActivity {
         recyclerView.setAdapter(showOrderListAdapter);
 
         getIntentData();
-
     }
 
     private void getIntentData() {
@@ -52,5 +52,10 @@ public class ShowOrderHistory extends BaseActivity {
         int position = Integer.parseInt(view.getTag().toString());
         OrderProduct product = orderProduct.get(position);
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        finish();
     }
 }
