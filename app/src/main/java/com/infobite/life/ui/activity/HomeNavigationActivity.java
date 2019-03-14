@@ -118,6 +118,7 @@ public class HomeNavigationActivity extends BaseActivity implements View.OnClick
 
     private void replaceFragment() {
         fragmentHomeManager = getSupportFragmentManager();
+        toolbar.setTitle(Constant.HomeFragment);
         fragmentHomeManager.beginTransaction()
                 .replace(R.id.home_content_frame, new HomeFragment()
                         , Constant.HomeFragment).commit();

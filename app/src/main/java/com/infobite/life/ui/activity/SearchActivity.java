@@ -11,6 +11,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 
 import com.infobite.life.adapter.SearchListAdapter;
@@ -37,6 +38,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     private SearchListAdapter searchListAdapter;
     private EditText edtSearch;
     private String strUserId = "";
+    private ImageView backActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,8 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         //findViewById(R.id.imgBack).setOnClickListener(this);
 
         gridDetailrclv = findViewById(R.id.gridDetailrclv);
+        backActivity = findViewById(R.id.ic_back_search);
+        backActivity.setOnClickListener(this);
         gridDetailrclv.setHasFixedSize(true);
 
         searchListAdapter = new SearchListAdapter(allUserLists, mContext, this);
@@ -110,7 +114,9 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-
+            case R.id.ic_back_search:
+                finish();
+                break;
         }
 
     }

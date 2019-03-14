@@ -1,7 +1,6 @@
 package com.infobite.life.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
@@ -14,14 +13,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.infobite.life.modal.products_modal.Subcategory;
 import com.infobite.life.modal.subcategory_modal.Datum;
 
 import java.util.ArrayList;
 
 import infobite.kumar.life.R;
 
-public class SubCategoryProductListAdapter extends RecyclerView.Adapter<SubCategoryProductListAdapter.ViewHolder> implements View.OnClickListener{
+public class SubCategoryProductListAdapter extends RecyclerView.Adapter<SubCategoryProductListAdapter.ViewHolder> implements View.OnClickListener {
     private View rootview;
     private int position;
     private Context mContext;
@@ -29,11 +27,13 @@ public class SubCategoryProductListAdapter extends RecyclerView.Adapter<SubCateg
     private View.OnClickListener onClickListener;
     private String strSubCategoryName;
     private Boolean cheked = false;
-    public SubCategoryProductListAdapter(Context mContext, ArrayList<Datum> subcategoryArrayList,View.OnClickListener onClickListener,int position) {
+    private int pos1;
+
+    public SubCategoryProductListAdapter(Context mContext, ArrayList<Datum> subcategoryArrayList, View.OnClickListener onClickListener, int pos1) {
         this.mContext = mContext;
         this.subcategoryArrayList = subcategoryArrayList;
         this.onClickListener = onClickListener;
-        this.position = position;
+        this.pos1 = pos1;
     }
 
     @NonNull
@@ -53,21 +53,19 @@ public class SubCategoryProductListAdapter extends RecyclerView.Adapter<SubCateg
         TextView nameSubcategory = rootview.findViewById(R.id.tv_subcategoryName);
 
         nameSubcategory.setText(subcategorylist.getSubCategoryName());
-        if (subcategorylist.getSubCategoryImage() != null){
+        if (subcategorylist.getSubCategoryImage() != null) {
 
             Glide.with(mContext).load(subcategorylist.getSubCategoryImage()).into(imgSubcategory);
-        }else {
+        } else {
             imgSubcategory.setVisibility(View.GONE);
         }
-
-
-        if (position == i){
+        /*if (position == i) {
             cheked = false;
-            ((LinearLayout)rootview.findViewById(R.id.ll_bgchange)).setBackgroundColor(Color.TRANSPARENT);
-        }else {
+            ((LinearLayout) rootview.findViewById(R.id.ll_bgchange)).setBackgroundColor(Color.TRANSPARENT);
+        } else {
             cheked = true;
-            ((LinearLayout)rootview.findViewById(R.id.ll_bgchange)).setBackground((mContext.getResources().getDrawable(R.drawable.bg_yellow)));
-        }
+            ((LinearLayout) rootview.findViewById(R.id.ll_bgchange)).setBackground((mContext.getResources().getDrawable(R.drawable.bg_yellow)));
+        }*/
         viewHolder.llSubcategory.setTag(i);
         viewHolder.llSubcategory.setOnClickListener(onClickListener);
     }
@@ -80,9 +78,9 @@ public class SubCategoryProductListAdapter extends RecyclerView.Adapter<SubCateg
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.ll_subcategory :
-            break;
+        switch (v.getId()) {
+            case R.id.ll_subcategory:
+                break;
 
         }
     }

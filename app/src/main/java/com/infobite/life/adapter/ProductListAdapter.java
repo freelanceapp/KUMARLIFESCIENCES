@@ -1,6 +1,7 @@
 package com.infobite.life.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -23,11 +24,19 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     private View rootview;
     private ArrayList<Product> productArrayList;
     private View.OnClickListener onClickListener;
+    private int pos;
 
-    public ProductListAdapter(Context mcontext, ArrayList<Product> productArrayList,View.OnClickListener onClickListener) {
+    public ProductListAdapter(Context mcontext, ArrayList<Product> productArrayList,View.OnClickListener onClickListener ) {
         this.mcontext = mcontext;
         this.productArrayList = productArrayList;
         this.onClickListener = onClickListener;
+    }
+
+    public ProductListAdapter(Context mcontext, ArrayList<Product> productArrayList,View.OnClickListener onClickListener , int pos) {
+        this.mcontext = mcontext;
+        this.productArrayList = productArrayList;
+        this.onClickListener = onClickListener;
+        this.pos = pos;
     }
     @NonNull
     @Override
@@ -51,6 +60,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         }else {
             imgProducts.setVisibility(View.GONE);
         }
+
         viewHolder.llProduct.setTag(i);
         viewHolder.llProduct.setOnClickListener(onClickListener);
     }
