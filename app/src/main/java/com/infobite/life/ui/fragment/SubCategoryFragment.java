@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -17,7 +17,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.infobite.life.adapter.ProductListAdapter;
 import com.infobite.life.adapter.SubCategoryProductListAdapter;
@@ -51,7 +51,10 @@ public class SubCategoryFragment extends BaseFragment implements View.OnClickLis
     private ArrayList<Datum> subcategoryArrayList = new ArrayList<>();
     private ArrayList<Product> productArrayList = new ArrayList<>();
     private String  strSubcateogryName;
+
     private Boolean checked = false;
+    private FloatingActionButton backArrow;
+    private TextView tvSubcategoryname;
     private int position = 0;
 
     @Nullable
@@ -70,6 +73,9 @@ public class SubCategoryFragment extends BaseFragment implements View.OnClickLis
     private void init() {
         rvSubcategory = rootview.findViewById(R.id.rv_subCategory);
         rvProducts = rootview.findViewById(R.id.rv_product);
+        backArrow = rootview.findViewById(R.id.icback_subcategory);
+        tvSubcategoryname = rootview.findViewById(R.id.tv_subcaname);
+        backArrow.setOnClickListener(this);
 
         subCategoryProductListAdapter = new SubCategoryProductListAdapter(mContext, subcategoryArrayList, this , position);
         rvSubcategory.setHasFixedSize(true);
@@ -98,6 +104,8 @@ public class SubCategoryFragment extends BaseFragment implements View.OnClickLis
                         subcategoryArrayList.addAll(subcategeryModal.getData());
                         Alerts.show(mContext, result.message());
                         if (subcategoryArrayList.size() > 0) {
+                            ((TextView) rootview.findViewById(R.id.tv_subcaname)).
+                                    setText(subcategoryArrayList.get(0).getSubCategoryName() + " : Product");
                             firstCategory(subcategoryArrayList.get(0).getProducts());
                         }
                     } else {
@@ -123,25 +131,22 @@ public class SubCategoryFragment extends BaseFragment implements View.OnClickLis
     }
 
     private void startFragment(Fragment fragment) {
-        toolbar.setTitle(Constant.ProductDetailFragment);
+        toolbar.setTitle(Constant.ProductsFragment);
         fragmentHomeManager.beginTransaction()
-                .replace(R.id.home_content_frame, fragment
-                        , Constant.ProductDetailFragment).commit();
+                .replace(R.id.home_content_frame, new ProductsFragment()
+                        , Constant.ProductsFragment).commit();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.icback_subcategory:
+                startFragment(new ProductsFragment());
+                break;
             case R.id.ll_subcategory:
                 position = Integer.parseInt(v.getTag().toString());
-
-               /* View view = rvSubcategory.getChildAt(position);
-                LinearLayout ll_subcategory = view.findViewById(R.id.ll_subcategory);
-                ll_subcategory.setBackgroundColor(Color.RED);*/
-
                 strSubcateogryName = subcategoryArrayList.get(position).getSubCategoryName();
-                AppPreference.setStringPreference(mContext,Constant.SubcategoryName,strSubcateogryName);
+                tvSubcategoryname.setText(strSubcateogryName + " : Product");
+                AppPreference.setStringPreference(mContext, Constant.SubcategoryName, strSubcateogryName);
                 productArrayList.clear();
                 productArrayList.addAll(subcategoryArrayList.get(position).getProducts());
                 productAdapter.notifyDataSetChanged();
@@ -155,14 +160,14 @@ public class SubCategoryFragment extends BaseFragment implements View.OnClickLis
                 String strProductPrice = productArrayList.get(position1).getProductPrice();
                 String strProductImage = productArrayList.get(position1).getProductImage().get(position1).getProductImage();
 
-                AppPreference.setStringPreference(mContext,Constant.ProductId,strProductId);
-                AppPreference.setStringPreference(mContext,Constant.ProductName,strProductName);
-                AppPreference.setStringPreference(mContext,Constant.ProductQuantity,strProductQuantity);
-                AppPreference.setStringPreference(mContext,Constant.ProductPrice,strProductPrice);
-                AppPreference.setStringPreference(mContext,Constant.ProductImage,strProductImage);
+                AppPreference.setStringPreference(mContext, Constant.ProductId, strProductId);
+                AppPreference.setStringPreference(mContext, Constant.ProductName, strProductName);
+                AppPreference.setStringPreference(mContext, Constant.ProductQuantity, strProductQuantity);
+                AppPreference.setStringPreference(mContext, Constant.ProductPrice, strProductPrice);
+                AppPreference.setStringPreference(mContext, Constant.ProductImage, strProductImage);
 
                 Intent intent1 = new Intent(mContext, ProductDetailActivity.class);
-                intent1.putExtra("subcategoryName",subcategoryArrayList.get(position1).getSubCategoryName());
+                intent1.putExtra("subcategoryName", subcategoryArrayList.get(position1).getSubCategoryName());
                 intent1.putExtra("productArrayList", (Parcelable) productArrayList.get(position1));
                 startActivity(intent1);
                 break;
