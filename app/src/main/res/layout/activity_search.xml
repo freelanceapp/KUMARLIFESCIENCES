@@ -41,7 +41,8 @@
         android:drawableLeft="@drawable/ic_search"
         android:hint="Search your product"
         android:padding="8dp"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:drawableStart="@drawable/ic_search" />
 
 
     <android.support.v7.widget.RecyclerView
