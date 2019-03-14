@@ -2,6 +2,8 @@ package com.infobite.life.ui.fragment;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
@@ -52,6 +54,7 @@ public class SubCategoryFragment extends BaseFragment implements View.OnClickLis
     private Boolean checked = false;
     private FloatingActionButton backArrow;
     private TextView tvSubcategoryname;
+    private int position = 0;
 
     @Nullable
     @Override
@@ -73,12 +76,12 @@ public class SubCategoryFragment extends BaseFragment implements View.OnClickLis
         tvSubcategoryname = rootview.findViewById(R.id.tv_subcaname);
         backArrow.setOnClickListener(this);
 
-        subCategoryProductListAdapter = new SubCategoryProductListAdapter(mContext, subcategoryArrayList, this);
+        subCategoryProductListAdapter = new SubCategoryProductListAdapter(mContext, subcategoryArrayList, this , position);
         rvSubcategory.setHasFixedSize(true);
         rvSubcategory.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
         rvSubcategory.setAdapter(subCategoryProductListAdapter);
 
-        productAdapter = new ProductListAdapter(mContext, productArrayList, this);
+        productAdapter = new ProductListAdapter(mContext, productArrayList, this );
         GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 2);
         rvProducts.setLayoutManager(gridLayoutManager);
         rvProducts.setItemAnimator(new DefaultItemAnimator());
@@ -139,7 +142,12 @@ public class SubCategoryFragment extends BaseFragment implements View.OnClickLis
                 startFragment(new ProductsFragment());
                 break;
             case R.id.ll_subcategory:
-                int position = Integer.parseInt(v.getTag().toString());
+                position = Integer.parseInt(v.getTag().toString());
+
+               /* View view = rvSubcategory.getChildAt(position);
+                LinearLayout ll_subcategory = view.findViewById(R.id.ll_subcategory);
+                ll_subcategory.setBackgroundColor(Color.RED);*/
+
                 strSubcateogryName = subcategoryArrayList.get(position).getSubCategoryName();
                 tvSubcategoryname.setText(strSubcateogryName + " : Product");
                 AppPreference.setStringPreference(mContext, Constant.SubcategoryName, strSubcateogryName);
@@ -148,6 +156,7 @@ public class SubCategoryFragment extends BaseFragment implements View.OnClickLis
                 productAdapter.notifyDataSetChanged();
                 break;
             case R.id.ll_product:
+
                 int position1 = Integer.parseInt(v.getTag().toString());
                 String strProductId = productArrayList.get(position1).getProductId();
                 String strProductName = productArrayList.get(position1).getProductType();

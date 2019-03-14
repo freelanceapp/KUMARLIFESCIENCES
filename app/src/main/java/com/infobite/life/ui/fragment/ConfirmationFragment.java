@@ -23,6 +23,7 @@ import com.infobite.life.database.DatabaseHandler;
 import com.infobite.life.modal.ProductDetail;
 import com.infobite.life.retrofit_provider.RetrofitService;
 import com.infobite.life.retrofit_provider.WebResponse;
+import com.infobite.life.ui.activity.ThankYouActivity;
 import com.infobite.life.utils.Alerts;
 import com.infobite.life.utils.AppPreference;
 import com.infobite.life.utils.BaseFragment;
@@ -205,6 +206,10 @@ public class ConfirmationFragment extends BaseFragment implements View.OnClickLi
                         JSONObject jsonObject = new JSONObject(responseBody.string());
                         if (jsonObject.getString("message").equalsIgnoreCase("Successfully Order")) {
                             Toast.makeText(mContext, "Order Successfully", Toast.LENGTH_SHORT).show();
+                            databaseCart.deleteallCart(databaseCart);
+                            Intent intent = new Intent(getActivity(), ThankYouActivity.class);
+                            getActivity().startActivity(intent);
+                            getActivity().finish();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();

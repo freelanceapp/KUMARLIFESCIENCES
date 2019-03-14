@@ -28,10 +28,12 @@ public class SubCategoryProductListAdapter extends RecyclerView.Adapter<SubCateg
     private View.OnClickListener onClickListener;
     private String strSubCategoryName;
     private Boolean cheked = false;
-    public SubCategoryProductListAdapter(Context mContext, ArrayList<Datum> subcategoryArrayList,View.OnClickListener onClickListener) {
+    private int pos1;
+    public SubCategoryProductListAdapter(Context mContext, ArrayList<Datum> subcategoryArrayList,View.OnClickListener onClickListener , int pos1) {
         this.mContext = mContext;
         this.subcategoryArrayList = subcategoryArrayList;
         this.onClickListener = onClickListener;
+        this.pos1 = pos1;
     }
 
     @NonNull
@@ -56,7 +58,6 @@ public class SubCategoryProductListAdapter extends RecyclerView.Adapter<SubCateg
         }else {
             imgSubcategory.setVisibility(View.GONE);
         }
-
         viewHolder.llSubcategory.setTag(i);
         viewHolder.llSubcategory.setOnClickListener(onClickListener);
     }
