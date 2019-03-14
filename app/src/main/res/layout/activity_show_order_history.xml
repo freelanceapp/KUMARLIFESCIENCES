@@ -18,6 +18,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_arrow_back" />
+            <TextView
+                android:paddingLeft="16sp"
+                android:layout_toRightOf="@id/imgBack"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:text="Order Detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 

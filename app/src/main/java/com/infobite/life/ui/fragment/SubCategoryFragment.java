@@ -102,7 +102,7 @@ public class SubCategoryFragment extends BaseFragment implements View.OnClickLis
                     productArrayList.clear();
                     if (subcategeryModal != null) {
                         subcategoryArrayList.addAll(subcategeryModal.getData());
-                        Alerts.show(mContext, result.message());
+                        Alerts.show(mContext, "data fatched successfully");
                         if (subcategoryArrayList.size() > 0) {
                             ((TextView) rootview.findViewById(R.id.tv_subcaname)).
                                     setText(subcategoryArrayList.get(0).getSubCategoryName() + " : Product");

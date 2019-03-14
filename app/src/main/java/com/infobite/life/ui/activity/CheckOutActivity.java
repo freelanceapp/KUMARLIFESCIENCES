@@ -49,7 +49,7 @@ public class CheckOutActivity extends AppCompatActivity {
         back_iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CheckOutActivity.this, HomeNavigationActivity.class);
+                Intent intent = new Intent(CheckOutActivity.this, AddtoCartActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -60,7 +60,7 @@ public class CheckOutActivity extends AppCompatActivity {
 
     private void setFragment() {
         ShoppingFragment fragment = new ShoppingFragment(ctx);
-        Utility.setFragment1(fragment, ctx, Constant.Home);
+        Utility.setFragment2(fragment, ctx, Constant.Home);
     }
 
     @Override
@@ -70,11 +70,11 @@ public class CheckOutActivity extends AppCompatActivity {
         }
     }
 
-    @Override
+   /* @Override
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(CheckOutActivity.this, HomeNavigationActivity.class);
         startActivity(intent);
         finish();
-    }
+    }*/
 }

@@ -44,7 +44,6 @@
 
         <ImageView
             android:layout_gravity="center"
-            android:src="@drawable/profile"
             android:id="@+id/img_product_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,7 +51,6 @@
         <TextView
             android:padding="4dp"
             android:textAlignment="center"
-            android:text="ts"
             android:layout_marginLeft="5dp"
             android:id="@+id/tv_detail_productname"
             android:layout_width="match_parent"
@@ -81,7 +79,6 @@
 
             <TextView
                 android:padding="4dp"
-                android:text="ss"
                 android:textAlignment="center"
                 android:textSize="16dp"
                 android:layout_marginLeft="5dp"

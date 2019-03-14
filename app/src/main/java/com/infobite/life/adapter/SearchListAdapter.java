@@ -53,10 +53,14 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
 
         Datum gridDetailmodels = filteredAllUserLists.get(i);
-
-        Glide.with(context)
-                .load(gridDetailmodels.getProductImage())
-                .into(viewHolder.imgMainProduct);
+        if (gridDetailmodels.getProductImage().get(0).getProductImage() != null){
+            Glide.with(context)
+                    .load(gridDetailmodels.getProductImage().get(0).getProductImage())
+                    .into(viewHolder.imgMainProduct);
+        }else {
+            viewHolder.imgMainProduct.setVisibility(View.GONE
+            );
+        }
 
         viewHolder.tv_productName.setText(gridDetailmodels.getProductType());
        /* viewHolder.btnView.setOnClickListener(new View.OnClickListener() {

@@ -42,7 +42,12 @@ public class Utility {
     }*/
 
     public static void setFragment1(Fragment fragment, Context ctx, String tag) {
-        ((CheckOutActivity) ctx).getSupportFragmentManager().beginTransaction().replace(R.id.viewpager, fragment, tag).commit();
+        ((CheckOutActivity) ctx).getSupportFragmentManager().beginTransaction().replace(R.id.viewpager, fragment).addToBackStack(null).commit();
+    }
+
+
+    public static void setFragment2(Fragment fragment, Context ctx, String tag) {
+        ((CheckOutActivity) ctx).getSupportFragmentManager().beginTransaction().replace(R.id.viewpager, fragment).commit();
     }
 
    /* public static void setProfileFragment(Fragment fragment, Context ctx) {
