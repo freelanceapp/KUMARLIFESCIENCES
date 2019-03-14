@@ -1,57 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_white"
     android:orientation="vertical">
 
-    <TextView
-        android:background="@color/blue_a"
-        android:padding="10dp"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="SubCategories"
-        android:textColor="@color/black"
-        android:textSize="16dp" />
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray_h"
-        android:paddingBottom="4dp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_subCategory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="8dp"/>
 
-    <View
-        android:layout_marginTop="10dp"
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray_h"
-        />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_subCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="16dp" />
 
-    <TextView
-        android:background="@color/maroon"
-        android:padding="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Products"
-        android:textColor="@color/white"
-        android:textSize="16dp" />
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray_h"
-        android:paddingBottom="10dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/maroon"
+            android:orientation="horizontal"
+            android:padding="10dp">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_product"
-        android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tv_subcaname"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="8dp"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:visibility="gone"
+                android:layout_marginLeft="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="8dp"
+                android:text="Products"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_h"
+            android:paddingBottom="10dp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp" />
+
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/icback_subcategory"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp" />
-</LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_arrow_back"
+        app:backgroundTint="@color/dark_blue" />
+
+</RelativeLayout>
