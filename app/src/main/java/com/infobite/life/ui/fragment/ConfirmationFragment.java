@@ -17,9 +17,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.infobite.life.adapter.AdapterConfirmation;
 import com.infobite.life.constant.Constant;
 import com.infobite.life.database.DatabaseHandler;
+import com.infobite.life.modal.ProductDataModel;
 import com.infobite.life.modal.ProductDetail;
 import com.infobite.life.retrofit_provider.RetrofitService;
 import com.infobite.life.retrofit_provider.WebResponse;
@@ -36,6 +39,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import infobite.kumar.life.R;
 import okhttp3.ResponseBody;
@@ -59,6 +63,8 @@ public class ConfirmationFragment extends BaseFragment implements View.OnClickLi
     String totalAmount1 = "0";
     String Offer_Amount = "0";
     private TextView tvorderNow;
+
+    ArrayList<ProductDataModel> productDataModelArrayList = new ArrayList<>();
 
     @SuppressLint("ValidFragment")
     public ConfirmationFragment(Context ctx) {
@@ -189,26 +195,38 @@ public class ConfirmationFragment extends BaseFragment implements View.OnClickLi
             ArrayList<ProductDetail> list = databaseCart.getAllUrlList();
             for (int i = 0; i < list.size(); i++) {
                 tot = list.get(i).getQuantity() * Float.parseFloat(list.get(i).getPrice());
-               /* product_id = list.get(0).getId();
-                product_qty = String.valueOf(list.get(0).getQuantity());
-                company_name = list.get(0).getCategory();
-                product_price = list.get(0).getPrice();
-                product_name = list.get(0).getName();*/
+
+                ProductDataModel productDataModel = new ProductDataModel();
+                productDataModel.setProductId(list.get(i).getId());
+                productDataModel.setProductName(list.get(i).getName());
+                productDataModel.setProductCategory(list.get(i).getCategory());
+                productDataModel.setProductImage(list.get(i).getImage());
+                productDataModel.setProductPrice(list.get(i).getPrice());
+                productDataModel.setProductQty(String.valueOf(list.get(i).getQuantity()));
+                productDataModel.setProductSubCategory(list.get(i).getCategory());
+                productDataModel.setTotalPrice(String.valueOf(tot));
+
+                productDataModelArrayList.add(productDataModel);
             }
+
+            Gson gson = new GsonBuilder().setLenient().create();
+            String data = gson.toJson(productDataModelArrayList);
+
             RetrofitService.getOrderData(new Dialog(mContext), retrofitApiClient.order(name, user_id, "comapany_name", email,
-                    address, mobile, state, city, code, strProductId, strProductName, categoryName, subCategoryName, strProductImage,
-                    strProductPrice, strProductQuantity, String.valueOf(tot)), new WebResponse() {
+                    address, mobile, state, city, code, data ), new WebResponse() {
                 @Override
                 public void onResponseSuccess(Response<?> result) {
                     ResponseBody responseBody = (ResponseBody) result.body();
                     try {
                         JSONObject jsonObject = new JSONObject(responseBody.string());
-                        if (jsonObject.getString("message").equalsIgnoreCase("Successfully Order")) {
+                        if (jsonObject.getString("message").equalsIgnoreCase("Order Successfully Place")) {
                             Toast.makeText(mContext, "Order Successfully", Toast.LENGTH_SHORT).show();
                             databaseCart.deleteallCart(databaseCart);
                             Intent intent = new Intent(getActivity(), ThankYouActivity.class);
                             getActivity().startActivity(intent);
                             getActivity().finish();
+                        }else {
+                            Toast.makeText(mContext, "Order Not Successfully Try Again", Toast.LENGTH_SHORT).show();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -222,6 +240,12 @@ public class ConfirmationFragment extends BaseFragment implements View.OnClickLi
                     Alerts.show(mContext, error);
                 }
             });
+        }else {
+            cd.show(mContext);
         }
     }
+
+
+
+
 }

@@ -50,6 +50,7 @@
         <activity
             android:name="com.infobite.life.ui.activity.MainActivity"
             android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

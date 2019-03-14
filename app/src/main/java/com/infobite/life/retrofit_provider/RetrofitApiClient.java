@@ -56,8 +56,9 @@ public interface RetrofitApiClient {
 
     @FormUrlEncoded
     @POST(Constant.ORDER_API)
-    Call<ResponseBody> order(@Field("first_name") String first_name,
+    Call<ResponseBody> order(
                              @Field("user_id") String user_id,
+                             @Field("first_name") String first_name,
                              @Field("company_name") String company_name,
                              @Field("user_email") String user_email,
                              @Field("address") String address,
@@ -65,14 +66,7 @@ public interface RetrofitApiClient {
                              @Field("state") String state,
                              @Field("city") String city,
                              @Field("zip_code") String zip_code,
-                             @Field("product_id") String product_id,
-                             @Field("product_name") String product_name,
-                             @Field("product_category") String product_category,
-                             @Field("product_sub_category") String product_sub_category,
-                             @Field("product_image") String product_image,
-                             @Field("product_price") String product_price,
-                             @Field("product_qty") String product_qty,
-                             @Field("total_price") String total_price);
+                             @Field("product_details") String product_details);
 
 
 }
