@@ -38,7 +38,7 @@ import infobite.kumar.life.R;
 
 public class HomeNavigationActivity extends BaseActivity implements View.OnClickListener {
 
-    private TextView tvProfileName, tvProfileEmail;
+    private TextView tvProfileName, tvProfileEmail , tvLogout;
     private String strName = "", strEmail = "";
     public static Toolbar toolbar;
     private ExpandableListAdapter expandableListAdapter;
@@ -98,6 +98,7 @@ public class HomeNavigationActivity extends BaseActivity implements View.OnClick
         tvProfileName.setText(strName);
         tvProfileEmail.setText(strEmail);
 
+
         tvHome.setOnClickListener(this);
         tvProduct.setOnClickListener(this);
         tvGallery.setOnClickListener(this);
@@ -115,8 +116,17 @@ public class HomeNavigationActivity extends BaseActivity implements View.OnClick
 
         expandableListView = findViewById(R.id.expandableListView);
         ((ImageView) findViewById(R.id.iv_search)).setOnClickListener(this);
-        ((TextView) findViewById(R.id.tvLogout)).setOnClickListener(this);
 
+        tvLogout = findViewById(R.id.tvLogout);
+        tvLogout.setOnClickListener(this);
+
+
+        if (AppPreference.getStringPreference(mContext,Constant.Is_Login).equals(false))
+        {
+            tvLogout.setText("Login");
+        }else {
+            tvLogout.setText("Logout");
+        }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
