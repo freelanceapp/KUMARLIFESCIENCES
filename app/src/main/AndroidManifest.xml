@@ -10,20 +10,24 @@
     <application
         android:name="com.infobite.life.font_change.CustomFontApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/klogopng"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/klogopng"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Base"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.infobite.life.ui.activity.ShowOrderHistory"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name="com.infobite.life.ui.activity.ProductDetailActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.infobite.life.ui.activity.SearchActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.infobite.life.ui.activity.CheckOutActivity"/>
-        <activity android:name="com.infobite.life.ui.activity.AddtoCartActivity"/>
+        <activity android:name="com.infobite.life.ui.activity.ThankYouActivity"></activity>
+        <activity
+            android:name="com.infobite.life.ui.activity.ShowOrderHistory"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.infobite.life.ui.activity.ProductDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.infobite.life.ui.activity.SearchActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name="com.infobite.life.ui.activity.CheckOutActivity" />
+        <activity android:name="com.infobite.life.ui.activity.AddtoCartActivity" />
         <activity
             android:name="com.infobite.life.ui.activity.LoginMainActivity"
             android:screenOrientation="portrait" />
