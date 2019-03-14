@@ -89,7 +89,7 @@ public class ProductsFragment extends BaseFragment implements View.OnClickListen
                     if (categeryModal != null) {
                         mainCategoryList.addAll(categeryModal.getData());
                         //  productMainCategoryAdapter.notifyDataSetChanged();
-                        Alerts.show(mContext, result.message());
+                   //     Alerts.show(mContext, result.message());
                     } else {
                         Alerts.show(mContext, result.message());
                     }

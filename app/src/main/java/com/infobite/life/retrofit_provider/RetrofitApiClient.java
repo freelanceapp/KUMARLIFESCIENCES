@@ -42,6 +42,10 @@ public interface RetrofitApiClient {
     Call<ResponseBody> signUp(@Field("fullname") String fullname, @Field("password") String password, @Field("email") String email);
 
     @FormUrlEncoded
+    @POST(Constant.FORGOT_PASSWORD_API)
+    Call<ResponseBody> forgotPasswordApi(@Field("email") String email);
+
+    @FormUrlEncoded
     @POST(Constant.LOGIN_API)
     Call<ResponseBody> loginData(@Field("email") String email, @Field("password") String password);
 

@@ -214,6 +214,34 @@
                     android:layout_marginTop="6dp"
                     android:layout_marginBottom="6dp"
                     android:background="@color/transparent_white" />
+                <LinearLayout
+                    android:padding="20dp"
+                    android:gravity="center"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/fb_link"
+                        android:padding="6dp"
+                        android:tint="@color/dark_white"
+                        android:src="@drawable/fb_logo"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp" />
+                    <ImageView
+                        android:tint="@color/dark_white"
+                        android:id="@+id/insta_link"
+                        android:padding="16dp"
+                        android:src="@drawable/instagram_logo"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp" />
+                    <ImageView
+                        android:id="@+id/google_link"
+                        android:tint="@color/dark_white"
+                        android:src="@drawable/google_plus_logo"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp" />
+                </LinearLayout>
             </LinearLayout>
 
             <TextView

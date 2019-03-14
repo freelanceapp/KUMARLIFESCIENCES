@@ -116,7 +116,7 @@ public class PaymentFragment extends android.support.v4.app.Fragment implements 
                 editor1.apply();
                 // ((CheckOutActivity) getActivity()).setPosition(2);
                 ConfirmationFragment fragment = new ConfirmationFragment(ctx);
-                Utility.setFragment1(fragment, ctx, Constant.Home);
+                Utility.setFragment1(fragment, ctx, Constant.ShoppingFragment);
 
                 break;
             case R.id.rb_payment_cod:

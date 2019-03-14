@@ -67,7 +67,7 @@ public class OrderHistoryFragment extends BaseFragment implements View.OnClickLi
                     orderHistoryArrayList.clear();
                     if (historyMainModal != null) {
                         orderHistoryArrayList.addAll(historyMainModal.getData());
-                        Alerts.show(mContext, result.message());
+                        Alerts.show(mContext, "data fatched successfully");
                     } else {
                         Alerts.show(mContext, result.message());
                     }

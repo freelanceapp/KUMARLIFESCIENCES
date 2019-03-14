@@ -2,6 +2,7 @@ package com.infobite.life.ui.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -51,6 +52,7 @@ public class HomeNavigationActivity extends BaseActivity implements View.OnClick
     private RelativeLayout rlCart;
     public static int cart_count = 0;
     private NavigationView nav_view;
+    private ImageView imgFb,imgInsta,imgGoogle;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +72,7 @@ public class HomeNavigationActivity extends BaseActivity implements View.OnClick
                     .replace(R.id.home_content_frame, new HomeFragment()
                             , Constant.HomeFragment).commit();
         }
-        replaceFragment();
+        replaceFragment(new HomeFragment(),Constant.HomeFragment);
 
         strName = AppPreference.getStringPreference(mContext, Constant.Name);
         strEmail = AppPreference.getStringPreference(mContext, Constant.Email);
@@ -82,6 +84,13 @@ public class HomeNavigationActivity extends BaseActivity implements View.OnClick
         tvAountUs = findViewById(R.id.tvAboutus);
         tvContactUs = findViewById(R.id.tvContactus);
         tvAddtoCart = findViewById(R.id.tvAddtoCart);
+
+        imgFb = findViewById(R.id.fb_link);
+        imgFb.setOnClickListener(this);
+        imgInsta = findViewById(R.id.insta_link);
+        imgInsta.setOnClickListener(this);
+        imgGoogle = findViewById(R.id.google_link);
+        imgGoogle.setOnClickListener(this);
 
         nav_view = findViewById(R.id.nav_view);
         tvProfileName = findViewById(R.id.tv_profile_name);
@@ -116,12 +125,12 @@ public class HomeNavigationActivity extends BaseActivity implements View.OnClick
         toggle.syncState();
     }
 
-    private void replaceFragment() {
+    private void replaceFragment(Fragment fragment,String tag) {
         fragmentHomeManager = getSupportFragmentManager();
         toolbar.setTitle(Constant.HomeFragment);
         fragmentHomeManager.beginTransaction()
-                .replace(R.id.home_content_frame, new HomeFragment()
-                        , Constant.HomeFragment).commit();
+                .replace(R.id.home_content_frame, fragment
+                        , tag).commit();
     }
 
     @Override
@@ -140,19 +149,19 @@ public class HomeNavigationActivity extends BaseActivity implements View.OnClick
         } else if (HomeFragment != null)
             finish();
         else if (InfoFragment != null)
-            replaceFragment();
+            replaceFragment(new HomeFragment(),Constant.HomeFragment);
         else if (GalleryFragment != null)
-            replaceFragment();
+            replaceFragment(new HomeFragment(),Constant.HomeFragment);
         else if (OrderHistoryFragment != null)
-            replaceFragment();
+            replaceFragment(new HomeFragment(),Constant.HomeFragment);
         else if (ContactUsFragment != null)
-            replaceFragment();
+            replaceFragment(new HomeFragment(),Constant.HomeFragment);
         else if (AboutFragment != null)
-            replaceFragment();
+            replaceFragment(new HomeFragment(),Constant.HomeFragment);
         else if (ProductsFragment != null)
-            replaceFragment();
+            replaceFragment(new HomeFragment(),Constant.HomeFragment);
         else if (SubCategoryFragment != null)
-            replaceFragment();
+            replaceFragment(new ProductsFragment(),Constant.ProductsFragment);
         else
             super.onBackPressed();
     }
@@ -160,6 +169,30 @@ public class HomeNavigationActivity extends BaseActivity implements View.OnClick
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.fb_link:
+                String fburl = "https://www.facebook.com/kumarlifeofficial";
+                Uri strfb = Uri.parse(fburl);
+                Intent urlintent = new Intent();
+                urlintent.setData(strfb);
+                urlintent.setAction(Intent.ACTION_VIEW);
+                startActivity(urlintent);
+                break;
+            case R.id.insta_link:
+                String instaurl = "https://www.instagram.com/kumarlifeofficial/";
+                Uri strinsta = Uri.parse(instaurl);
+                Intent urlintent1 = new Intent();
+                urlintent1.setData(strinsta);
+                urlintent1.setAction(Intent.ACTION_VIEW);
+                startActivity(urlintent1);
+                break;
+            case R.id.google_link:
+                String instaur2 = "https://plus.google.com/109736142215118837457";
+                Uri strinsta2 = Uri.parse(instaur2);
+                Intent urlintent2 = new Intent();
+                urlintent2.setData(strinsta2);
+                urlintent2.setAction(Intent.ACTION_VIEW);
+                startActivity(urlintent2);
+                break;
             case R.id.iv_search:
                 startActivity(new Intent(this, SearchActivity.class));
                 break;

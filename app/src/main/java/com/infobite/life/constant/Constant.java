@@ -14,6 +14,7 @@ public class Constant {
     public static final String ORDER_HOSTORY_API = "kls-api/order-view.php";
     public static final String SEARCH_API = "kls-api/search-product.php";
     public static final String ORDER_API = "kls-api/order.php";
+    public static final String FORGOT_PASSWORD_API = "kls-api/forgot.php";
 
 
     //main categery image url
@@ -28,6 +29,7 @@ public class Constant {
 
     public static final String GalleryFragment = "Gallery";
     public static final String ContactUsFragment = "ContactUs";
+    public static final String ShoppingFragment = "ShoppingFragment";
 
 
     /*Preference*/

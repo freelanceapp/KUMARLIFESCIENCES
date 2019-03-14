@@ -9,6 +9,7 @@ import android.location.Geocoder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,8 @@ import java.util.Locale;
 
 import infobite.kumar.life.R;
 
+import static com.infobite.life.ui.activity.HomeNavigationActivity.fragmentHomeManager;
+
 
 @SuppressLint("ValidFragment")
 public class ShoppingFragment extends android.support.v4.app.Fragment implements View.OnClickListener {
@@ -37,6 +40,7 @@ public class ShoppingFragment extends android.support.v4.app.Fragment implements
     Context ctx;
     Activity activity;
     LinearLayout continue_pay_ll;
+    private FloatingActionButton fbCheck;
 
     EditText name_et, mobile_et, address_et, country_et, state_et, city_et, zipcode_et;
     EditText name_et1, mobile_et1, address_et1, country_et1, state_et1, city_et1, zipcode_et1;
@@ -80,6 +84,7 @@ public class ShoppingFragment extends android.support.v4.app.Fragment implements
         city_et = view.findViewById(R.id.et_newaddress_city);
         zipcode_et = view.findViewById(R.id.et_newaddress_zipcode);
         name_et = view.findViewById(R.id.et_newaddress_name);
+        name_et = view.findViewById(R.id.et_newaddress_name);
         mobile_et = view.findViewById(R.id.et_newaddress_number);
 
         address_et1 = view.findViewById(R.id.et_newaddress_adress1);
@@ -92,7 +97,6 @@ public class ShoppingFragment extends android.support.v4.app.Fragment implements
 
         continue_pay_ll.setOnClickListener(this);
     }
-
     private void setData() {
         dialog = new Dialog(ctx);
         String name = AppPreference.getStringPreference(ctx, Constant.Name);
@@ -193,7 +197,7 @@ public class ShoppingFragment extends android.support.v4.app.Fragment implements
             sessionManager.setData(SessionManager.KEY_ORDER_CITY1, city1);
 
             PaymentFragment fragment = new PaymentFragment(ctx);
-            Utility.setFragment1(fragment, ctx, Constant.Home);
+            Utility.setFragment1(fragment, ctx, Constant.ShoppingFragment);
             // ((CheckOutActivity) getActivity()).setPosition(1);
         }
     }
