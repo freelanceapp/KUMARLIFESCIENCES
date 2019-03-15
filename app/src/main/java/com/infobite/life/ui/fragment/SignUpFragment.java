@@ -114,8 +114,8 @@ public class SignUpFragment extends BaseFragment implements View.OnClickListener
                             if (jsonObject.getString("message").equalsIgnoreCase("Successfully Sign Up")) {
                                 AppPreference.setBooleanPreference(mContext, Constant.Is_Login, true);
                                 AppPreference.setStringPreference(mContext, Constant.User_Id, jsonObject.getString("user_id"));
-                                AppPreference.setStringPreference(mContext, Constant.Name, jsonObject.getString("full_name"));
-                                AppPreference.setStringPreference(mContext, Constant.Email, jsonObject.getString("user_email"));   //    AppPreference.setStringPreference(mContext,Constant.Password,jsonObject.getString("password"));
+                               // AppPreference.setStringPreference(mContext, Constant.Name, jsonObject.getString("full_name"));
+                               // AppPreference.setStringPreference(mContext, Constant.Email, jsonObject.getString("user_email"));   //    AppPreference.setStringPreference(mContext,Constant.Password,jsonObject.getString("password"));
                                 Intent intent = new Intent(mContext, HomeNavigationActivity.class);
                                 startActivity(intent);
                                 activity.finish();
