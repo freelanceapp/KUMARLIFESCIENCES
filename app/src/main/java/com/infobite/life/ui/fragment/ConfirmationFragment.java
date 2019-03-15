@@ -184,13 +184,6 @@ public class ConfirmationFragment extends BaseFragment implements View.OnClickLi
             String country = sessionManager.getData(SessionManager.KEY_ORDER_COUNTRY);
             String code = AppPreference.getStringPreference(ctx, Constant.PinCode);
             String paytype = sessionManager.getData(SessionManager.KEY_PAYMENT_TYPE);
-     /*       String product_id = "";
-            String product_name = "";
-            String company_name = "";
-            String product_category = "";
-            String product_sub_category = "";
-            String product_qty = "";
-            String product_price = null*/;
             float tot = 0;
             ArrayList<ProductDetail> list = databaseCart.getAllUrlList();
             for (int i = 0; i < list.size(); i++) {
@@ -212,7 +205,7 @@ public class ConfirmationFragment extends BaseFragment implements View.OnClickLi
             Gson gson = new GsonBuilder().setLenient().create();
             String data = gson.toJson(productDataModelArrayList);
 
-            RetrofitService.getOrderData(new Dialog(mContext), retrofitApiClient.order(name, user_id, "comapany_name", email,
+            RetrofitService.getOrderData(new Dialog(mContext), retrofitApiClient.order(user_id, name, "comapany_name", email,
                     address, mobile, state, city, code, data ), new WebResponse() {
                 @Override
                 public void onResponseSuccess(Response<?> result) {
